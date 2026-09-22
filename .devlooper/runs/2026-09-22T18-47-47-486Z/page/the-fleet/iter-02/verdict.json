@@ -1,0 +1,35 @@
+{
+  "breakpoints": {
+    "desktop": {
+      "score": 58,
+      "issues": [
+        { "severity": "critical", "actionable": true, "text": "Vessel render (181:540, vessel-silhouette.png, 400x400 grey 3D model centred at x=720/y=399) is entirely absent. The panel centre holds only the orbit ring and the 40px drag CTA, so the section's subject - the vessel the whole viewer is built around - is missing. Source still carries a TODO in the-fleet-roadmap.client.tsx where the Image should be; render the asset (or a 400x400 on-token stand-in that occupies the same box) so the centre is not an empty void." },
+        { "severity": "critical", "actionable": true, "text": "Painted background imagery is missing. Spec calls for fleet-sky.png (181:537, 1697x1358, object-fit cover) with fleet-backdrop.png (181:538, 1572x1054) at opacity 0.64 over it; the build renders a flat `photo-placeholder` linear-gradient (sampled #F5F5F6 top -> #E8E7E9 bottom). The panel reads as blank light grey instead of a painted sky/sea, which is the section's entire visual character. Note both PNGs are absent from src/app/(home)/assets/ - the asset fetch did not land them." },
+        { "severity": "warning", "actionable": true, "text": "Segment control track measures 346px wide, Figma specifies 384x40. The selected `October 2026` pill is correct at 122px (spec 120), but `Mid-2027` and `This decade` render ~100px and ~108px against the spec'd 124px each. Widen the unselected items (or the item padding) so the track reaches 384px; it is currently centred correctly at x=720." },
+        { "severity": "warning", "actionable": false, "text": "Display and sans faces fall back: h2 computes to Newsreader (Exposure not licensed/loaded) and body/lead computes to Inter (Matter not loaded). This is a globals.css font-stack decision outside this section's file - do NOT change it from here; flagged for the record only. It is also the likely cause of the narrow segment metrics above." },
+        { "severity": "info", "actionable": true, "text": "Lead -> CTA gap is 48px (`gap-12`); spec §7 and the .fleet__text rule both say 56px (--space-xxl). 8px short." },
+        { "severity": "info", "actionable": false, "text": "Typography tokens verified correct against spec: h2 80px/80px, -3.2px, #291D1D; eyebrow Overpass Mono 700 12px/12px, +0.12px, uppercase, sampled #717171 = #191919 @60%; lead split-opacity run sampled #BABABB = #191919 @24% exactly as specified." },
+        { "severity": "info", "actionable": false, "text": "Orbit ring (181:541) is present and correct - 480px wide, masked to the two ~93px end windows, 1px #191919 at 0.12, centred on the 40px white drag CTA at the panel centre. The radial wash (0% 0% anchor) and the grain overlay are both implemented. Panel correctly has no stroke, radius 12, inset 12." },
+        { "severity": "info", "actionable": false, "text": "No extra elements beyond the Figma reference; the Specifications overlay is correctly gated behind the CTA and does not appear in the static frame." }
+      ]
+    },
+    "tablet": {
+      "score": 64,
+      "issues": [
+        { "severity": "critical", "actionable": true, "text": "Same missing vessel render and painted backdrop as desktop. Because the viewer box still reserves its full height with nothing in it, there is roughly 450px of empty grey between the headline and the lead - the single most obvious defect at this width." },
+        { "severity": "info", "actionable": false, "text": "No Figma tablet mock. Judged on sanity only: no horizontal overflow, headline fits one line, lead and CTA readable, segment control fits without clipping, all three segments and every copy block from the mock survive the adaptation." },
+        { "severity": "info", "actionable": false, "text": "Stacked flow layout (header top, viewer, lead + CTA, segments) with the segment control left-aligned rather than centred is a reasonable responsive adaptation; no mock to contradict it." }
+      ]
+    },
+    "mobile": {
+      "score": 64,
+      "issues": [
+        { "severity": "critical", "actionable": true, "text": "Same missing vessel render and painted backdrop. On a 390px viewport the empty viewer band costs roughly 280px of blank panel between headline and lead, which is a large share of the section." },
+        { "severity": "info", "actionable": false, "text": "No Figma mobile mock. Judged on sanity only: nothing overflows 390px - the orbit ring scales to ~290px and the segment control fits inside the panel with margin. Text is legible, tap targets are 40px/32px, no clipping." },
+        { "severity": "info", "actionable": false, "text": "Content hierarchy from the desktop frame survives intact: eyebrow, 2-line headline, viewer, split-opacity lead, Specifications CTA, 3-item segment control, in order." }
+      ]
+    }
+  },
+  "overallScore": 58,
+  "summary": "Layout, tokens, typography and the low-contrast details (orbit ring mask, radial wash, grain, split-opacity lead, borderless panel) are implemented accurately, but the section is missing both its painted sky/backdrop imagery and the 400x400 vessel render, leaving a flat grey panel with an empty centre at every breakpoint."
+}

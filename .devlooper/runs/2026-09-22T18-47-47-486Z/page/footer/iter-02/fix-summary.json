@@ -1,0 +1,8 @@
+{
+  "changesMade": [
+    "Removed `opacity-60` from the nine backer logo <img> elements (kept mix-blend-darken). Mechanism: the assets were fetched by rendering the Figma SLOT FRAMES (246:633/635/637/639/641/643/645/647/649) through the REST render endpoint, which applies each node's own opacity BEFORE writing the PNG - so Figma's `opacity: 0.6` on the inner rects (246:634 ...) is already baked into the file. Declaring it again in CSS multiplied it out to 0.6 x 0.6 = 0.36, exactly the ~0.38 effective alpha the reviewer measured across all 9 slots at every breakpoint. With the CSS layer gone the row renders at the single baked 0.6, which also restores the NVIDIA Inception mark (slot 9) that had washed out to invisible against the darker wave at mobile.",
+    "Removed `opacity-64` from the footer-waves band for the identical reason: footer-waves.png was rendered straight from 183:93, whose own `opacity: 0.64` is baked in, so the CSS re-declaration gave 0.64 x 0.64 = 0.41 - matching the reviewer's measured constant 0.64x contrast ratio against the reference (rgb(174,201,228) vs Figma's rgb(133,176,218) at y=228). Crest alignment was already exact (r=0.99 at shift 0), so the -59px lg anchor and the cover fallback below lg are untouched.",
+    "Documented the baking mechanism in both comment blocks so a later pass does not re-add the opacity utilities thinking the spec value is missing."
+  ],
+  "summary": "Fixed the doubled-opacity bug flagged at all three breakpoints by dropping the CSS `opacity-60` / `opacity-64` that was multiplying against the same opacity already baked into the Figma-rendered PNGs, restoring the backer logos to 0.6 and the wave band to 0.64."
+}

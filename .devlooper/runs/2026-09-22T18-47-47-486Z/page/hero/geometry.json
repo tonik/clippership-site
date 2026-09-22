@@ -1,0 +1,223 @@
+{
+  "frame": {
+    "w": 1440,
+    "h": 1280
+  },
+  "count": 12,
+  "elements": [
+    {
+      "id": "181:500",
+      "name": "Frame 1",
+      "type": "FRAME",
+      "x": 12,
+      "y": 0,
+      "w": 1416,
+      "h": 1280,
+      "depth": 1,
+      "parent": "Hero",
+      "border": {
+        "radius": [
+          0,
+          0,
+          12,
+          12
+        ]
+      }
+    },
+    {
+      "id": "181:671",
+      "name": "Design-Modification 1",
+      "type": "RECTANGLE",
+      "x": -420,
+      "y": -72,
+      "w": 2279,
+      "h": 1607,
+      "depth": 2,
+      "parent": "Frame 1",
+      "bg": {
+        "css": "image fill, object-fit cover",
+        "kind": "image"
+      },
+      "pin": "center/center"
+    },
+    {
+      "id": "247:655",
+      "name": "vessel-new 1",
+      "type": "RECTANGLE",
+      "x": -267,
+      "y": 0,
+      "w": 2252,
+      "h": 1588,
+      "depth": 2,
+      "parent": "Frame 1",
+      "bg": {
+        "css": "image fill, object-fit cover",
+        "kind": "image"
+      },
+      "pin": "center/bottom"
+    },
+    {
+      "id": "181:502",
+      "name": "Text",
+      "type": "FRAME",
+      "x": 961,
+      "y": 476,
+      "w": 431,
+      "h": 176,
+      "depth": 2,
+      "parent": "Frame 1",
+      "layout": {
+        "dir": "column",
+        "gap": 24,
+        "pad": [
+          0,
+          48,
+          0,
+          0
+        ],
+        "size": "fixed/hug"
+      }
+    },
+    {
+      "id": "181:503",
+      "name": "Autonomous vessels take AI compute onto the wide-open ocean,",
+      "type": "TEXT",
+      "x": 961,
+      "y": 476,
+      "w": 383,
+      "h": 112,
+      "depth": 3,
+      "parent": "Text",
+      "text": "Autonomous vessels take AI compute onto ",
+      "font": "ArticulatCF-Regular",
+      "fontSize": 24,
+      "fontWeight": 400,
+      "letterSpacing": -0.96,
+      "lineHeight": 28,
+      "color": "rgba(25,25,25,0.48)"
+    },
+    {
+      "id": "181:708",
+      "name": "CTA",
+      "type": "FRAME",
+      "x": 961,
+      "y": 612,
+      "w": 174,
+      "h": 40,
+      "depth": 3,
+      "parent": "Text",
+      "border": {
+        "w": 1,
+        "color": "rgba(25,25,25,0.08)",
+        "radius": 20
+      },
+      "layout": {
+        "dir": "row",
+        "gap": 24,
+        "pad": [
+          12,
+          20,
+          12,
+          20
+        ],
+        "align": "center",
+        "size": "hug/fixed"
+      },
+      "backdropBlur": 4
+    },
+    {
+      "id": "181:709",
+      "name": "Read the white paper",
+      "type": "TEXT",
+      "x": 981,
+      "y": 624,
+      "w": 134,
+      "h": 16,
+      "depth": 4,
+      "parent": "CTA",
+      "text": "Read the white paper",
+      "font": "Matter-SemiBold",
+      "fontSize": 14,
+      "fontWeight": 600,
+      "letterSpacing": -0.28,
+      "lineHeight": 16,
+      "color": "rgba(25,25,25,0.64)"
+    },
+    {
+      "id": "181:505",
+      "name": "Title",
+      "type": "FRAME",
+      "x": 219,
+      "y": 148,
+      "w": 1002,
+      "h": 232,
+      "depth": 2,
+      "parent": "Frame 1",
+      "layout": {
+        "dir": "column",
+        "gap": -12,
+        "justify": "center",
+        "align": "center",
+        "size": "fixed/hug"
+      },
+      "pin": "center/top"
+    },
+    {
+      "id": "235:424",
+      "name": "Logo",
+      "type": "FRAME",
+      "x": 642,
+      "y": 148,
+      "w": 157,
+      "h": 28,
+      "depth": 3,
+      "parent": "Title"
+    },
+    {
+      "id": "235:422",
+      "name": "Logo",
+      "type": "RECTANGLE",
+      "x": 642,
+      "y": 148,
+      "w": 157,
+      "h": 28,
+      "depth": 4,
+      "parent": "Logo",
+      "bg": {
+        "css": "image fill, object-fit cover",
+        "kind": "image"
+      }
+    },
+    {
+      "id": "235:425",
+      "name": "Color",
+      "type": "RECTANGLE",
+      "x": 642,
+      "y": 148,
+      "w": 157,
+      "h": 28,
+      "depth": 4,
+      "parent": "Logo",
+      "pin": "left_right/top_bottom"
+    },
+    {
+      "id": "181:507",
+      "name": "AI compute at the maritime edge.",
+      "type": "TEXT",
+      "x": 219,
+      "y": 164,
+      "w": 1002,
+      "h": 216,
+      "depth": 3,
+      "parent": "Title",
+      "text": "AI compute at the maritime edge.",
+      "font": "Exposure-20",
+      "fontSize": 108,
+      "fontWeight": 450,
+      "letterSpacing": -4.32,
+      "lineHeight": 108,
+      "align": "center",
+      "color": "#291d1d"
+    }
+  ]
+}

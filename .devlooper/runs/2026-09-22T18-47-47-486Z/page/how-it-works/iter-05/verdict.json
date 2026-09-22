@@ -1,0 +1,31 @@
+{
+  "breakpoints": {
+    "desktop": {
+      "score": 93,
+      "issues": [
+        { "severity": "warning", "actionable": true, "text": "Marquee seam has no 24px gap: the figure gets `last:mr-0` (specificity 0,2,0 as `.last\\:mr-0:last-child`) which beats the `md:mr-6` override (0,1,0, media queries add no specificity), so run 1's fig.05 tile butts directly against run 2's fig.01 tile with 0px between them. Every other inter-tile gap measures exactly 24px, so once per loop two 546px photos touch. Fix: scope the reset to the scroller only (e.g. `max-md:last:mr-0`) so both runs keep the 24px right margin at >=768px. Loop stays seamless either way (run 2232 -> 2256, -50% still equals one run)." },
+        { "severity": "info", "actionable": true, "text": "Tile corner radius measures ~6px (Tailwind's default `rounded-md`, since the theme defines --radius-xs/-sm/-pill but no --radius-md); spec §2 Tiles calls for `border-radius: 8px`. Use `rounded-lg` or an explicit 8px value." },
+        { "severity": "info", "actionable": false, "text": "Geometry matches the spec exactly: section 1440x428, 12px top/bottom padding, tile height 404px, gaps 24px, measured tile widths 320 / 404 (and the clipped 546 run-1 tile), tile hairline #ECECEC on both light and dark photography." },
+        { "severity": "info", "actionable": false, "text": "First tile is clipped at x=0 rather than starting at the 12px inset - that is the marquee (spec §6.3) caught mid-translate, not a padding bug. Tile order and chip copy read fig.01 / fig.02 / fig.03 / fig.02 as drawn, including the deliberate repeat." },
+        { "severity": "info", "actionable": false, "text": "Figure chips correct: 24/32/32/24 padding, 8px Overpass Mono 700 at 0.01em uppercase white, whole chip at opacity 0.64, and the radial top-left scrim is present (sampled falloff on tile 2 runs ~122 -> ~187 luminance from 6px to 100px out). Section carries no heading, eyebrow or body copy and adds no elements beyond the five tiles." }
+      ]
+    },
+    "tablet": {
+      "score": 93,
+      "issues": [
+        { "severity": "warning", "actionable": true, "text": "Same missing 24px marquee seam gap as desktop - the second run renders from 768px up, so run 1's last tile abuts run 2's first tile with no separation." },
+        { "severity": "info", "actionable": false, "text": "No Figma tablet mock. At 768px the build correctly applies the spec's `>= 768` rule (strip as drawn): section 768x429, 12px padding, 404px tile height, 320px tile width, 24px gaps, marquee active, no clipped or unreadable content." }
+      ]
+    },
+    "mobile": {
+      "score": 97,
+      "issues": [
+        { "severity": "info", "actionable": true, "text": "Tile corner radius ~6px vs the spec's 8px (same `rounded-md` token gap as desktop)." },
+        { "severity": "info", "actionable": false, "text": "No Figma mobile mock. The build matches the spec's `< 768` intent precisely: 12px section padding, tile height 242px = min(404px, 62vw) at 390w, first tile 327px wide (546/404 ratio held), 24px gap, native `overflow-x: auto` snap scroller with `scroll-padding: 12px` and hidden scrollbar, second marquee run suppressed. No viewport overflow, no clipped text." },
+        { "severity": "info", "actionable": false, "text": "fig.01 chip renders at its full 8px mono size over the dark headland - legible, scrim present, chip not scaled down with the tile (spec does not ask it to be)." }
+      ]
+    }
+  },
+  "overallScore": 93,
+  "summary": "The media strip is essentially spec-exact at every breakpoint - tile widths, 404px height, 24px gaps, 12px padding, #ECECEC hairlines, chip scrims and the 62vw mobile scroller all measure correct - with one real defect: a CSS specificity slip drops the 24px gap at the marquee seam so fig.05 and fig.01 touch once per loop, plus a 6px-vs-8px tile radius."
+}

@@ -1,0 +1,24 @@
+{
+  "iter": 3,
+  "page": "page",
+  "section": "footer",
+  "runId": "2026-09-22T18-47-47-486Z",
+  "durationMs": 421808,
+  "costUsd": 1.6642489999999996,
+  "score": 88,
+  "pixelDiffPct": 2.33,
+  "judgeSkipped": false,
+  "phases": {
+    "screenshot": {
+      "durationMs": 12983
+    },
+    "pixelDiff": {
+      "durationMs": 91
+    },
+    "judge": {
+      "durationMs": 227710,
+      "costUsd": 1.6642489999999996,
+      "turns": 40
+    }
+  }
+}

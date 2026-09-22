@@ -1,0 +1,101 @@
+{
+  "exitCode": 0,
+  "parsed": {
+    "duration_api_ms": 385865,
+    "stop_reason": "end_turn",
+    "session_id": "d76a27b2-3307-405d-8afc-f4e33256f637",
+    "total_cost_usd": 2.401325,
+    "usage": {
+      "input_tokens": 62,
+      "cache_creation_input_tokens": 75839,
+      "cache_read_input_tokens": 1814500,
+      "output_tokens": 29415,
+      "output_tokens_details": {
+        "thinking_tokens": 17427
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 75839,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 935,
+          "cache_read_input_tokens": 88233,
+          "cache_creation_input_tokens": 437,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 437
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-opus-5": {
+        "inputTokens": 62,
+        "outputTokens": 29415,
+        "cacheReadInputTokens": 1814500,
+        "cacheCreationInputTokens": 75839,
+        "webSearchRequests": 0,
+        "costUSD": 2.401325,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 17427,
+        "canonicalModel": "claude-opus-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "permission_denials": [],
+    "terminal_reason": "completed",
+    "fast_mode_state": "off",
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "is_error": false,
+    "num_turns": 34,
+    "subtype": "success",
+    "api_error_status": null,
+    "result": "Verdict written to `.devlooper/runs/2026-09-22T18-47-47-486Z/page/hero/iter-05/verdict.json`. **Overall: 68** (desktop 70, tablet 72, mobile 68).\n\nOne correction to the brief's premise: the brief said no breakpoint has a mock and no cached reference existed, so I pulled node `181:499` once from Figma. It renders at exactly 1440x1280, so **desktop does have a mock** and I scored it against that (saved to `page/hero/reference-hero.png` for later iterations). Tablet and mobile genuinely have none: the spec confirms the file contains the 1440 frame only.\n\n**The layout is near-exact.** Wordmark 157x28 with its top on y=148, lead block top on y=481 in both images, 383px measure landing on x=1344, 174x40 glass pill with the right fill and hairline, correct stage radius and gutters, split-opacity lead, NBSP break intact. Motion scaffolding (transition tokens, `--hero-p`, reduced-motion) is in place.\n\n**Two things cost it the score:**\n\n1. **The sails are the wrong colour (critical).** Sampling both PNGs at identical coordinates: the centre mast is `rgb(218,237,235)` (near-white) in Figma and `rgb(108,164,185)` (mid-blue) in the build. Warm tones and the dark sea match within a few levels, so it is not gamma - only the light blue/white range is wrong. I traced it into `hero-vessel.png` itself, so it is an export problem, not CSS: the spec says node `247:655` composites two image fills and must be exported flattened, and the fetched asset looks like the un-composited lower fill. Related symptom: the vessel PNG has no alpha, so it paints over `hero-sky.png` entirely and that ~3.7MB priority-preloaded image is never visible at any breakpoint.\n\n2. **Font fallbacks reflow the type.** Exposure and Matter are not self-hosted (no `public/fonts/`). The headline sets 780px against Figma's 879px, and the lead wraps to 5 lines instead of 4, making the block 28px taller and pushing the CTA down by the same amount. The spec asks for a matching `size-adjust` on the fallbacks to prevent exactly this. That fix lives in the shared `globals.css`, which I flagged in the verdict rather than touching.\n\nTablet and mobile add one responsive issue each: the wordmark is hard-locked to 157px at all widths, so it goes from 0.21 of the headline width on desktop to 0.54 on mobile and reads as a second headline; and the 48% lead run crosses the bright masts at both widths, dropping to roughly 2.5:1 contrast.\n\nI inspected and measured only - no project files were changed.",
+    "ttft_ms": 1404,
+    "type": "result",
+    "duration_ms": 397932,
+    "uuid": "c4961492-35fd-4c91-9216-b86d1955a310",
+    "ttft_stream_ms": 1058,
+    "time_to_request_ms": 44,
+    "first_content_frame_ms": 1058,
+    "queued_turn_count": 0,
+    "result_index": 0
+  },
+  "stderr": ""
+}

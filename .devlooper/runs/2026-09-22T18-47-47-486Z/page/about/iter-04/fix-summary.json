@@ -1,0 +1,7 @@
+{
+  "changesMade": [
+    "Team photo frame: swapped border-on-dark (white, invisible) for border-border-flat (#ECECEC hairline) to match the three team cards, per spec 4d/section 8",
+    "LinkedIn glyph on team cards: changed w-[17px] to w-4 so the 16x16 icon renders square instead of stretched, matching Figma 182:2097/2099/2101"
+  ],
+  "summary": "Closed the two actionable reviewer gaps: gave the team photo the same #ECECEC hairline as the cards, and fixed the LinkedIn icon's 1px horizontal stretch."
+}

@@ -1,0 +1,81 @@
+{
+  "breakpoints": {
+    "desktop": {
+      "score": 76,
+      "issues": [
+        {
+          "severity": "critical",
+          "actionable": false,
+          "text": "All five photographs are still missing - every tile renders the grey `photo-placeholder-mid` gradient instead of the image fills (247:662, 235:614, 235:629, 235:627, 247:658). This section is nothing but photography, so its entire visual payload is absent and the strip reads as five grey boxes. NOT fixable in code this run: `figma/page/asset-fetch-summary.json` records how-it-works-01..05.jpg as failed downloads (Figma MCP Starter-plan + REST rate limit) and `public/` still holds only the Next.js default SVGs. The component already carries the correct TODO with the per-tile object-position crops. Re-run the asset fetch; do not let the fixer invent substitute imagery."
+        },
+        {
+          "severity": "info",
+          "actionable": true,
+          "text": "Marquee pause is instant. Spec §6.3 asks for a 640ms easing on the hover/pause transition; `how-it-works.module.css` toggles `animation-play-state: paused` with no ramp, so the track stops dead on hover instead of easing out. Cosmetic, only perceptible on interaction."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Spec §6.3 marquee is now correctly built and running: the five-tile run is duplicated, the track translates -50% linear infinite, and because the 24px spacing lives on each tile as a right margin (not `gap` on the track) one run is exactly 2256px = 50% of the track, so the loop seam is frame-perfect. Pause on hover/focus-within and a `prefers-reduced-motion: reduce` fallback to a native scroller are both present. The desktop screenshot is caught mid-scroll (tile 1 clipped at the left edge, fig.01 chip already off-screen) - that is the animation running, not a layout defect."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Tile geometry measured from the screenshot is exact: gaps 24px at x=397, 741, 1169; tile widths 320 / 404 / 320 in sequence; tiles span y=12..415 (404px tall) with the 12px section padding intact top and bottom; section frame 1440x428 matches the Figma node. The 546/320/404/320/546 order and the deliberate right-hand clip are preserved."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Figure chips remain verbatim - fig.01 / fig.02 / fig.03 / fig.02 / fig.05, with tile 4's duplicated fig.02 and the skipped fig.04 reproduced as drawn. 8px (0.5rem) Overpass Mono 700, 0.01em tracking, uppercase, 24/32/32/24 padding, top-left `farthest-side` radial scrim at rgba(43,38,38,0.8) and opacity 0.64 - all match §2 of the spec."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "The invented `group-hover:scale-105` image zoom flagged last iteration is gone; the only hover affordance is now pausing the marquee, as designed. Tile hairline renders `#ECECEC` (--color-border-flat), the spec's explicitly sanctioned flattening of the two 1px inside strokes. The spec-match pass flags #ECECEC and the 32px chip paddings as off-token, but both are the values §2 prescribes for this section - no change wanted."
+        }
+      ]
+    },
+    "tablet": {
+      "score": 76,
+      "issues": [
+        {
+          "severity": "critical",
+          "actionable": false,
+          "text": "Same as desktop: all five photographs render as grey placeholder gradients because how-it-works-01..05.jpg failed to download (Figma rate limit). Blocked on a re-fetch, not fixable in code."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "No Figma tablet frame exists, and the 768 behaviour matches the spec's responsive rule (>= 768 keeps the strip as drawn): measured 24px inter-tile gap at x=409, 12px padding top and bottom, 404px tile height, strip clipped at the viewport edge with `md:overflow-hidden`, marquee animating (tile 1 caught partially scrolled off the left). No overflow, no clipped text, nothing lost."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "The red '2 Issues' badge bottom-left of the tablet and mobile screenshots is the Next.js dev overlay, not part of the build. Ignore it."
+        }
+      ]
+    },
+    "mobile": {
+      "score": 76,
+      "issues": [
+        {
+          "severity": "critical",
+          "actionable": false,
+          "text": "Same as desktop: all five photographs render as grey placeholder gradients because how-it-works-01..05.jpg failed to download (Figma rate limit). Blocked on a re-fetch, not fixable in code."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "The lost 12px left inset from iteration 1 is fixed: measured white gutter x=0..11, tile 1 starting at x=12, confirming `scroll-p-3` restored the snapport offset. Section padding is 12px on all four edges as the spec requires below 768."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "No Figma mobile frame exists; the adaptation follows the spec's < 768 rule exactly. Real horizontal scroller (`overflow-x: auto`, `scroll-snap-type: x mandatory`, `scroll-snap-align: start`, scrollbar hidden), tile height measured 242px = min(404px, 62vw), tile 1 width 327px which is the drawn 546:404 ratio held, 24px gap. The duplicate marquee run is hidden below md so the scroller carries exactly five tiles, and the animation is gated to >= 768. No viewport overflow, no clipped or unreadable text."
+        }
+      ]
+    }
+  },
+  "overallScore": 76,
+  "summary": "Structure, tile geometry, borders, verbatim figure chips, the spec'd infinite marquee and the mobile 12px inset are now all correct at every breakpoint - the only thing holding the section back is that all five photographs are still grey placeholders because the image assets failed to download, which no code change can fix."
+}

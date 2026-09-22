@@ -1,0 +1,16 @@
+
+  ⛔  Figma access preflight failed - stopping before the run spends anything.
+
+  Page "page" → Figma file HKmiJdjrm69zjS4qCMlg1l
+     REST token: ⏳ Figma is rate-limiting this account (429) - ag@tonik.com.
+       Nothing is wrong with your access or your token.
+       Figma says to try again in about 100 hours.
+     → This account is on a Viewer or Collab seat, where Figma allows only a handful of file
+       reads per MONTH. Waiting will not clear it - use a token from a Full or Dev seat, or
+       ask for that seat on this account.
+     Figma MCP (ag@tonik.com): ✅ can read
+     → The MCP can read it but the REST token cannot; set FIGMA_TOKEN to a token on the MCP account.
+
+
+  ⛔  Run stopped before it started: devlooper cannot reach the Figma file for this project
+

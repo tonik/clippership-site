@@ -1,0 +1,101 @@
+{
+  "exitCode": 0,
+  "parsed": {
+    "duration_api_ms": 303770,
+    "stop_reason": "end_turn",
+    "session_id": "29229475-3bcc-4629-bc3b-874110353284",
+    "total_cost_usd": 2.7501725,
+    "usage": {
+      "input_tokens": 76,
+      "cache_creation_input_tokens": 77484,
+      "cache_read_input_tokens": 2699105,
+      "output_tokens": 25016,
+      "output_tokens_details": {
+        "thinking_tokens": 12810
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 77484,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 765,
+          "cache_read_input_tokens": 90921,
+          "cache_creation_input_tokens": 1453,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1453
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-opus-5": {
+        "inputTokens": 76,
+        "outputTokens": 25016,
+        "cacheReadInputTokens": 2699105,
+        "cacheCreationInputTokens": 77484,
+        "webSearchRequests": 0,
+        "costUSD": 2.7501725,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 12810,
+        "canonicalModel": "claude-opus-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "permission_denials": [],
+    "terminal_reason": "completed",
+    "fast_mode_state": "off",
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "is_error": false,
+    "num_turns": 47,
+    "subtype": "success",
+    "api_error_status": null,
+    "result": "Closed the three criticals - the section's missing imagery.\n\n**What was wrong:** the batch asset fetch hit a Figma REST rate limit and never landed `181:537`, `181:538`, `181:540`, so the panel was shipping a flat grey gradient placeholder with an empty 400px hole in its centre. I re-fetched all three through the Figma MCP and put the URLs in a single section manifest (`the-fleet/assets.ts`) for the loop's downloader to mirror.\n\n**One spec correction worth flagging:** the spec calls `181:537` \"fleet-sky.png, painted sky-and-sea backdrop\". It isn't. Inspecting the actual asset, it's a purple watercolour blot - Figma uses it as the *alpha mask* over the BG group. The painted sea is `181:538`. Rendering `181:537` as the spec describes would have put a purple stain across the panel; masking with it is what produces the torn painted edge in the Figma render. So the backdrop is now: painted sea at opacity 0.64, the existing `fleet-wash` radial above it, both clipped by the blot.\n\nMask geometry lives in a new section-local `the-fleet.module.css` as named custom properties (Figma's 1713×1374 blot at −82/−393 inside the 1416×776 panel → 121% / 28% / 66%), applied only from `lg`. Below that the panel is much taller than wide, so it falls back to `mask-size: cover` - a width-driven blot would stop short of the bottom.\n\nThe vessel render now sits in the viewer box, over the orbit ring and under the drag handle per Figma's stacking, and in the Specifications overlay too.\n\nI also had to fix a build-breaking type error already in the section: the segment buttons read `state.figmaId` but `RoadmapState` had no such field. Added it with the three node ids. `tsc --noEmit` and `npm run build` both pass.\n\n**Left alone deliberately:** the 346px vs 384px segment track. Figma sizes it as hug and the build hugs correctly - the shortfall is label-metric drift from the Matter/Exposure fallback to Inter/Newsreader. That's a `globals.css` font-stack fix owned by another agent this pass; pinning pixel widths on the pills would mask the real bug and break once the faces load.",
+    "ttft_ms": 1167,
+    "type": "result",
+    "duration_ms": 345083,
+    "uuid": "1b1bca50-1a8e-4331-8f24-b423bdceedd2",
+    "ttft_stream_ms": 831,
+    "time_to_request_ms": 42,
+    "first_content_frame_ms": 831,
+    "queued_turn_count": 0,
+    "result_index": 0
+  },
+  "stderr": ""
+}

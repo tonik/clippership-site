@@ -1,0 +1,101 @@
+{
+  "exitCode": 0,
+  "parsed": {
+    "duration_api_ms": 284058,
+    "stop_reason": "end_turn",
+    "session_id": "a26789c7-b9a0-4062-b74f-bdf11313f44b",
+    "total_cost_usd": 1.9843610000000005,
+    "usage": {
+      "input_tokens": 54,
+      "cache_creation_input_tokens": 66925,
+      "cache_read_input_tokens": 1551882,
+      "output_tokens": 21556,
+      "output_tokens_details": {
+        "thinking_tokens": 10308
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 66925,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 717,
+          "cache_read_input_tokens": 76071,
+          "cache_creation_input_tokens": 3685,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3685
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-opus-5": {
+        "inputTokens": 54,
+        "outputTokens": 21556,
+        "cacheReadInputTokens": 1551882,
+        "cacheCreationInputTokens": 66925,
+        "webSearchRequests": 0,
+        "costUSD": 1.9843610000000005,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 10308,
+        "canonicalModel": "claude-opus-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "permission_denials": [],
+    "terminal_reason": "completed",
+    "fast_mode_state": "off",
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "is_error": false,
+    "num_turns": 34,
+    "subtype": "success",
+    "api_error_status": null,
+    "result": "Verdict written to `iter-06/verdict.json`.\n\n**Overall: 70** (desktop 70, tablet 82, mobile 80)\n\nThe desktop render is byte-for-byte the same as iter-05 apart from a dev-overlay badge, so both long-standing defects survive:\n\n1. **Vessel asset still too dark (critical).** Sampled at identical stage coordinates: centre mast Figma `rgb(218,237,235)` (near-white) vs build `rgb(108,164,185)`; hull `rgb(115,179,205)` vs `rgb(68,126,161)`. Scanline y=800 mean luminance 215.2 vs 178.6. The sky layer matches within ~20 levels, so it is isolated to node `247:655` - the spec says it composites two image fills and must be exported flattened; the fetched PNG looks like the lower fill only.\n\n2. **Exposure and Matter are not loaded (critical).** `--font-display-face` literally resolves to Newsreader. Side by side the difference is obvious: Figma's Exposure is a heavy low-contrast display serif, Newsreader is a light book serif. Line 2 \"the maritime edge.\" measures 781px vs 880px in Figma at the same 108px/-4.32px. Inter standing in for Matter also pushes the lead to 5 lines instead of 4, dropping the CTA pill 33px.\n\nEverything else on desktop checks out: 12px gutters, square-top/12px-bottom stage radius, 148px title offset, 962px lead left edge, 480px lead top, the 174x40 glass pill with its hairline and backdrop blur, the split-opacity lead, and every computed type value matching the spec exactly.\n\nTablet and mobile have no mock; both are clean, spec-conformant adaptations with no overflow or lost content, penalised only for the shared font/asset problems plus a mobile CTA that renders ~34px tall (under both the 40px design height and the 44px tap-target floor).\n\nNote for the shared-file follow-up: the `@font-face` declarations live in the global stylesheet, which this section pass must not touch - the font fix cannot be applied from inside the hero file.",
+    "ttft_ms": 1362,
+    "type": "result",
+    "duration_ms": 290438,
+    "uuid": "edbce407-2961-4a37-b0b8-b486c8236da8",
+    "ttft_stream_ms": 1024,
+    "time_to_request_ms": 55,
+    "first_content_frame_ms": 1024,
+    "queued_turn_count": 0,
+    "result_index": 0
+  },
+  "stderr": ""
+}

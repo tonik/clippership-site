@@ -1,0 +1,57 @@
+{
+  "pages": [
+    {
+      "name": "page",
+      "figmaNodeUrl": "https://www.figma.com/design/A9PHMFuLwB4yZHYR2W020Q/p_clippership--Copy-?node-id=181-498&t=0jpbKeeTIgsBOp2v-4",
+      "pageFile": "src/app/(home)/page.tsx",
+      "notePrompt": "hero section interaction:\n- https://www.figma.com/design/A9PHMFuLwB4yZHYR2W020Q/p_clippership--Copy-?node-id=181-690&t=0jpbKeeTIgsBOp2v-4\n- https://www.figma.com/design/A9PHMFuLwB4yZHYR2W020Q/p_clippership--Copy-?node-id=181-699&t=0jpbKeeTIgsBOp2v-4\n\nspecifications - fpo\n- https://www.figma.com/design/A9PHMFuLwB4yZHYR2W020Q/p_clippership--Copy-?node-id=182-782&t=0jpbKeeTIgsBOp2v-4\n- https://www.figma.com/design/A9PHMFuLwB4yZHYR2W020Q/p_clippership--Copy-?node-id=247-843&t=0jpbKeeTIgsBOp2v-4\n- https://www.figma.com/design/A9PHMFuLwB4yZHYR2W020Q/p_clippership--Copy-?node-id=247-877&t=0jpbKeeTIgsBOp2v-4\n- https://www.figma.com/design/A9PHMFuLwB4yZHYR2W020Q/p_clippership--Copy-?node-id=247-945&t=0jpbKeeTIgsBOp2v-4\n- https://www.figma.com/design/A9PHMFuLwB4yZHYR2W020Q/p_clippership--Copy-?node-id=247-975&t=0jpbKeeTIgsBOp2v-4"
+    }
+  ],
+  "project": {
+    "dir": "AUTO",
+    "framework": "next-generic",
+    "buildCommand": "npm run build"
+  },
+  "breakpoints": [
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "name": "tablet",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "name": "mobile",
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "loop": {
+    "perSection": true,
+    "pageDraftInit": true,
+    "polishPass": true,
+    "specDeltaTolerancePx": 2,
+    "agentBrowser": true,
+    "scoreThreshold": 85,
+    "maxPixelDiffPct": 25,
+    "pixelDiffGate": false,
+    "maxIterationsPerPage": 8,
+    "maxTurns": 80,
+    "judgeMaxTurns": 80,
+    "stagnationWindow": 3,
+    "stagnationMinDelta": 2,
+    "interactionsMinScore": 80,
+    "generateStyleGuide": true,
+    "readFigmaComments": true,
+    "interSectionSpacing": true,
+    "models": {
+      "pageDraft": "claude-opus-5",
+      "fixer": "claude-opus-5",
+      "judge": "claude-opus-5"
+    },
+    "sectionConcurrency": 4
+  }
+}

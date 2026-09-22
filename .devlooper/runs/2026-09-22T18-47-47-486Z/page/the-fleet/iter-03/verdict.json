@@ -1,0 +1,36 @@
+{
+  "breakpoints": {
+    "desktop": {
+      "score": 82,
+      "issues": [
+        { "severity": "warning", "actionable": false, "text": "Both bespoke faces still fall back. h2 computes `Exposure, Exposure-20, Newsreader, ...` but renders Newsreader: measured against the Figma node the headline is visibly lighter in weight and ~10% narrower (`One architecture,` ends at x=590 vs x=655 in Figma), which changes the whole top-left block's colour. Sans computes `Matter, Inter, ...` and renders Inter, which re-wraps the lead (`...with maritime / edge compute and scales to fleets / of 3MW...` vs Figma's `...with maritime edge / compute and scales to fleets of 3MW / vessels...`) and drives the narrow segment items below. Both are @font-face/globals.css concerns owned by another agent this pass - do NOT change the stack from this section's file; recorded so the shared-file pass picks it up." },
+        { "severity": "warning", "actionable": true, "text": "Painted backdrop (181:538) is cropped ~80-110px too low. Measured blueness profile down the panel: in Figma the water band starts at y≈460 on both the left (x 250-420) and right (x 820-980) sample columns; in the build it starts at y≈540-560. Consequence is visible in flat colour: the panel centre at y 500-560 averages rgb(207,210,209) in the build vs rgb(178,196,205) in Figma (water missing), and the top-right corner reads rgb(211,226,233) cool blue vs Figma's rgb(230,230,228) warm cream. Raise the backdrop layer's vertical crop (background/object-position, not the blot mask) so the horizon sits level with the vessel's mid-hull as drawn." },
+        { "severity": "warning", "actionable": true, "text": "Segment control track measures 340px against the spec's 384x40. The selected `October 2026` pill is right (119px vs spec 120) and the track is correctly centred at x=720, but the two unselected items render ~109px each against the spec'd 124x32. Give the segment buttons an explicit min-width (120 / 124 / 124) or more horizontal padding so the track reaches 384px; leaving it purely hug-sized keeps it short under the current fallback face." },
+        { "severity": "warning", "actionable": true, "text": "Drag-CTA chevrons are undersized and too tightly overlapped. Measured glyph-pair bbox is 12x8px with a ~4px gap between the two chevrons; the Figma node renders 18x10px with a ~8px gap, so the build's pair reads as a closed diamond `<>` rather than the `‹ ›` horizontal-drag cue. Scale each glyph back to the 16px box (9.33 x 4.67 path, 1px #191919) and relax the negative gap." },
+        { "severity": "info", "actionable": true, "text": "`Specifications` pill measures ~128px wide against Figma's 123px, and its label sits ~4px higher. Entirely font-metric drift from the Inter fallback; no change needed until the real face lands." },
+        { "severity": "info", "actionable": false, "text": "Backdrop blot mask geometry is now essentially exact. Per-column bottom edge of the painted region matches Figma within 1-8px across the full width (e.g. 327/447/629/633/660/703/734/771 vs 327/439/628/632/659/703/731/770) and the left edge within 1-5px. The fixer's reading of 181:537 as the group's alpha mask rather than a visible sky layer is confirmed correct by the Figma render." },
+        { "severity": "info", "actionable": false, "text": "Vessel render (181:540) now matches: measured extent y 220-539, x 683-756 against Figma's y 219-534, x 683-755. Orbit ring, its two ~93px end windows, the 40px white CTA at panel centre, the top-left radial wash, panel fill rgb(247,246,247) with radius 12 / inset 12 / no stroke, and the pixel-identical eyebrow (x 48-129, y 48-56) are all correct." },
+        { "severity": "info", "actionable": false, "text": "No extra elements versus the Figma node; the Specifications overlay stays correctly gated behind the CTA. A red rounded badge is clipped at the frame's bottom-left edge (y≈794, below the panel) in the desktop and mobile captures but not the tablet one - that is the dev-tools overlay sitting over the capture rect, not section content." }
+      ]
+    },
+    "tablet": {
+      "score": 78,
+      "issues": [
+        { "severity": "warning", "actionable": true, "text": "Lead + CTA do not follow the spec's documented 768-1023 intent. Spec §Responsive calls for the text column below the viewer, centred at `width: min(384px, 80%)`; the build runs the lead full-bleed across the panel (~624px, 2 lines) and left-aligns it, so the long 24%-opacity run trails off over the white torn edge at the right where it is hard to read. Constrain the column and centre it." },
+        { "severity": "warning", "actionable": true, "text": "Segment control is left-aligned at the panel's 36px gutter. Spec §Responsive for 768-1023 says segments stay bottom-centred (they only go full-width/scrollable below 768). Centre the track at this width." },
+        { "severity": "warning", "actionable": false, "text": "Same Exposure -> Newsreader and Matter -> Inter fallback as desktop; the headline reads lighter than the design system intends at every width. Shared font-stack issue, not fixable from this section's file." },
+        { "severity": "info", "actionable": false, "text": "No Figma tablet mock. Judged on sanity: nothing overflows 768px, the headline fits one line, the viewer/vessel and orbit ring scale cleanly, all three segments and every copy block from the desktop frame survive, tap targets are 40/32px, no clipping or overlap." }
+      ]
+    },
+    "mobile": {
+      "score": 85,
+      "issues": [
+        { "severity": "warning", "actionable": false, "text": "Same Exposure -> Newsreader and Matter -> Inter fallback as the other breakpoints. Shared font-stack issue, not fixable from this section's file." },
+        { "severity": "info", "actionable": false, "text": "No Figma mobile mock. Judged on sanity: nothing overflows 390px - the segment control sits within x 36-354 with margin, the orbit ring and vessel scale down without clipping, and the 24%-opacity lead run stays legible over the pale water." },
+        { "severity": "info", "actionable": false, "text": "Matches the spec's own <768 intent: 24px panel padding (36px from the viewport edge), stack order eyebrow -> headline (2 lines, ~40px, inside the clamp(36px, 11vw, 52px) band) -> viewer -> lead -> CTA -> segment control. Content hierarchy from the desktop frame survives intact." }
+      ]
+    }
+  },
+  "overallScore": 78,
+  "summary": "The painted backdrop and vessel render have landed and desktop is now near-identical to the Figma node in geometry - what remains is the backdrop's ~100px-low vertical crop, the 340px-vs-384px segment track, undersized drag chevrons, and the Exposure/Matter faces still falling back to Newsreader/Inter; tablet additionally ignores the spec's centred 384px text column and bottom-centred segment control."
+}

@@ -1,0 +1,81 @@
+{
+  "breakpoints": {
+    "desktop": {
+      "score": 95,
+      "issues": [
+        {
+          "severity": "warning",
+          "actionable": false,
+          "text": "Heading renders in the Newsreader fallback, not Exposure, and the substitution is visible: Figma breaks 'One team, built' / 'across industries' (ink box x=49-398, line 1 top y=77), the build breaks 'One team, built across' / 'industries' (ink box x=49-458, line 1 top y=72). Newsreader is ~15% narrower per glyph at 48px so one extra word fits on line 1, and its taller ascent lifts the block 5px. Overlaying the Figma node on the build screenshot, the intro region is the only area with a real diff (mean abs 40.3 vs 3.6-7.4 everywhere else) and every pixel of it is glyph shape, not geometry: line pitch is 48px in both, the block origin is x=49 in both, the eyebrow ink box is byte-identical at x=48-129 / y=48-56. NOT fixable in about.tsx - the section already requests `Exposure, Exposure-20, Newsreader, ...` via --font-display correctly; this needs the licensed Exposure (and Matter) face added to the shared font config. Do NOT paper over it with a hard-coded <br/> or a section-local font-size, which would break at other widths. Flagged as a warning because it is perceptible, marked non-actionable because the only correct fix is outside this section's file."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Body and lead text fall back from Matter to Inter (same shared font config). Inter is ~6% wider - 'Ex-Tesla, Mercedes-F1, Caltech' ends at x=292 vs Figma x=274 - which is the entire residual diff in the trades (7.4) and cards (5.4) regions. No wrap changes, no overflow, nothing clipped."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Both iteration-4 actionable issues are closed. (1) Photo frame hairline: the figure now uses `border-border-flat`, verified by pixel sample as rgb(236,236,236) = #ECECEC on all four edges (x=618 and x=1391 at y=600, y=332 and y=851 at x=1000), matching the three team cards and spec section 8. (2) LinkedIn glyph is now h-4 w-4 = 16 x 16, and shows in the Figma overlay diff as an aligned outline with only anti-alias edges."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Geometry is pixel-exact against the Figma node (both 1440 x 948). Cards x=48-479 (432px), heights 146px at y=332/490/648 with a 12px stack gap; photo x=618-1391 (774px) by y=332-851 (520px); 48px gutter; section ends 96px below the photo; trades rows at 28px pitch with the second column starting at x=962; 'OUR TEAM' chip at 8px caption-mono, 24px in from the photo's top-left. The full-frame difference mask shows no structural offset anywhere - every border, bullet box, chip and glyph lands on its Figma position."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Restraint holds: the `FPO // Image Placeholder` badge (182:2564) is present in the Figma node and correctly absent from the build - it is the only non-text block in the difference mask. No invented ruler lines (spec section 7 states this page has none), no scrim on the 'Our Team' chip, no box-shadows. Tokens confirmed: h2 47.9995px / 48px line-height / -1.92px tracking / weight 450 / rgb(41,29,29); eyebrow Overpass Mono 700 12px/12px +0.12px at 60%; credentials at 64%, roles and trades at 60%."
+        }
+      ]
+    },
+    "tablet": {
+      "score": 95,
+      "issues": [
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "No Figma tablet reference. The adaptation matches the spec's 768-1023 intent exactly and reads cleanly: single column in intro / trades / cards / photo order, 32px gutter (card edges measured at x=32 and x=735 of 768), 48px top and bottom padding, 64px row gap, trades list holds its 2 columns, cards full width, photo holds the 774/520 aspect at 704 x 470. No overflow, clipping or overlap; content hierarchy from the desktop mock survives intact."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Photo hairline is correct here too - sampled rgb(236,236,236) at x=32 and x=735 on the photo row, matching the cards."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Heading uses the global `text-display-md` clamp, so it renders at 32px at 768px. The spec's responsive table only prescribes a heading size for the 1024-1279 band (clamp(36px, 3.8vw, 48px)), which this token undershoots by ~5px at 1024 - but 1024 is not a scored breakpoint here, and closing it means editing the shared token. Carried forward as a note, not a defect at 768."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Same Exposure / Matter fallback as desktop (shared font config, see the desktop entry). Heading fits on one line at 768px in the fallback face."
+        }
+      ]
+    },
+    "mobile": {
+      "score": 95,
+      "issues": [
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "No Figma mobile reference. The adaptation matches the spec's <768 intent and is clean: 24px gutter (card edges measured at x=24 and x=365 of 390 - no horizontal overflow anywhere), 48px row gap, trades list drops to 1 column at 12px row gap with the Figma reading order preserved (Tesla, Jet Propulsion Laboratory, Canadian Special Forces, Mercedes-AMG Formula 1 Team, Microsoft, Damen Shipyards Group, Bay Ship and Yacht), cards stretch full width, heading wraps to 2 lines, photo keeps the 774/520 aspect and its Figma crop. Nothing clipped or overlapping."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Photo hairline correct - sampled rgb(236,236,236) at x=24 and x=365 on the photo row."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Heading resolves to 32px from the global display-md clamp; the spec's <768 intent is clamp(32px, 9vw, 40px), which would give ~35px at 390. A ~9% shortfall with no mobile mock to contradict it, and the clamp lives in the shared token - noted only."
+        }
+      ]
+    }
+  },
+  "overallScore": 95,
+  "summary": "Both iteration-4 fixes landed (photo #ECECEC hairline, 16x16 LinkedIn glyph) and an overlay against the Figma node now shows the section as pixel-exact in geometry, colour, borders and copy - the only remaining visible difference is the Exposure/Matter webfonts being absent from the project, which shifts the heading's line break and must be fixed in the shared font config, not in about.tsx."
+}

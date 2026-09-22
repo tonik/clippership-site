@@ -1,0 +1,101 @@
+{
+  "exitCode": 0,
+  "parsed": {
+    "duration_api_ms": 122066,
+    "stop_reason": "end_turn",
+    "session_id": "a33cb748-dfab-4ff3-97d9-cfccc3e0b283",
+    "total_cost_usd": 1.1216139999999999,
+    "usage": {
+      "input_tokens": 28,
+      "cache_creation_input_tokens": 52952,
+      "cache_read_input_tokens": 648808,
+      "output_tokens": 10702,
+      "output_tokens_details": {
+        "thinking_tokens": 3897
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 52952,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 692,
+          "cache_read_input_tokens": 62494,
+          "cache_creation_input_tokens": 3289,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3289
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-opus-5": {
+        "inputTokens": 28,
+        "outputTokens": 10702,
+        "cacheReadInputTokens": 648808,
+        "cacheCreationInputTokens": 52952,
+        "webSearchRequests": 0,
+        "costUSD": 1.1216139999999999,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 3897,
+        "canonicalModel": "claude-opus-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "permission_denials": [],
+    "terminal_reason": "completed",
+    "fast_mode_state": "off",
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "is_error": false,
+    "num_turns": 19,
+    "subtype": "success",
+    "api_error_status": null,
+    "result": "Verdict written to `iter-03/verdict.json`.\n\n**Overall: 80** (desktop 80, tablet 84, mobile 84)\n\nWhat I verified by pixel-measuring the PNGs against `geometry.json`:\n\n- **Geometry is exact.** Cards at x=48-479 (432px), y=332-477 / 490-635 / 648-793 (146px tall, 12px gap). Photo frame at x=618-1391 (774px), y=332-851 (520px). 138px empty column-5 trough, 96px bottom padding, 1440x948 render. Trades rows land on y=116/144/172/200 with the right column at x=977 vs Figma's 976.\n- **Tokens check out:** h2 48px/48px, -1.92px tracking, weight 450, `rgb(41,29,29)` = ink; eyebrow Overpass Mono Bold 12px/12px +0.12px at 60%; card 24px padding, 28px internal gap, `#ECECEC` hairline.\n- **Restraint holds:** the `FPO // Image Placeholder` badge is correctly not shipped, the \"Our Team\" chip correctly has no scrim, no invented grid lines.\n\nThe one substantive gap, unchanged for three iterations: **the team photo (182:2560) is still a flat grey placeholder gradient** (sampled #F6F6F7 → #E5E4E6) filling a 774x520 block, roughly a third of the section. Prior fix logs record this as a run-wide Figma asset quota block, not a section bug, but as a reviewer I score what renders.\n\nTablet/mobile have no mock, so I judged them on adaptation quality only: no overflow (content bounds 32-735 at 768, to 365 at 390), correct gutters and row gaps, reading order preserved when the trades list drops to one column, photo aspect held. The only spec-backed nit is the heading clamp undershooting the 1024-1279 band by ~5px, which lives in the global `text-display-md` token - a shared-file change I left alone per the brief; a section-local clamp would close it without touching shared files.",
+    "ttft_ms": 1922,
+    "type": "result",
+    "duration_ms": 124683,
+    "uuid": "1553015a-5775-4b56-ad89-c0598e4a5675",
+    "ttft_stream_ms": 1720,
+    "time_to_request_ms": 39,
+    "first_content_frame_ms": 1721,
+    "queued_turn_count": 0,
+    "result_index": 0
+  },
+  "stderr": ""
+}

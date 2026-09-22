@@ -1,0 +1,101 @@
+{
+  "exitCode": 0,
+  "parsed": {
+    "duration_api_ms": 241189,
+    "stop_reason": "end_turn",
+    "session_id": "d36b04b8-c537-4853-aeab-5a8db63853dd",
+    "total_cost_usd": 1.505188,
+    "usage": {
+      "input_tokens": 26,
+      "cache_creation_input_tokens": 67157,
+      "cache_read_input_tokens": 620126,
+      "output_tokens": 20937,
+      "output_tokens_details": {
+        "thinking_tokens": 4833
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 67157,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1041,
+          "cache_read_input_tokens": 76823,
+          "cache_creation_input_tokens": 452,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 452
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-opus-5": {
+        "inputTokens": 26,
+        "outputTokens": 20937,
+        "cacheReadInputTokens": 620126,
+        "cacheCreationInputTokens": 67157,
+        "webSearchRequests": 0,
+        "costUSD": 1.505188,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 4833,
+        "canonicalModel": "claude-opus-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "permission_denials": [],
+    "terminal_reason": "completed",
+    "fast_mode_state": "off",
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "is_error": false,
+    "num_turns": 19,
+    "subtype": "success",
+    "api_error_status": null,
+    "result": "`DESIGN.md` written to the run directory. Valid YAML front matter, 18 colours, 9 type styles, 14 components.\n\n**How the tokens were obtained:** the Figma MCP read the node fine, but the file publishes **no Figma Variables and no shared styles** (`get_variable_defs` → `{}`, `styles` → `{}`). So I walked the full node tree over the REST API and derived every value literally from fills, strokes, `style` blocks, `cornerRadius`, `itemSpacing` and padding - nothing rounded or guessed.\n\n**What the system turned out to be:**\n\n- **Two near-blacks, deliberately.** `ink` `#291D1D` (warm) for display type and the wordmark, `text` `#191919` (neutral) for body and UI. That split is the signature.\n- **Hierarchy is opacity, not colour.** Every grey in the file is `#191919` at one of six alphas (100/64/60/48/16/8%). No accent colour exists anywhere - the photography supplies all of it.\n- **Zero drop shadows.** Depth comes from a double stroke (white ring + 8% hairline), backdrop blur (4px on buttons, 8px on the segment control), radial washes, and a noise texture. I flagged this hard in the Don'ts since it's the easiest thing to get wrong.\n- **Type:** Exposure at weight 450 for display only (108/80/48px, line-height exactly 1.0, -0.04em), Matter for everything else, Overpass Mono Bold uppercase with *positive* tracking for eyebrows and `fig.01` labels.\n- **Layout:** 1440 canvas, 12px page gutter → 1416px panels at 12px radius, 36px panel padding, 24px grid gap, 4px base unit.\n\nThree things worth your attention:\n\n1. **A type discrepancy I did not silently resolve.** Two 24px lead paragraphs (hero intro, fleet intro) are set in `ArticulatCF-Regular` 400, while the other 21 non-display text nodes use Matter. The metrics are identical (28.32px / -0.96px), so it reads as a stray font substitution. I documented it and told the build to use Matter Medium 500.\n2. **`#FF0000` is not a token.** It appears once on the \"FPO // Image Placeholder\" label. Excluded from the palette, called out in the Don'ts.\n3. **Motion is specified, not extracted.** The file has no prototype interactions and no keyframes (`get_motion_context` → empty), so I used the expo-out default `cubic-bezier(0.32, 0.72, 0, 1)` with 160/360/640ms, and wrote out where transitions apply per component. The `## Motion` section says plainly that these were authored here rather than read from Figma.\n\nI also preserved a few things that look like bugs but aren't: the negative gaps (`-12px` tucking the wordmark into the headline's ascender, `-8px` overlapping the CTA arrows) and the 2232px media strip inside a 1440px frame, which is an overflowing marquee rather than a grid that failed to wrap.\n\nNo project files were touched.",
+    "ttft_ms": 1201,
+    "type": "result",
+    "duration_ms": 257679,
+    "uuid": "a51856c6-6861-4294-bf61-b43964c80e41",
+    "ttft_stream_ms": 858,
+    "time_to_request_ms": 33,
+    "first_content_frame_ms": 858,
+    "queued_turn_count": 0,
+    "result_index": 0
+  },
+  "stderr": ""
+}

@@ -1,0 +1,6 @@
+{
+  "changesMade": [
+    "Mobile wave backdrop (below md): render the waves image at 140% height, top-anchored, so its darkest crest is cropped/pushed further down and no longer sits behind the third backer-logo row, fixing the lost-contrast NVIDIA Inception/Dykstra/RINA logos reported on mobile. Tablet and desktop unaffected (md:h-full and lg:h-[478px] overrides unchanged)."
+  ],
+  "summary": "Pushed the mobile wave backdrop further down so the third wrapped row of backer logos sits over the light band instead of the dark wave crest, restoring the desktop's light-over-logos / dark-under-meta reading at 390px."
+}

@@ -1,0 +1,101 @@
+{
+  "exitCode": 0,
+  "parsed": {
+    "duration_api_ms": 816451,
+    "stop_reason": "end_turn",
+    "session_id": "3e1ab8cf-c5f3-4f4a-8fd1-0e2580112406",
+    "total_cost_usd": 5.786654,
+    "usage": {
+      "input_tokens": 78,
+      "cache_creation_input_tokens": 177475,
+      "cache_read_input_tokens": 4395078,
+      "output_tokens": 72559,
+      "output_tokens_details": {
+        "thinking_tokens": 22964
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 177475,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1166,
+          "cache_read_input_tokens": 189188,
+          "cache_creation_input_tokens": 1118,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1118
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-opus-5": {
+        "inputTokens": 78,
+        "outputTokens": 72559,
+        "cacheReadInputTokens": 4395078,
+        "cacheCreationInputTokens": 177475,
+        "webSearchRequests": 0,
+        "costUSD": 5.786654,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 22964,
+        "canonicalModel": "claude-opus-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "permission_denials": [],
+    "terminal_reason": "completed",
+    "fast_mode_state": "off",
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "is_error": false,
+    "num_turns": 58,
+    "subtype": "success",
+    "api_error_status": null,
+    "result": "Both files are written and verified.\n\n**`figma/page/spec.md`** (1,315 lines) and **`figma/page/sections.json`** (5 sections, every `name`/`selector`/`nodeId` populated).\n\n## What the page is\n\nFive sections on a 1440 canvas, 3708 tall: Hero → How It Works → The Fleet → About → Footer. No nav bar; the wordmark lives inside the hero headline block.\n\n**The human note, addressed first.** Both sets of linked nodes turned out to be states, not separate sections:\n\n- **Hero interaction** (`181:690` / `181:699`) is a scroll-driven sequence. State B moves the vessel up 461px, lifts the headline 100px while fading it to 60% and blurring it 8px, draws a **second vessel plate on top of the title** so the masts pass in front of the headline, and resolves the right-hand paragraph from 48% to 100%. Every delta is tabled in §1.\n- **Specifications (FPO)** (`182:782`, `247:843`, `247:877`, `247:945`, `247:975`) is a dark `912×752` overlay opened by the fleet's `Specifications` pill, with three content states driven by the segment control. It sits inside the fleet section's DOM, so it's documented there rather than as a sixth section.\n\n## Things that would otherwise have been lost\n\n- **The 48px rule** - every section's content starts 48px from the edge, reached either as 12px panel inset + 36px padding, or a bare 48px gutter. 1344px content width divides exactly into 12 × 90px columns with 24px gutters, which the About section lands on precisely.\n- **Split-opacity leads** in the hero and fleet: single text nodes with a 100% run followed by a 48% / 24% run. That's the scroll text-reveal notation, and the hero interaction frames confirm it by showing the same paragraph at both ends.\n- **The orbit ring** (`181:541`): a 480×92 ellipse at 1px/12% opacity, masked to two 93px windows so only its ends show. Pure structure, invisible to any contrast check - inline SVG given.\n- **Server Mono** appears on the page exactly once, on the spec-panel stat labels, and isn't in `DESIGN.md`. Same for `#4D80E6`.\n- The media strip is 2232px in a 1416px frame - a marquee, not a failed grid.\n- Backer logos need `mix-blend-mode: darken` *and* `opacity: 0.6`, or you get nine white rectangles.\n\n## Two things to flag\n\n**Copy errors are in the design.** `Lenght` (all three spec states), chips reading `Mid-2007` / `Mid 2007` where the segment control says `Mid-2027` / `This decade`, and a duplicated `fig.02` with `fig.04` skipped. I specced them verbatim with a \"raise, don't silently fix\" note - correcting copy isn't the build's call.\n\n**The fleet's segment labels disagree between frames.** The shipping section says `October 2026 / Mid-2027 / This decade`; the FPO frames say `In the water today / Next year / This decade`. I specced the shipping labels, since those are in the page frame you pointed at.\n\nHidden layers were excluded throughout (the `Symbol` vectors, `Model Swap 1`, the wireframe renders, `Ellipse 6` in every bullet). The `FPO // Image Placeholder` badge and its `#FF0000` are documented as a production marker and marked do-not-ship.",
+    "ttft_ms": 1249,
+    "type": "result",
+    "duration_ms": 879663,
+    "uuid": "deedd33d-215e-4ed8-9e38-43f6262012cf",
+    "ttft_stream_ms": 1000,
+    "time_to_request_ms": 67,
+    "first_content_frame_ms": 1001,
+    "queued_turn_count": 0,
+    "result_index": 0
+  },
+  "stderr": ""
+}

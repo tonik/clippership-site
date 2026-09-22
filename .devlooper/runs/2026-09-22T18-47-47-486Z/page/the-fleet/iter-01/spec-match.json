@@ -1,0 +1,56 @@
+{
+  "scopeFound": true,
+  "measuredElements": 22,
+  "violations": [
+    {
+      "prop": "gap",
+      "value": "56px",
+      "severity": "warning",
+      "nearest": "48px",
+      "kind": "spacing",
+      "note": "gap 56px — nearest token 48px (Δ8px) — arbitrary value, snap to the token scale",
+      "count": 1
+    },
+    {
+      "prop": "row-gap",
+      "value": "56px",
+      "severity": "warning",
+      "nearest": "48px",
+      "kind": "spacing",
+      "note": "row-gap 56px — nearest token 48px (Δ8px) — arbitrary value, snap to the token scale",
+      "count": 1
+    },
+    {
+      "prop": "column-gap",
+      "value": "56px",
+      "severity": "warning",
+      "nearest": "48px",
+      "kind": "spacing",
+      "note": "column-gap 56px — nearest token 48px (Δ8px) — arbitrary value, snap to the token scale",
+      "count": 1
+    },
+    {
+      "prop": "padding-right",
+      "value": "20px",
+      "severity": "info",
+      "nearest": "16px",
+      "kind": "spacing",
+      "note": "padding-right 20px — nearest token 16px (Δ4px)",
+      "count": 1
+    },
+    {
+      "prop": "padding-left",
+      "value": "20px",
+      "severity": "info",
+      "nearest": "16px",
+      "kind": "spacing",
+      "note": "padding-left 20px — nearest token 16px (Δ4px)",
+      "count": 1
+    }
+  ],
+  "elementDeltas": [],
+  "arbitraryCount": 3,
+  "warningCount": 3,
+  "matched": false,
+  "summary": "5 distinct off-token value(s) (3 arbitrary), 0 element delta(s), across 22 measured elements"
+}

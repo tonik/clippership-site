@@ -1,0 +1,1094 @@
+{
+  "frame": {
+    "w": 1440,
+    "h": 948
+  },
+  "count": 59,
+  "elements": [
+    {
+      "id": "182:2343",
+      "name": "Header",
+      "type": "FRAME",
+      "x": 48,
+      "y": 48,
+      "w": 430,
+      "h": 184,
+      "depth": 1,
+      "parent": "About",
+      "layout": {
+        "dir": "column",
+        "gap": 12,
+        "pad": [
+          0,
+          0,
+          64,
+          0
+        ],
+        "size": "fixed/hug"
+      }
+    },
+    {
+      "id": "182:2344",
+      "name": "Clippership",
+      "type": "TEXT",
+      "x": 48,
+      "y": 48,
+      "w": 83,
+      "h": 12,
+      "depth": 2,
+      "parent": "Header",
+      "text": "Clippership",
+      "font": "OverpassMono-Bold",
+      "fontSize": 12,
+      "fontWeight": 700,
+      "letterSpacing": 0.12,
+      "lineHeight": 12,
+      "case": "upper",
+      "color": "#191919",
+      "opacity": 0.6
+    },
+    {
+      "id": "182:2345",
+      "name": "One team, built across industries",
+      "type": "TEXT",
+      "x": 48,
+      "y": 72,
+      "w": 430,
+      "h": 96,
+      "depth": 2,
+      "parent": "Header",
+      "text": "One team, built across industries",
+      "font": "Exposure-20",
+      "fontSize": 48,
+      "fontWeight": 450,
+      "letterSpacing": -1.92,
+      "lineHeight": 48,
+      "color": "#291d1d"
+    },
+    {
+      "id": "247:670",
+      "name": "Header",
+      "type": "FRAME",
+      "x": 618,
+      "y": 48,
+      "w": 659,
+      "h": 172,
+      "depth": 1,
+      "parent": "About",
+      "layout": {
+        "dir": "column",
+        "gap": 16,
+        "pad": [
+          24,
+          0,
+          0,
+          0
+        ],
+        "size": "fixed/hug"
+      }
+    },
+    {
+      "id": "247:673",
+      "name": "Our team honed their trades at",
+      "type": "TEXT",
+      "x": 618,
+      "y": 72,
+      "w": 659,
+      "h": 28,
+      "depth": 2,
+      "parent": "Header",
+      "text": "Our team honed their trades at",
+      "font": "Matter-Medium",
+      "fontSize": 24,
+      "fontWeight": 500,
+      "letterSpacing": -0.96,
+      "lineHeight": 28,
+      "color": "#191919"
+    },
+    {
+      "id": "247:707",
+      "name": "Text",
+      "type": "FRAME",
+      "x": 618,
+      "y": 116,
+      "w": 659,
+      "h": 104,
+      "depth": 2,
+      "parent": "Header",
+      "layout": {
+        "dir": "column",
+        "gap": 8,
+        "size": "fill/hug"
+      }
+    },
+    {
+      "id": "247:679",
+      "name": "Line",
+      "type": "FRAME",
+      "x": 618,
+      "y": 116,
+      "w": 659,
+      "h": 20,
+      "depth": 3,
+      "parent": "Text",
+      "layout": {
+        "dir": "row",
+        "gap": 24,
+        "size": "fill/hug"
+      }
+    },
+    {
+      "id": "247:718",
+      "name": "Bullet",
+      "type": "FRAME",
+      "x": 618,
+      "y": 116,
+      "w": 318,
+      "h": 20,
+      "depth": 4,
+      "parent": "Line",
+      "layout": {
+        "dir": "row",
+        "gap": 8,
+        "justify": "center",
+        "align": "center",
+        "size": "fill/hug"
+      }
+    },
+    {
+      "id": "247:719",
+      "name": "Bullet",
+      "type": "FRAME",
+      "x": 618,
+      "y": 122,
+      "w": 8,
+      "h": 8,
+      "depth": 5,
+      "parent": "Bullet",
+      "border": {
+        "w": 1,
+        "color": "rgba(25,25,25,0.08)",
+        "radius": 2
+      }
+    },
+    {
+      "id": "247:675",
+      "name": "Tesla",
+      "type": "TEXT",
+      "x": 634,
+      "y": 116,
+      "w": 302,
+      "h": 20,
+      "depth": 5,
+      "parent": "Bullet",
+      "text": "Tesla",
+      "font": "Matter-Regular",
+      "fontSize": 16,
+      "fontWeight": 400,
+      "letterSpacing": -0.64,
+      "lineHeight": 20,
+      "color": "rgba(25,25,25,0.60)"
+    },
+    {
+      "id": "247:723",
+      "name": "Bullet",
+      "type": "FRAME",
+      "x": 960,
+      "y": 116,
+      "w": 318,
+      "h": 20,
+      "depth": 4,
+      "parent": "Line",
+      "layout": {
+        "dir": "row",
+        "gap": 8,
+        "justify": "center",
+        "align": "center",
+        "size": "fill/hug"
+      }
+    },
+    {
+      "id": "247:799",
+      "name": "Bullet",
+      "type": "FRAME",
+      "x": 960,
+      "y": 122,
+      "w": 8,
+      "h": 8,
+      "depth": 5,
+      "parent": "Bullet",
+      "border": {
+        "w": 1,
+        "color": "rgba(25,25,25,0.08)",
+        "radius": 2
+      }
+    },
+    {
+      "id": "247:677",
+      "name": "Jet Propulsion Laboratory",
+      "type": "TEXT",
+      "x": 976,
+      "y": 116,
+      "w": 302,
+      "h": 20,
+      "depth": 5,
+      "parent": "Bullet",
+      "text": "Jet Propulsion Laboratory",
+      "font": "Matter-Regular",
+      "fontSize": 16,
+      "fontWeight": 400,
+      "letterSpacing": -0.64,
+      "lineHeight": 20,
+      "color": "rgba(25,25,25,0.60)"
+    },
+    {
+      "id": "247:757",
+      "name": "Line",
+      "type": "FRAME",
+      "x": 618,
+      "y": 144,
+      "w": 659,
+      "h": 20,
+      "depth": 3,
+      "parent": "Text",
+      "layout": {
+        "dir": "row",
+        "gap": 24,
+        "size": "fill/hug"
+      }
+    },
+    {
+      "id": "247:758",
+      "name": "Bullet",
+      "type": "FRAME",
+      "x": 618,
+      "y": 144,
+      "w": 318,
+      "h": 20,
+      "depth": 4,
+      "parent": "Line",
+      "layout": {
+        "dir": "row",
+        "gap": 8,
+        "justify": "center",
+        "align": "center",
+        "size": "fill/hug"
+      }
+    },
+    {
+      "id": "247:807",
+      "name": "Bullet",
+      "type": "FRAME",
+      "x": 618,
+      "y": 150,
+      "w": 8,
+      "h": 8,
+      "depth": 5,
+      "parent": "Bullet",
+      "border": {
+        "w": 1,
+        "color": "rgba(25,25,25,0.08)",
+        "radius": 2
+      }
+    },
+    {
+      "id": "247:762",
+      "name": "Canadian Special Forces",
+      "type": "TEXT",
+      "x": 634,
+      "y": 144,
+      "w": 302,
+      "h": 20,
+      "depth": 5,
+      "parent": "Bullet",
+      "text": "Canadian Special Forces",
+      "font": "Matter-Regular",
+      "fontSize": 16,
+      "fontWeight": 400,
+      "letterSpacing": -0.64,
+      "lineHeight": 20,
+      "color": "rgba(25,25,25,0.60)"
+    },
+    {
+      "id": "247:763",
+      "name": "Bullet",
+      "type": "FRAME",
+      "x": 960,
+      "y": 144,
+      "w": 318,
+      "h": 20,
+      "depth": 4,
+      "parent": "Line",
+      "layout": {
+        "dir": "row",
+        "gap": 8,
+        "justify": "center",
+        "align": "center",
+        "size": "fill/hug"
+      }
+    },
+    {
+      "id": "247:810",
+      "name": "Bullet",
+      "type": "FRAME",
+      "x": 960,
+      "y": 150,
+      "w": 8,
+      "h": 8,
+      "depth": 5,
+      "parent": "Bullet",
+      "border": {
+        "w": 1,
+        "color": "rgba(25,25,25,0.08)",
+        "radius": 2
+      }
+    },
+    {
+      "id": "247:767",
+      "name": "Mercedes-AMG Formula 1 Team",
+      "type": "TEXT",
+      "x": 976,
+      "y": 144,
+      "w": 302,
+      "h": 20,
+      "depth": 5,
+      "parent": "Bullet",
+      "text": "Mercedes-AMG Formula 1 Team",
+      "font": "Matter-Regular",
+      "fontSize": 16,
+      "fontWeight": 400,
+      "letterSpacing": -0.64,
+      "lineHeight": 20,
+      "color": "rgba(25,25,25,0.60)"
+    },
+    {
+      "id": "247:769",
+      "name": "Line",
+      "type": "FRAME",
+      "x": 618,
+      "y": 172,
+      "w": 659,
+      "h": 20,
+      "depth": 3,
+      "parent": "Text",
+      "layout": {
+        "dir": "row",
+        "gap": 24,
+        "size": "fill/hug"
+      }
+    },
+    {
+      "id": "247:770",
+      "name": "Bullet",
+      "type": "FRAME",
+      "x": 618,
+      "y": 172,
+      "w": 318,
+      "h": 20,
+      "depth": 4,
+      "parent": "Line",
+      "layout": {
+        "dir": "row",
+        "gap": 8,
+        "justify": "center",
+        "align": "center",
+        "size": "fill/hug"
+      }
+    },
+    {
+      "id": "247:818",
+      "name": "Bullet",
+      "type": "FRAME",
+      "x": 618,
+      "y": 178,
+      "w": 8,
+      "h": 8,
+      "depth": 5,
+      "parent": "Bullet",
+      "border": {
+        "w": 1,
+        "color": "rgba(25,25,25,0.08)",
+        "radius": 2
+      }
+    },
+    {
+      "id": "247:774",
+      "name": "Microsoft",
+      "type": "TEXT",
+      "x": 634,
+      "y": 172,
+      "w": 302,
+      "h": 20,
+      "depth": 5,
+      "parent": "Bullet",
+      "text": "Microsoft",
+      "font": "Matter-Regular",
+      "fontSize": 16,
+      "fontWeight": 400,
+      "letterSpacing": -0.64,
+      "lineHeight": 20,
+      "color": "rgba(25,25,25,0.60)"
+    },
+    {
+      "id": "247:775",
+      "name": "Bullet",
+      "type": "FRAME",
+      "x": 960,
+      "y": 172,
+      "w": 318,
+      "h": 20,
+      "depth": 4,
+      "parent": "Line",
+      "layout": {
+        "dir": "row",
+        "gap": 8,
+        "justify": "center",
+        "align": "center",
+        "size": "fill/hug"
+      }
+    },
+    {
+      "id": "247:815",
+      "name": "Bullet",
+      "type": "FRAME",
+      "x": 960,
+      "y": 178,
+      "w": 8,
+      "h": 8,
+      "depth": 5,
+      "parent": "Bullet",
+      "border": {
+        "w": 1,
+        "color": "rgba(25,25,25,0.08)",
+        "radius": 2
+      }
+    },
+    {
+      "id": "247:779",
+      "name": "Damen Shipyards Group",
+      "type": "TEXT",
+      "x": 976,
+      "y": 172,
+      "w": 302,
+      "h": 20,
+      "depth": 5,
+      "parent": "Bullet",
+      "text": "Damen Shipyards Group",
+      "font": "Matter-Regular",
+      "fontSize": 16,
+      "fontWeight": 400,
+      "letterSpacing": -0.64,
+      "lineHeight": 20,
+      "color": "rgba(25,25,25,0.60)"
+    },
+    {
+      "id": "247:781",
+      "name": "Line",
+      "type": "FRAME",
+      "x": 618,
+      "y": 200,
+      "w": 659,
+      "h": 20,
+      "depth": 3,
+      "parent": "Text",
+      "layout": {
+        "dir": "row",
+        "gap": 24,
+        "size": "fill/hug"
+      }
+    },
+    {
+      "id": "247:782",
+      "name": "Bullet",
+      "type": "FRAME",
+      "x": 618,
+      "y": 200,
+      "w": 659,
+      "h": 20,
+      "depth": 4,
+      "parent": "Line",
+      "layout": {
+        "dir": "row",
+        "gap": 8,
+        "justify": "center",
+        "align": "center",
+        "size": "fill/hug"
+      }
+    },
+    {
+      "id": "247:823",
+      "name": "Bullet",
+      "type": "FRAME",
+      "x": 618,
+      "y": 206,
+      "w": 8,
+      "h": 8,
+      "depth": 5,
+      "parent": "Bullet",
+      "border": {
+        "w": 1,
+        "color": "rgba(25,25,25,0.08)",
+        "radius": 2
+      }
+    },
+    {
+      "id": "247:786",
+      "name": "Bay Ship and Yacht",
+      "type": "TEXT",
+      "x": 634,
+      "y": 200,
+      "w": 643,
+      "h": 20,
+      "depth": 5,
+      "parent": "Bullet",
+      "text": "Bay Ship and Yacht",
+      "font": "Matter-Regular",
+      "fontSize": 16,
+      "fontWeight": 400,
+      "letterSpacing": -0.64,
+      "lineHeight": 20,
+      "color": "rgba(25,25,25,0.60)"
+    },
+    {
+      "id": "182:2559",
+      "name": "Image",
+      "type": "FRAME",
+      "x": 618,
+      "y": 332,
+      "w": 774,
+      "h": 520,
+      "depth": 1,
+      "parent": "About",
+      "border": {
+        "w": 1,
+        "color": "rgba(255,255,255,1.00)",
+        "radius": 4
+      },
+      "pin": "center/top"
+    },
+    {
+      "id": "182:2560",
+      "name": "IMG_1542.jpeg 1",
+      "type": "RECTANGLE",
+      "x": 448,
+      "y": 301,
+      "w": 1114,
+      "h": 740,
+      "depth": 2,
+      "parent": "Image",
+      "bg": {
+        "css": "image fill, object-fit cover",
+        "kind": "image"
+      },
+      "pin": "center/center"
+    },
+    {
+      "id": "182:2561",
+      "name": "Frame 4",
+      "type": "FRAME",
+      "x": 618,
+      "y": 332,
+      "w": 128,
+      "h": 64,
+      "depth": 2,
+      "parent": "Image",
+      "layout": {
+        "dir": "row",
+        "gap": 4,
+        "pad": [
+          24,
+          64,
+          32,
+          24
+        ],
+        "justify": "center",
+        "align": "center",
+        "size": "hug/hug"
+      }
+    },
+    {
+      "id": "182:2562",
+      "name": "Our Team",
+      "type": "TEXT",
+      "x": 642,
+      "y": 356,
+      "w": 40,
+      "h": 8,
+      "depth": 3,
+      "parent": "Frame 4",
+      "text": "Our Team",
+      "font": "OverpassMono-Bold",
+      "fontSize": 8,
+      "fontWeight": 700,
+      "letterSpacing": 0.08,
+      "lineHeight": 8,
+      "case": "upper",
+      "color": "#191919",
+      "opacity": 0.6
+    },
+    {
+      "id": "182:2564",
+      "name": "CTA",
+      "type": "FRAME",
+      "x": 906,
+      "y": 572,
+      "w": 199,
+      "h": 40,
+      "depth": 2,
+      "parent": "Image",
+      "border": {
+        "w": 1,
+        "color": "rgba(25,25,25,0.08)",
+        "radius": 20
+      },
+      "layout": {
+        "dir": "row",
+        "gap": 24,
+        "pad": [
+          12,
+          20,
+          12,
+          20
+        ],
+        "align": "center",
+        "size": "hug/fixed"
+      },
+      "backdropBlur": 4,
+      "pin": "center/center"
+    },
+    {
+      "id": "182:2565",
+      "name": "FPO // Image Placeholder",
+      "type": "TEXT",
+      "x": 926,
+      "y": 584,
+      "w": 159,
+      "h": 16,
+      "depth": 3,
+      "parent": "CTA",
+      "text": "FPO // Image Placeholder",
+      "font": "Matter-SemiBold",
+      "fontSize": 14,
+      "fontWeight": 600,
+      "letterSpacing": -0.28,
+      "lineHeight": 16,
+      "color": "rgba(255,0,0,0.64)"
+    },
+    {
+      "id": "182:1898",
+      "name": "Frame 14",
+      "type": "FRAME",
+      "x": 48,
+      "y": 332,
+      "w": 432,
+      "h": 462,
+      "depth": 1,
+      "parent": "About",
+      "layout": {
+        "dir": "column",
+        "gap": 12,
+        "align": "flex-end",
+        "size": "fixed/hug"
+      }
+    },
+    {
+      "id": "182:1880",
+      "name": "Card",
+      "type": "FRAME",
+      "x": 48,
+      "y": 332,
+      "w": 432,
+      "h": 146,
+      "depth": 2,
+      "parent": "Frame 14",
+      "border": {
+        "w": 1,
+        "color": "rgba(255,255,255,1.00)",
+        "radius": 4
+      },
+      "layout": {
+        "dir": "column",
+        "gap": 28,
+        "pad": [
+          24,
+          24,
+          24,
+          24
+        ],
+        "size": "fixed/hug"
+      }
+    },
+    {
+      "id": "182:1881",
+      "name": "Text",
+      "type": "FRAME",
+      "x": 73,
+      "y": 357,
+      "w": 382,
+      "h": 48,
+      "depth": 3,
+      "parent": "Card",
+      "layout": {
+        "dir": "column",
+        "gap": 8,
+        "size": "fill/hug"
+      }
+    },
+    {
+      "id": "182:1885",
+      "name": "CEO",
+      "type": "TEXT",
+      "x": 73,
+      "y": 357,
+      "w": 382,
+      "h": 12,
+      "depth": 4,
+      "parent": "Text",
+      "text": "CEO",
+      "font": "OverpassMono-Bold",
+      "fontSize": 12,
+      "fontWeight": 700,
+      "letterSpacing": 0.12,
+      "lineHeight": 12,
+      "case": "upper",
+      "color": "#191919",
+      "opacity": 0.6
+    },
+    {
+      "id": "182:1882",
+      "name": "Top",
+      "type": "FRAME",
+      "x": 73,
+      "y": 377,
+      "w": 382,
+      "h": 28,
+      "depth": 4,
+      "parent": "Text",
+      "layout": {
+        "dir": "row",
+        "gap": 4,
+        "align": "center",
+        "size": "fill/hug"
+      }
+    },
+    {
+      "id": "182:1883",
+      "name": "Nico Cymbalist",
+      "type": "TEXT",
+      "x": 73,
+      "y": 377,
+      "w": 382,
+      "h": 28,
+      "depth": 5,
+      "parent": "Top",
+      "text": "Nico Cymbalist",
+      "font": "Matter-Medium",
+      "fontSize": 24,
+      "fontWeight": 500,
+      "letterSpacing": -0.96,
+      "lineHeight": 28,
+      "color": "#191919"
+    },
+    {
+      "id": "182:1886",
+      "name": "Text",
+      "type": "FRAME",
+      "x": 73,
+      "y": 433,
+      "w": 382,
+      "h": 20,
+      "depth": 3,
+      "parent": "Card",
+      "layout": {
+        "dir": "row",
+        "gap": 4,
+        "align": "center",
+        "size": "fill/hug"
+      }
+    },
+    {
+      "id": "182:1887",
+      "name": "Ex-Tesla, Mercedes-F1, Caltech",
+      "type": "TEXT",
+      "x": 73,
+      "y": 433,
+      "w": 208,
+      "h": 20,
+      "depth": 4,
+      "parent": "Text",
+      "text": "Ex-Tesla, Mercedes-F1, Caltech",
+      "font": "Matter-Regular",
+      "fontSize": 16,
+      "fontWeight": 400,
+      "letterSpacing": -0.64,
+      "lineHeight": 20,
+      "color": "rgba(25,25,25,0.64)"
+    },
+    {
+      "id": "182:1889",
+      "name": "Card",
+      "type": "FRAME",
+      "x": 48,
+      "y": 490,
+      "w": 432,
+      "h": 146,
+      "depth": 2,
+      "parent": "Frame 14",
+      "border": {
+        "w": 1,
+        "color": "rgba(255,255,255,1.00)",
+        "radius": 4
+      },
+      "layout": {
+        "dir": "column",
+        "gap": 28,
+        "pad": [
+          24,
+          24,
+          24,
+          24
+        ],
+        "size": "fixed/hug"
+      }
+    },
+    {
+      "id": "182:1890",
+      "name": "Text",
+      "type": "FRAME",
+      "x": 73,
+      "y": 515,
+      "w": 382,
+      "h": 48,
+      "depth": 3,
+      "parent": "Card",
+      "layout": {
+        "dir": "column",
+        "gap": 8,
+        "size": "fill/hug"
+      }
+    },
+    {
+      "id": "182:1894",
+      "name": "COO",
+      "type": "TEXT",
+      "x": 73,
+      "y": 515,
+      "w": 382,
+      "h": 12,
+      "depth": 4,
+      "parent": "Text",
+      "text": "COO",
+      "font": "OverpassMono-Bold",
+      "fontSize": 12,
+      "fontWeight": 700,
+      "letterSpacing": 0.12,
+      "lineHeight": 12,
+      "case": "upper",
+      "color": "#191919",
+      "opacity": 0.6
+    },
+    {
+      "id": "182:1891",
+      "name": "Top",
+      "type": "FRAME",
+      "x": 73,
+      "y": 535,
+      "w": 382,
+      "h": 28,
+      "depth": 4,
+      "parent": "Text",
+      "layout": {
+        "dir": "row",
+        "gap": 4,
+        "align": "center",
+        "size": "fill/hug"
+      }
+    },
+    {
+      "id": "182:1892",
+      "name": "Luca Cymbalist",
+      "type": "TEXT",
+      "x": 73,
+      "y": 535,
+      "w": 382,
+      "h": 28,
+      "depth": 5,
+      "parent": "Top",
+      "text": "Luca Cymbalist",
+      "font": "Matter-Medium",
+      "fontSize": 24,
+      "fontWeight": 500,
+      "letterSpacing": -0.96,
+      "lineHeight": 28,
+      "color": "#191919"
+    },
+    {
+      "id": "182:1895",
+      "name": "Text",
+      "type": "FRAME",
+      "x": 73,
+      "y": 591,
+      "w": 382,
+      "h": 20,
+      "depth": 3,
+      "parent": "Card",
+      "layout": {
+        "dir": "row",
+        "gap": 4,
+        "align": "center",
+        "size": "fill/hug"
+      }
+    },
+    {
+      "id": "182:1896",
+      "name": "Ex-Canadian Special Forces",
+      "type": "TEXT",
+      "x": 73,
+      "y": 591,
+      "w": 208,
+      "h": 20,
+      "depth": 4,
+      "parent": "Text",
+      "text": "Ex-Canadian Special Forces",
+      "font": "Matter-Regular",
+      "fontSize": 16,
+      "fontWeight": 400,
+      "letterSpacing": -0.64,
+      "lineHeight": 20,
+      "color": "rgba(25,25,25,0.64)"
+    },
+    {
+      "id": "182:1899",
+      "name": "Card",
+      "type": "FRAME",
+      "x": 48,
+      "y": 648,
+      "w": 432,
+      "h": 146,
+      "depth": 2,
+      "parent": "Frame 14",
+      "border": {
+        "w": 1,
+        "color": "rgba(255,255,255,1.00)",
+        "radius": 4
+      },
+      "layout": {
+        "dir": "column",
+        "gap": 28,
+        "pad": [
+          24,
+          24,
+          24,
+          24
+        ],
+        "size": "fixed/hug"
+      }
+    },
+    {
+      "id": "182:1900",
+      "name": "Text",
+      "type": "FRAME",
+      "x": 73,
+      "y": 673,
+      "w": 382,
+      "h": 48,
+      "depth": 3,
+      "parent": "Card",
+      "layout": {
+        "dir": "column",
+        "gap": 8,
+        "size": "fill/hug"
+      }
+    },
+    {
+      "id": "182:1904",
+      "name": "CTO",
+      "type": "TEXT",
+      "x": 73,
+      "y": 673,
+      "w": 382,
+      "h": 12,
+      "depth": 4,
+      "parent": "Text",
+      "text": "CTO",
+      "font": "OverpassMono-Bold",
+      "fontSize": 12,
+      "fontWeight": 700,
+      "letterSpacing": 0.12,
+      "lineHeight": 12,
+      "case": "upper",
+      "color": "#191919",
+      "opacity": 0.6
+    },
+    {
+      "id": "182:1901",
+      "name": "Top",
+      "type": "FRAME",
+      "x": 73,
+      "y": 693,
+      "w": 382,
+      "h": 28,
+      "depth": 4,
+      "parent": "Text",
+      "layout": {
+        "dir": "row",
+        "gap": 4,
+        "align": "center",
+        "size": "fill/hug"
+      }
+    },
+    {
+      "id": "182:1902",
+      "name": "Kai Matsuka",
+      "type": "TEXT",
+      "x": 73,
+      "y": 693,
+      "w": 382,
+      "h": 28,
+      "depth": 5,
+      "parent": "Top",
+      "text": "Kai Matsuka",
+      "font": "Matter-Medium",
+      "fontSize": 24,
+      "fontWeight": 500,
+      "letterSpacing": -0.96,
+      "lineHeight": 28,
+      "color": "#191919"
+    },
+    {
+      "id": "182:1905",
+      "name": "Text",
+      "type": "FRAME",
+      "x": 73,
+      "y": 749,
+      "w": 382,
+      "h": 20,
+      "depth": 3,
+      "parent": "Card",
+      "layout": {
+        "dir": "row",
+        "gap": 4,
+        "align": "center",
+        "size": "fill/hug"
+      }
+    },
+    {
+      "id": "182:1906",
+      "name": "Ex-Tesla, JPL, Caltech",
+      "type": "TEXT",
+      "x": 73,
+      "y": 749,
+      "w": 208,
+      "h": 20,
+      "depth": 4,
+      "parent": "Text",
+      "text": "Ex-Tesla, JPL, Caltech",
+      "font": "Matter-Regular",
+      "fontSize": 16,
+      "fontWeight": 400,
+      "letterSpacing": -0.64,
+      "lineHeight": 20,
+      "color": "rgba(25,25,25,0.64)"
+    }
+  ]
+}

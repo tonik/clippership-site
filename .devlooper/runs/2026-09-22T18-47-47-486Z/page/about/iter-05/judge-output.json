@@ -1,0 +1,101 @@
+{
+  "exitCode": 0,
+  "parsed": {
+    "duration_api_ms": 213223,
+    "stop_reason": "end_turn",
+    "session_id": "bb3324f4-d162-4909-8ee0-d055efe83bb1",
+    "total_cost_usd": 1.8354705000000002,
+    "usage": {
+      "input_tokens": 58,
+      "cache_creation_input_tokens": 64925,
+      "cache_read_input_tokens": 1514661,
+      "output_tokens": 17144,
+      "output_tokens_details": {
+        "thinking_tokens": 8168
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 64925,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 663,
+          "cache_read_input_tokens": 74915,
+          "cache_creation_input_tokens": 2841,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2841
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-opus-5": {
+        "inputTokens": 58,
+        "outputTokens": 17144,
+        "cacheReadInputTokens": 1514661,
+        "cacheCreationInputTokens": 64925,
+        "webSearchRequests": 0,
+        "costUSD": 1.8354705000000002,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 8168,
+        "canonicalModel": "claude-opus-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "permission_denials": [],
+    "terminal_reason": "completed",
+    "fast_mode_state": "off",
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "is_error": false,
+    "num_turns": 35,
+    "subtype": "success",
+    "api_error_status": null,
+    "result": "Verdict written to `page/about/iter-05/verdict.json`.\n\n**Overall: 95** (desktop 95, tablet 95, mobile 95)\n\nBoth iteration-4 actionable issues are closed:\n- Photo frame now carries the `#ECECEC` hairline - pixel-sampled `rgb(236,236,236)` on all four edges at every breakpoint.\n- LinkedIn glyph is now 16×16.\n\nI pulled the Figma node (no cached reference existed) and overlaid it on the desktop build. The difference mask shows **no structural offset anywhere** - every card border, bullet box, chip and glyph lands on its Figma pixel. Measured: cards `x=48-479` × 146px at `y=332/490/648`, photo `x=618-1391` × `y=332-851`, 48px gutter, section ends 96px below the photo. The `FPO // Image Placeholder` badge is in the Figma node and correctly absent from the build.\n\n**The one remaining visible difference is not fixable in this section's file.** The heading falls back from Exposure to Newsreader, which is ~15% narrower at 48px, so Figma's break `One team, built / across industries` becomes `One team, built across / industries`, and the taller ascent lifts the block 5px. The intro region is the only area with a real diff (mean abs 40.3 vs 3.6-7.4 elsewhere) and all of it is glyph shape: line pitch is 48px in both, block origin `x=49` in both, and the mono eyebrow ink box is byte-identical. `about.tsx` already requests `Exposure, Exposure-20, Newsreader, …` correctly - the licensed Exposure and Matter faces are missing from the shared font config. I flagged it as a warning but marked it **non-actionable** so the fixer doesn't hard-code a `<br/>` that would break at other widths.\n\nTablet and mobile have no mock; both adapt exactly per the spec's responsive table with no overflow, clipping or lost content.",
+    "ttft_ms": 1513,
+    "type": "result",
+    "duration_ms": 222181,
+    "uuid": "ea3a8913-a67b-4e21-9be6-79d1f15072ed",
+    "ttft_stream_ms": 1080,
+    "time_to_request_ms": 46,
+    "first_content_frame_ms": 1080,
+    "queued_turn_count": 0,
+    "result_index": 0
+  },
+  "stderr": ""
+}

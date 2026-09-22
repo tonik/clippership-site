@@ -1,0 +1,101 @@
+{
+  "breakpoints": {
+    "desktop": {
+      "score": 60,
+      "issues": [
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "Both image plates are under-scaled and mis-anchored. They are rendered with plain object-fit: cover, which at a 1416x1280 stage sizes the vessel to ~1815x1280; Figma draws it at 2252x1588 (159% of stage width, 124% of stage height) at x -279 / y 0 relative to the stage. Measured against the Figma frame: the hull's left tip is at x=235 in the build vs x=143 in Figma, and the waterline on the open-sea left edge sits at y~880 vs y~1100 in Figma. Net effect: the ship reads ~20% too small and ~230px too high, and a ~250px band of empty open water appears along the bottom that is not in the design. Size the plates explicitly instead of relying on cover - vessel: width 159%, height 124.1%, left -19.7%, top 0; sky (181:671): width 160.9%, height 125.5%, left -30.5%, top -5.6%."
+        },
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "h1 is not rendering Exposure - it falls through to the Newsreader fallback (computed font-family 'Exposure, Exposure-20, Newsreader, ...', and public/fonts does not exist in the repo). Figma's Exposure-20 450 is a much heavier, wider display serif: 'AI compute at' measures 665px in the Figma frame (~51px per glyph) against ~43px per glyph in the build, so the headline reads visibly lighter and more bookish than the design. Self-host the Exposure WOFF2 per spec section 9, with size-adjust so the 108px line does not reflow. Same fallback affects Matter -> Inter for the lead and CTA."
+        },
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "Headline breaks in the wrong place: the build renders 'AI compute at the' / 'maritime edge.', Figma renders 'AI compute at' / 'the maritime edge.'. The non-breaking space between 'the' and 'maritime' is not taking effect in the rendered DOM - the two lines end up 734px/635px instead of Figma's 665px/875px, so the centred title block has a noticeably different silhouette."
+        },
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "Lead paragraph wraps to 5 lines where Figma has 4 ('Autonomous vessels take AI compute' / 'onto the wide-open ocean, where' / 'clean energy and cooling are' / 'plentiful, and the red tape is thin.'). The lead block is therefore ~207px tall instead of 176px and the CTA pill starts at y=643 instead of y=612, 31px low. The 383px measure, the 961px left edge and the 24px gap are all correct - the extra line comes from the wider Inter fallback standing in for Matter Medium."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "CTA pill matches: 176x40 at x=964 (Figma 174x40 at x=961), rgba(246,246,247,0.16) fill with backdrop-blur(4px), 1px rgba(25,25,25,0.08) hairline, 999px radius, label Matter/Inter SemiBold 14px/16px at -0.28px in rgba(25,25,25,0.64)."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Structural geometry is right: wordmark 157x28 at y=148 with the -12px optical tuck, title block margin-top 148px, lead column left edge at 961px, split-opacity lead (100% 'Autonomous vessels' + 48% remainder), ink #291D1D headline, 12px white side gutters and the square-top / 12px-rounded-bottom stage all match the Figma frame."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "The red '5 Issues' badge bottom-left is the Next.js dev indicator, not page content."
+        }
+      ]
+    },
+    "tablet": {
+      "score": 76,
+      "issues": [
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "The lead paragraph now sits directly over the white sails, so the 48% quiet run drops to roughly 2.4:1 contrast and the middle lines ('take AI compute onto the wide-open ocean, where clean energy and') are hard to read. At 1440 the same text keeps calm sky behind it. Do not change the 48% token - move the lead clear of the masts (raise it, or adjust the vessel crop at this width) so the paragraph keeps a quiet backdrop."
+        },
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "h1 renders in the Newsreader fallback rather than Exposure here too - same missing self-hosted face as desktop, so the headline's weight and width are wrong at every breakpoint."
+        },
+        {
+          "severity": "info",
+          "actionable": true,
+          "text": "Headline breaks as 'AI compute at the maritime' / 'edge.', leaving a single-word last line under a very long first line. No tablet mock to contradict it, but the orphan is worth tuning (tighter title measure at this width)."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "No Figma tablet frame exists, so the adaptation itself is not scored against a mock. On its own terms it is clean: no overflow, nothing clipped, both image plates present, the hierarchy from the mock (wordmark, headline, lead, CTA) intact, lead recentred under the title and left-aligned at ~408px per the spec's 768-1023 intent, stage keeping the 12px gutter and the rounded-bottom corners."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "The iteration-1 wordmark/headline collision is resolved - the tuck now reads as an optical overlap, not a clash."
+        }
+      ]
+    },
+    "mobile": {
+      "score": 70,
+      "issues": [
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "Worst case of the lead-over-sails contrast problem: four of the five lines of the 48% quiet run cross the bright white sails, and 'compute onto the wide-open ocean, where clean energy and' is close to illegible at 390px. Reposition the lead (or the vessel crop) so the paragraph sits over sky or water, rather than lightening or darkening the type token."
+        },
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "h1 renders in the Newsreader fallback rather than Exposure - same missing self-hosted face as desktop and tablet."
+        },
+        {
+          "severity": "info",
+          "actionable": true,
+          "text": "Roughly 200px of empty water sits below the hull, the same under-scaled vessel plate as desktop. Spec asks for object-position: center bottom at this width so the hulls stay in frame; with the plate sized correctly the ship would fill the lower third instead of floating in open sea."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "No Figma mobile frame exists. Judged on its own terms the adaptation is sound: no horizontal overflow at 390px, headline wraps to two lines without clipping, lead is full-width inside 24px gutters, CTA pill is 40px tall (adequate tap target), and all content from the desktop mock survives."
+        }
+      ]
+    }
+  },
+  "overallScore": 60,
+  "summary": "The hero imagery now lands and the type, colours, tokens and desktop geometry are essentially correct, but both image plates are drawn with plain object-fit: cover instead of Figma's ~159% overscale (ship ~20% too small, waterline ~230px high), the headline sets in the Newsreader fallback rather than Exposure, and the NBSP line break in the h1 is not taking effect."
+}

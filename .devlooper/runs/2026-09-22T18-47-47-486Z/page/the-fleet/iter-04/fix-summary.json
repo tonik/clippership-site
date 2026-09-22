@@ -1,0 +1,8 @@
+{
+  "changesMade": [
+    "Layered a section-local radial veil (styles.wash) over the shared fleet-wash gradient so the lower-left two thirds of the panel reads as a hazy wash instead of strong blue, without editing globals.css",
+    "Nudged the section-local grain overlay opacity from 0.16 to 0.22 to close the measured texture-strength gap",
+    "Pulled the tablet text column up by 2rem (and mobile by 1rem) so the lead's ghosted run clears the horizon/ripple band instead of sitting on it"
+  ],
+  "summary": "Polished the fleet backdrop's wash reach and grain strength and lifted the lead text off the horizon at tablet/mobile, all via section-local CSS with no shared-file or layout changes."
+}

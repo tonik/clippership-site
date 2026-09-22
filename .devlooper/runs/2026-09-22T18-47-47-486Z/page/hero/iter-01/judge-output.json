@@ -1,0 +1,101 @@
+{
+  "exitCode": 0,
+  "parsed": {
+    "duration_api_ms": 122374,
+    "stop_reason": "end_turn",
+    "session_id": "6d728a46-7b9a-4f7c-985f-334b1c7146e9",
+    "total_cost_usd": 0.783313,
+    "usage": {
+      "input_tokens": 18,
+      "cache_creation_input_tokens": 40327,
+      "cache_read_input_tokens": 318106,
+      "output_tokens": 8836,
+      "output_tokens_details": {
+        "thinking_tokens": 4238
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 40327,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 644,
+          "cache_read_input_tokens": 49593,
+          "cache_creation_input_tokens": 3565,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3565
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-opus-5": {
+        "inputTokens": 18,
+        "outputTokens": 8836,
+        "cacheReadInputTokens": 318106,
+        "cacheCreationInputTokens": 40327,
+        "webSearchRequests": 0,
+        "costUSD": 0.783313,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 4238,
+        "canonicalModel": "claude-opus-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "permission_denials": [],
+    "terminal_reason": "completed",
+    "fast_mode_state": "off",
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "is_error": false,
+    "num_turns": 13,
+    "subtype": "success",
+    "api_error_status": null,
+    "result": "Verdict written to `.devlooper/runs/2026-09-22T18-47-47-486Z/page/hero/iter-01/verdict.json`.\n\n**Overall: 38/100** (desktop 45, tablet 38, mobile 38)\n\nTwo critical failures dominate:\n\n1. **Hero imagery entirely absent at every breakpoint.** Figma's hero is a full-bleed image stage: a sky painting (`181:671`) behind a bottom-anchored vessel render (`247:655`). The build shows a flat grey gradient with nothing in it - roughly 600px of the frame below the lead is empty. Worth noting for the fixer: `asset-fetch-summary.json` records `hero-sky.png`, `hero-vessel.png` and `hero-vessel-front.png` as never downloaded (Figma MCP Starter-plan limit, then REST rate limit), so the assets themselves may have to be fetched manually before this can close.\n\n2. **Wordmark collides with the headline on tablet and mobile.** The `-12px` optical tuck is a fixed px value tuned for the 108px desktop headline; at ~56px (tablet) and ~44px (mobile) it eats into the letterforms, so \"clippership\" is drawn through \"AI compute at\". Needs an em-based tuck or removal below 1024px.\n\nWhat is right: fonts resolve correctly (Exposure 450 108px/108px, `-4.32px`; Matter Medium lead at 24px/28.32px; CTA label Matter SemiBold 14px), the NBSP line break survives, the split-opacity lead is present, and desktop vertical rhythm lands almost exactly on spec (title at 148px, lead top ~478px vs 476px derived, 383px measure closing on the 1344px content edge). Tablet and mobile have no Figma frame, so their adaptations were judged only for overflow, clipping and hierarchy - both are clean apart from the wordmark collision.",
+    "ttft_ms": 1195,
+    "type": "result",
+    "duration_ms": 122815,
+    "uuid": "373176c3-fc45-4437-b632-3ef71655f330",
+    "ttft_stream_ms": 741,
+    "time_to_request_ms": 39,
+    "first_content_frame_ms": 742,
+    "queued_turn_count": 0,
+    "result_index": 0
+  },
+  "stderr": ""
+}

@@ -1,0 +1,86 @@
+{
+  "breakpoints": {
+    "desktop": {
+      "score": 45,
+      "issues": [
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "Both hero image layers are absent: the sky painting (Figma 181:671) and the vessel render (247:655) do not render. The stage is a flat light-grey gradient with nothing in it. Figma's hero IS a full-bleed image stage - this is the defining visual of the section and ~600px of the frame below the lead block is empty grey instead of vessel imagery. Wire up .hero__sky / .hero__vessel as position:absolute; inset:0; width/height 100%; object-fit:cover (sky: object-position center center, vessel: center bottom). NOTE: the asset pipeline reports hero-sky.png and hero-vessel.png as never downloaded (Figma MCP Starter-plan + REST rate limit), so the images may need to be fetched manually before this can be closed."
+        },
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "Hero stage has no visible background treatment while the images are missing - it falls back to a grey vertical gradient that is not in the design (spec: section background is surface #FFFFFF, all visible tone comes from the two image layers). Either land the real assets or use a neutral placeholder that does not invent a gradient."
+        },
+        {
+          "severity": "info",
+          "actionable": true,
+          "text": "CTA pill measures ~178x40; Figma specifies 174x40 (padding 12px 20px). ~4px wide - imperceptible, polish only."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Typography is correct: h1 renders Exposure/Exposure-20 450 at 108px/108px with -4.32px tracking and ink #291D1D; lead is Matter Medium 24px/28.32px at -0.96px; CTA label Matter SemiBold 14px/16px at -0.28px, rgba(25,25,25,0.64) on rgba(246,246,247,0.16) with a 999px radius. No fallback-font failure anywhere."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Vertical rhythm matches the spec: title block starts at 148px, lead block top lands at ~478px (148 + 232 + 96 = 476), lead column left edge at ~962px giving the 383px measure ending on the 1344px content edge. The NBSP line break 'AI compute at / the maritime edge.' is preserved and the split-opacity lead (strong 'Autonomous vessels' + quiet remainder) is present."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "A red '2 Issues' dev-overlay badge appears bottom-left of the screenshot. This is the Next.js dev indicator, not page content - but it likely reflects the failing hero image requests and is worth checking in the console."
+        }
+      ]
+    },
+    "tablet": {
+      "score": 38,
+      "issues": [
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "The 'clippership' wordmark collides with the headline: it is drawn on top of the first line ('AI compute at the maritime'), with the glyphs of both overlapping and the wordmark sitting over the word 'at the'. The -12px optical tuck is a fixed pixel value tuned for the 108px desktop headline; at the ~56px tablet size the ascender slack is far smaller, so the negative offset eats into the letterforms. Scale the tuck with the headline (e.g. an em-based negative margin) or drop it below 1024px."
+        },
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "Both hero image layers (sky 181:671, vessel 247:655) are missing here too - the stage renders as an empty grey gradient. Same root cause as desktop."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "No Figma tablet frame exists, so the adaptation itself is not scored against a mock. Judged on its own terms the layout is sensible: lead column recentres under the title at ~431px wide, left-aligned, per the spec's 768-1023 intent; no overflow, no clipping, all content survives."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Stage keeps the 12px side gutter and the 0 0 12px 12px corner treatment (square top, rounded bottom) correctly at this width."
+        }
+      ]
+    },
+    "mobile": {
+      "score": 38,
+      "issues": [
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "The 'clippership' wordmark overlaps the headline's first line ('AI compute at') - the wordmark's descenders sit directly through the cap-heights of 'AI compute', making both hard to read. Same fixed -12px tuck problem as tablet, worse here because the headline is smallest (~44px). Make the tuck proportional to font-size or remove it on mobile."
+        },
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "Both hero image layers (sky 181:671, vessel 247:655) are missing - the stage is empty grey. Per spec the vessel must stay object-position: center bottom on mobile so the hulls remain in frame; nothing is in frame at all right now."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "No Figma mobile frame exists. Otherwise the adaptation is clean: no horizontal overflow at 390px, lead is calc(100% - 48px) with 24px side gutters, headline wraps to three lines without clipping, CTA pill is ~40px tall (adequate tap target), and the content hierarchy from the desktop mock (wordmark, headline, lead, CTA) is intact."
+        }
+      ]
+    }
+  },
+  "overallScore": 38,
+  "summary": "Typography, colours, tokens and desktop geometry are close to the Figma spec, but the hero's two image layers never render at any breakpoint - leaving the section as an empty grey stage - and the fixed -12px wordmark tuck collides with the headline on tablet and mobile."
+}

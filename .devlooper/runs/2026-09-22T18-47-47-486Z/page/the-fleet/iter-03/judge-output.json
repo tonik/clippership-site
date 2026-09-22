@@ -1,0 +1,101 @@
+{
+  "exitCode": 0,
+  "parsed": {
+    "duration_api_ms": 424078,
+    "stop_reason": "end_turn",
+    "session_id": "6c0ad2ff-90a2-432f-9b91-1e7403ae4afa",
+    "total_cost_usd": 2.768733,
+    "usage": {
+      "input_tokens": 80,
+      "cache_creation_input_tokens": 76247,
+      "cache_read_input_tokens": 2449526,
+      "output_tokens": 31244,
+      "output_tokens_details": {
+        "thinking_tokens": 15343
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 76247,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 834,
+          "cache_read_input_tokens": 84948,
+          "cache_creation_input_tokens": 4130,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4130
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-opus-5": {
+        "inputTokens": 80,
+        "outputTokens": 31244,
+        "cacheReadInputTokens": 2449526,
+        "cacheCreationInputTokens": 76247,
+        "webSearchRequests": 0,
+        "costUSD": 2.768733,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 15343,
+        "canonicalModel": "claude-opus-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "permission_denials": [],
+    "terminal_reason": "completed",
+    "fast_mode_state": "off",
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "is_error": false,
+    "num_turns": 51,
+    "subtype": "success",
+    "api_error_status": null,
+    "result": "Verdict written to `iter-03/verdict.json`.\n\n**Overall: 78** (desktop 82, tablet 78, mobile 85) - up from 58 last iteration.\n\nThe two criticals from iter-02 are genuinely closed. I pulled the Figma node render (no cached reference existed) and verified against it:\n\n- **Blot mask geometry is now essentially exact** - per-column bottom edge of the painted region matches Figma within 1-8px across the full width. The fixer's reinterpretation of `181:537` as an alpha mask rather than a visible sky layer is confirmed correct by the Figma render.\n- **Vessel** measures y 220-539 / x 683-756 against Figma's y 219-534 / x 683-755.\n\nWhat still differs, in order of visual weight:\n\n1. **Backdrop cropped ~80-110px too low** (warning, actionable). Blueness profiles put the waterline at y≈460 in Figma and y≈540-560 in the build, so the panel centre reads rgb(207,210,209) instead of rgb(178,196,205) and the top-right corner goes cool blue rgb(211,226,233) where Figma is warm cream rgb(230,230,228). The mask is right; the image inside it is not.\n2. **Exposure and Matter still fall back** to Newsreader/Inter. The headline renders visibly lighter and ~10% narrower, and the Inter substitution is what re-wraps the lead and shrinks the segment items. That is a globals.css/@font-face matter owned by another agent this pass, so I tagged it `actionable: false` at all three breakpoints rather than have the fixer reach into a shared file.\n3. **Segment track 340px vs 384px** - unselected items ~109px against the spec'd 124px. Partly the font fallback, but the spec gives fixed item widths, so a min-width is a legitimate in-section fix.\n4. **Drag chevrons** render 12x8px with a 4px gap vs Figma's 18x10px with an 8px gap, reading as a closed diamond instead of `‹ ›`.\n5. **Tablet** deviates from the spec's own documented 768-1023 intent in two places: the lead runs full-bleed instead of a centred `min(384px, 80%)` column, and the segment control is left-aligned instead of bottom-centred.\n\nOne note that is not a defect: a red badge is clipped at the bottom-left of the desktop and mobile captures but absent from tablet - that is a dev-tools overlay sitting over the capture rect, not section content.",
+    "ttft_ms": 1397,
+    "type": "result",
+    "duration_ms": 440687,
+    "uuid": "0dfb48ae-b447-49e6-9d64-09c68cb14887",
+    "ttft_stream_ms": 1380,
+    "time_to_request_ms": 37,
+    "first_content_frame_ms": 1381,
+    "queued_turn_count": 0,
+    "result_index": 0
+  },
+  "stderr": ""
+}

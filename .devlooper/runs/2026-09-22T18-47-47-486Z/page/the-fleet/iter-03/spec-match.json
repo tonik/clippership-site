@@ -1,0 +1,29 @@
+{
+  "scopeFound": true,
+  "measuredElements": 24,
+  "violations": [
+    {
+      "prop": "padding-right",
+      "value": "20px",
+      "severity": "info",
+      "nearest": "16px",
+      "kind": "spacing",
+      "note": "padding-right 20px — nearest token 16px (Δ4px)",
+      "count": 1
+    },
+    {
+      "prop": "padding-left",
+      "value": "20px",
+      "severity": "info",
+      "nearest": "16px",
+      "kind": "spacing",
+      "note": "padding-left 20px — nearest token 16px (Δ4px)",
+      "count": 1
+    }
+  ],
+  "elementDeltas": [],
+  "arbitraryCount": 0,
+  "warningCount": 0,
+  "matched": true,
+  "summary": "2 distinct off-token value(s) (0 arbitrary), 0 element delta(s), across 24 measured elements"
+}

@@ -1,0 +1,91 @@
+/* How It Works media strip - spec §6.3 "Media strip - infinite marquee".
+   Section-local because the keyframes belong to this one strip; the shared token
+   layer in globals.css stays untouched.
+
+   The strip renders TWO identical runs of the five tiles and translates the track
+   left by exactly one run, so the loop is seamless. The 24px inter-tile gap lives
+   on each tile as a right margin rather than on the track as `gap`, precisely so
+   that one run is exactly 50% of the track width and `-50%` lands frame-perfect
+   (with `gap` the extra seam gap makes 50% overshoot by 84px and the loop jumps).
+   Every tile keeps its margin, the last of each run included - dropping it on
+   the last tile left no gap at the seam between the two runs, so one pair of
+   tiles touched once per loop. Only the single-run mobile scroller drops it. */
+
+.marquee {
+  /* One full pass of the five tiles (2256px) at a constant ~56px/s - the `slow`
+     cadence the spec asks for. Linear: a marquee must not ease. */
+  --marquee-duration: 40s;
+}
+
+/* Mirrors --breakpoint-md (768px): below tablet the strip stays the native
+   horizontal snap scroller the spec describes, so the track must not translate. */
+@media (min-width: 768px) {
+  .track {
+    animation: marquee-scroll var(--marquee-duration) linear infinite;
+    will-change: transform;
+  }
+
+  /* Pause on hover / keyboard focus - the only hover behaviour the design documents. */
+  .marquee:hover .track,
+  .marquee:focus-within .track {
+    animation-play-state: paused;
+  }
+}
+
+/* Reduced motion: no translation at all, fall back to a native horizontal scroller. */
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    overflow-x: auto;
+  }
+
+  .track {
+    animation: none;
+  }
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/* Photo crop plate. Each tile's photo is a Figma rect larger than the tile that
+   sits at a negative offset, so only a chosen part of the frame shows. The four
+   custom properties come from the tile data and are percentages of the tile box,
+   so the crop holds when the tile shrinks to 62vw on mobile. This is a genuine
+   overlay inside its own clipped frame, which is why it is absolute. */
+.crop {
+  position: absolute;
+  top: var(--crop-y);
+  left: var(--crop-x);
+  width: var(--crop-w);
+  height: var(--crop-h);
+}
+
+/* Entry sequence, last step: after the hero painting and its content are in,
+   the tiles rise in one after another (html[data-intro] - see
+   hero.module.css). The track keeps its own transform for the marquee, so the
+   entry lives on the tiles. */
+:global(html[data-intro="pending"]) .enter {
+  opacity: 0;
+  transform: translate3d(0, 40px, 0) scale(0.96);
+  animation: tileFailsafe 0s 6s forwards;
+}
+
+:global(html[data-intro="play"]) .enter {
+  transition:
+    opacity 900ms var(--ease-out),
+    transform 1200ms var(--ease-fluid);
+  transition-delay: calc(1100ms + var(--enter, 0) * 90ms);
+}
+
+@keyframes tileFailsafe {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

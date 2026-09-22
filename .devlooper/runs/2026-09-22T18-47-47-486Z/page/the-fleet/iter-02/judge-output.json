@@ -1,0 +1,101 @@
+{
+  "exitCode": 0,
+  "parsed": {
+    "duration_api_ms": 186905,
+    "stop_reason": "end_turn",
+    "session_id": "63330932-ded9-4a0a-8e18-077202865e64",
+    "total_cost_usd": 1.2985659999999999,
+    "usage": {
+      "input_tokens": 42,
+      "cache_creation_input_tokens": 48793,
+      "cache_read_input_tokens": 927752,
+      "output_tokens": 13862,
+      "output_tokens_details": {
+        "thinking_tokens": 7362
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 48793,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 773,
+          "cache_read_input_tokens": 58754,
+          "cache_creation_input_tokens": 2870,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2870
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-opus-5": {
+        "inputTokens": 42,
+        "outputTokens": 13862,
+        "cacheReadInputTokens": 927752,
+        "cacheCreationInputTokens": 48793,
+        "webSearchRequests": 0,
+        "costUSD": 1.2985659999999999,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 7362,
+        "canonicalModel": "claude-opus-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "permission_denials": [],
+    "terminal_reason": "completed",
+    "fast_mode_state": "off",
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "is_error": false,
+    "num_turns": 21,
+    "subtype": "success",
+    "api_error_status": null,
+    "result": "Verdict written to `page/the-fleet/iter-02/verdict.json`.\n\n**Overall: 58** (desktop 58, tablet 64, mobile 64)\n\n**Two critical gaps, both asset-related:**\n\n1. **Vessel render missing.** The centre of the panel - where Figma puts a 400×400 grey 3D vessel (`181:540`) at x=720/y=399 - is empty. Only the orbit ring and the 40px drag CTA are there. `the-fleet-roadmap.client.tsx:60` still carries the TODO where the `<Image>` belongs.\n2. **Painted backdrop missing.** Spec wants `fleet-sky.png` (`181:537`) under `fleet-backdrop.png` (`181:538`) at opacity 0.64. The build renders a flat `photo-placeholder` gradient (#F5F5F6 → #E8E7E9), so the panel reads as blank light grey instead of a painted sky/sea.\n\nNeither PNG exists in `src/app/(home)/assets/` - the asset fetch never landed them (only `hero-sky`, `hero-vessel`, the SVGs). That's the root cause of the low score at all three breakpoints, and it's why tablet/mobile show a 280-450px empty band mid-section.\n\n**One warning:** segment control track measures 346px vs the spec'd 384px - the selected pill is right (122 vs 120) but the two unselected items render ~100/108 against 124 each.\n\n**What is right:** the low-contrast, pixel-diff-invisible details are all implemented correctly - orbit ring with the correct two-window mask at 0.12 opacity, the top-left radial wash, the grain overlay, the borderless panel at radius 12 / inset 12. Sampled colours confirm the eyebrow at exactly 60% and the split-opacity lead run at exactly 24%. Headline computes to 80px/80px, -3.2px, #291D1D per spec.\n\n**Not actionable from this section's file:** Exposure and Matter aren't loaded, so h2 falls back to Newsreader and body to Inter. That's a `globals.css` font-stack matter - I flagged it `actionable: false` so the fixer doesn't reach into the shared stylesheet another agent is working in. It's also the likely reason the segment metrics come out narrow.",
+    "ttft_ms": 5299,
+    "type": "result",
+    "duration_ms": 189729,
+    "uuid": "1fada9a7-611a-4461-8e15-1f71760cbb04",
+    "ttft_stream_ms": 4539,
+    "time_to_request_ms": 34,
+    "first_content_frame_ms": 4540,
+    "queued_turn_count": 0,
+    "result_index": 0
+  },
+  "stderr": ""
+}

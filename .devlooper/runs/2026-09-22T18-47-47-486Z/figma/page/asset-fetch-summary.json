@@ -1,0 +1,47 @@
+{
+  "fetched": [
+    "wordmark-clippership.svg",
+    "wordmark-clippership-footer.svg",
+    "orbit-ring.svg",
+    "icon-chevron.svg",
+    "icon-linkedin.svg"
+  ],
+  "skipped": [],
+  "failed": [
+    "icon-youtube.svg — REST API rate limit after 5 successful downloads",
+    "icon-linkedin-footer.svg — REST API rate limit after 5 successful downloads",
+    "icon-x.svg — REST API rate limit after 5 successful downloads",
+    "icon-close.svg — REST API rate limit after 5 successful downloads",
+    "hero-sky.png — Figma MCP rate limit (Starter plan); REST API rate limit",
+    "hero-vessel.png — Figma MCP rate limit (Starter plan); REST API rate limit",
+    "hero-vessel-front.png — Figma MCP rate limit (Starter plan); REST API rate limit",
+    "how-it-works-01.jpg — REST API rate limit after 5 successful downloads",
+    "how-it-works-02.jpg — REST API rate limit after 5 successful downloads",
+    "how-it-works-03.jpg — REST API rate limit after 5 successful downloads",
+    "how-it-works-04.jpg — REST API rate limit after 5 successful downloads",
+    "how-it-works-05.jpg — REST API rate limit after 5 successful downloads",
+    "fleet-sky.png — REST API rate limit after 5 successful downloads",
+    "fleet-backdrop.png — REST API rate limit after 5 successful downloads",
+    "vessel-silhouette.png — REST API rate limit after 5 successful downloads",
+    "about-team.jpg — REST API rate limit after 5 successful downloads",
+    "footer-waves.png — REST API rate limit after 5 successful downloads",
+    "specs-waves.png — REST API rate limit after 5 successful downloads",
+    "backer-y50.png — REST API rate limit after 5 successful downloads",
+    "backer-jc.png — REST API rate limit after 5 successful downloads",
+    "backer-long-journey.png — REST API rate limit after 5 successful downloads",
+    "backer-founders-factory.png — REST API rate limit after 5 successful downloads",
+    "backer-km-yachtbuilders.png — REST API rate limit after 5 successful downloads",
+    "backer-abs.png — REST API rate limit after 5 successful downloads",
+    "backer-rina.png — REST API rate limit after 5 successful downloads",
+    "backer-dykstra.png — REST API rate limit after 5 successful downloads",
+    "backer-nvidia-inception.png — REST API rate limit after 5 successful downloads"
+  ],
+  "summary": "Fetched 5 of 32 listed assets. Hit Figma MCP Starter plan rate limit after first 2 download_assets calls. Switched to REST API which provided 5 successful SVG downloads (wordmarks, orbit-ring, and two icons) before hitting severe rate limiting. 27 raster and remaining vector assets could not be downloaded due to API rate limits. The fetched SVG logos and wordmarks are ready for use; raster photography and remaining vector icons require manual download or upgrade to Figma paid plan.",
+  "notes": [
+    "Figma MCP hit rate limit: 'You've reached the Figma MCP tool call limit on the Starter plan'",
+    "REST API successfully returned 5 exports before rate limiting kicked in",
+    "Attempted 90-second rate-limit cool-down with retries, but API continued rejecting requests",
+    "Successfully downloaded SVGs contain proper structure; no manual fixes needed for the 5 assets",
+    "Remaining 27 assets could not be fetched due to rate limiting"
+  ]
+}

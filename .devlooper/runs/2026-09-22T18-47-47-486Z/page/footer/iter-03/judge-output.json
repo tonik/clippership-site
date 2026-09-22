@@ -1,0 +1,101 @@
+{
+  "exitCode": 0,
+  "parsed": {
+    "duration_api_ms": 217106,
+    "stop_reason": "end_turn",
+    "session_id": "193f0a75-121a-4f51-88cf-8c0cc1082ff8",
+    "total_cost_usd": 1.6642489999999996,
+    "usage": {
+      "input_tokens": 58,
+      "cache_creation_input_tokens": 54844,
+      "cache_read_input_tokens": 1398038,
+      "output_tokens": 16660,
+      "output_tokens_details": {
+        "thinking_tokens": 5721
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 54844,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 586,
+          "cache_read_input_tokens": 64808,
+          "cache_creation_input_tokens": 2867,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2867
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-opus-5": {
+        "inputTokens": 58,
+        "outputTokens": 16660,
+        "cacheReadInputTokens": 1398038,
+        "cacheCreationInputTokens": 54844,
+        "webSearchRequests": 0,
+        "costUSD": 1.6642489999999996,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 5721,
+        "canonicalModel": "claude-opus-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "permission_denials": [],
+    "terminal_reason": "completed",
+    "fast_mode_state": "off",
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "is_error": false,
+    "num_turns": 40,
+    "subtype": "success",
+    "api_error_status": null,
+    "result": "Verdict written to `page/footer/iter-03/verdict.json`.\n\n**Overall: 88**\n\n- **Desktop — 96.** The only breakpoint with a mock, and it is essentially a pixel-perfect reproduction. I measured element extents against the reference: copyright `x50-224` in both, email `x49-196` in both, wordmark `x642-798` vs `x642-797`, social row off by 2px, and all four vertical text bands identical. Panel inset/radius and the wave backdrop match within 1px. Residual diff excluding the dev-overlay badge is 0.53% and is pure text antialiasing. Type tokens are correct (Overpass Mono 700 / 12px / 12px / +0.12px), the meta rule at node `183:88` is present, the panel correctly carries no stroke, and the darken-blend on the backer logos is reproduced (per-logo ink density matches).\n- **Tablet — 93.** No mock. Wraps 5 + 4, meta row goes static, wordmark holds the panel centre line - the spec's own 768-1023 behaviour. Nothing lost, nothing overflows.\n- **Mobile — 88.** No mock, and the layout follows the spec's `<768` rules correctly, but one real defect: the wrapped backer rows fall onto the dark wave band, and at 0.6 opacity with `mix-blend-mode: darken` the third row loses nearly all contrast - the NVIDIA Inception mark is effectively invisible. That is the single `warning` and the only thing driving the overall score.\n\nThe red \"N Issues\" badge in all three captures is Next.js dev tooling, not section markup; it accounts for most of the reported 2.33% desktop mismatch, so the pixel metric understates how close desktop actually is.",
+    "ttft_ms": 1994,
+    "type": "result",
+    "duration_ms": 226357,
+    "uuid": "8b755914-dcd4-4813-bdb9-62ba854c9b8c",
+    "ttft_stream_ms": 1481,
+    "time_to_request_ms": 70,
+    "first_content_frame_ms": 1481,
+    "queued_turn_count": 0,
+    "result_index": 0
+  },
+  "stderr": ""
+}

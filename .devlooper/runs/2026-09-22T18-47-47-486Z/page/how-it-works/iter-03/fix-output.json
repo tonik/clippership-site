@@ -1,0 +1,101 @@
+{
+  "exitCode": 0,
+  "parsed": {
+    "duration_api_ms": 177799,
+    "stop_reason": "end_turn",
+    "session_id": "4d344009-c6cd-4bac-9cbb-4e3ef3fd9f74",
+    "total_cost_usd": 1.4046235,
+    "usage": {
+      "input_tokens": 38,
+      "cache_creation_input_tokens": 53682,
+      "cache_read_input_tokens": 971927,
+      "output_tokens": 15266,
+      "output_tokens_details": {
+        "thinking_tokens": 6841
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 53682,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 670,
+          "cache_read_input_tokens": 67499,
+          "cache_creation_input_tokens": 1073,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1073
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-opus-5": {
+        "inputTokens": 38,
+        "outputTokens": 15266,
+        "cacheReadInputTokens": 971927,
+        "cacheCreationInputTokens": 53682,
+        "webSearchRequests": 0,
+        "costUSD": 1.4046235,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 6841,
+        "canonicalModel": "claude-opus-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "permission_denials": [],
+    "terminal_reason": "completed",
+    "fast_mode_state": "off",
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "is_error": false,
+    "num_turns": 19,
+    "subtype": "success",
+    "api_error_status": null,
+    "result": "The one critical, at all three breakpoints, was that the five tile photographs were never fetched. That turned out to be fixable:\n\n**Assets unblocked.** The original asset pass hit `429` on Figma's `/v1/images` render endpoint after 5 downloads and never retried. That endpoint responds now. I read the `imageRef` hashes off the five rect nodes to confirm the fills, then rendered each rect at `scale=2` as JPEG - which returns exactly the Figma rect crop (2x each layer box: 1458×846, 816×1088, 1076×808, 984×1312, 1674×2232) instead of the 5-9MB source originals. Saved as `how-it-works-01..05.jpg` in the assets dir.\n\n**Wired in with responsive crops.** Each photo is a Figma rect *larger* than its tile sitting at a negative offset (729×423 at -13,0 in a 546×404 tile, etc.) - I verified all five against their absolute bounding boxes, which reproduce the 24px inter-tile gaps exactly. The spec states those as px `object-position`, but px only holds at 404px tall, so each crop is stored as rect-size/tile-size and offset/tile-size percentages fed through four custom properties into a new `.crop` rule in the section CSS module. The framing survives the tile shrinking to `62vw` on mobile.\n\n**Measurement delta.** The \"2280px wider\" on `Images [181:764]` was the id sitting on the two-run marquee track (2 × 2256px) rather than on one run. The duplicate run is required for the seamless loop, so I moved the id onto the first run and tagged each tile's Image frame, rect fill and chip frame with their own ids.\n\nI deliberately did not re-apply iteration 2's white-ring/reduced-motion changes - those are what the regression notice reverted. Typecheck is clean for this section and eslint passes; the only `tsc` error in the tree is in `the-fleet-roadmap.client.tsx`, another agent's file mid-edit.",
+    "ttft_ms": 4292,
+    "type": "result",
+    "duration_ms": 207203,
+    "uuid": "8db18908-1c68-4489-82b2-a69bf7bdf8e9",
+    "ttft_stream_ms": 914,
+    "time_to_request_ms": 61,
+    "first_content_frame_ms": 914,
+    "queued_turn_count": 0,
+    "result_index": 0
+  },
+  "stderr": ""
+}

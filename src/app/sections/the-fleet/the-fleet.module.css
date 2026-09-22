@@ -1,0 +1,266 @@
+/* Fleet backdrop (Figma 181:536 "BG").
+   Two raster fills, not one: the painted sea (181:538) and the wash above it
+   (181:539) are both clipped by a watercolour blot (181:537). The blot is an
+   ALPHA MASK, never a visible layer - it is what gives the panel its torn
+   painted edge instead of a hard rectangle. Section-local because globals.css
+   is owned by another agent this pass. */
+.backdrop {
+  position: absolute;
+  inset: 0;
+
+  /* Figma draws the blot at 1713 x 1374 offset -82 / -393 inside the 1416 x 776
+     panel: wider than the panel and sitting above-right of its centre. As a
+     percentage of the panel box that is 121% wide, anchored at 28% / 66%. */
+  --fleet-blot-size: 121%;
+  --fleet-blot-x: 28%;
+  --fleet-blot-y: 66%;
+
+  -webkit-mask-image: var(--fleet-blot);
+  mask-image: var(--fleet-blot);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-mode: alpha;
+  mask-mode: alpha;
+  /* Below the desktop frame the panel is far taller than it is wide, so a
+     width-driven blot would stop short of the bottom - cover it instead. */
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  -webkit-mask-position: 50% 40%;
+  mask-position: 50% 40%;
+}
+
+@media (min-width: 62rem) {
+  .backdrop {
+    -webkit-mask-size: var(--fleet-blot-size) auto;
+    mask-size: var(--fleet-blot-size) auto;
+    -webkit-mask-position: var(--fleet-blot-x) var(--fleet-blot-y);
+    mask-position: var(--fleet-blot-x) var(--fleet-blot-y);
+  }
+}
+
+/* Figma 181:538 "bg" - the painted sea is NOT the panel box. It is a 1572 x 1054
+   rect drawn inside the 1416 x 776 panel at -78 / -243: horizontally centred, but
+   vertically sitting 104px ABOVE centre. That lift is what puts the horizon level
+   with the vessel's mid-hull; rendering it as a plain inset-0 cover pushed the water
+   band ~100px down the panel. Held as percentages of the panel so the crop survives
+   the panel being fluid. */
+.sea {
+  --fleet-sea-w: 111.017%; /*  1572 / 1416 */
+  --fleet-sea-h: 135.825%; /*  1054 /  776 */
+  --fleet-sea-x: -5.508%; /*   -78 / 1416 */
+  --fleet-sea-y: -31.314%; /*  -243 /  776 */
+
+  position: absolute;
+  inset: 0;
+}
+
+/* Only at the drawn frame. Below it the panel is far taller than it is wide, so the
+   Figma rect would overshoot the bottom - a plain cover crop reads correctly there. */
+@media (min-width: 62rem) {
+  .sea {
+    inset: var(--fleet-sea-y) auto auto var(--fleet-sea-x);
+    width: var(--fleet-sea-w);
+    height: var(--fleet-sea-h);
+  }
+}
+
+/* Text column (Figma 181:559) at the 768-991 band. Spec Section 3 / Responsive puts
+   the column BELOW the viewer, centred at `min(384px, 80%)` - full-bleed it runs the
+   whole panel and the 24%-opacity tail of the lead trails off over the torn white
+   edge at the right. Scoped to the band because at lg the 384px grid track already
+   sets the measure and an 80% cap there would shrink it. */
+.textColumn {
+  --fleet-text-measure: 24rem; /* 384px, the drawn column width */
+}
+
+@media (min-width: 48rem) and (max-width: 61.9375rem) {
+  .textColumn {
+    width: min(var(--fleet-text-measure), 80%);
+    align-self: center;
+    /* Pulls the lead off the rippled water band below the horizon (~61% down
+       the panel at this width), where its 24%-opacity run is close to
+       unreadable against the ripple texture. */
+    margin-top: -2rem;
+  }
+}
+
+@media (max-width: 47.9375rem) {
+  .textColumn {
+    /* Same horizon-legibility squeeze as the tablet band, milder here. */
+    margin-top: -1rem;
+  }
+}
+
+/* Wash (Figma 181:539). The shared `fleet-wash` utility approximates Figma's
+   radial handles ([0,0] -> [1.01,1.019] -> [-1.019,3.361]) with a single
+   120%/100% ellipse, so it fades to near-zero across the lower-left two
+   thirds where Figma's real second axis runs ~3.4x the panel height. Layer an
+   extra veil there, tapering above y~240 and right of x~960 (percentages of
+   the 1416x776 drawn panel) rather than editing the shared utility. */
+.wash {
+  background-image:
+    radial-gradient(
+      70% 55% at 35% 75%,
+      rgb(var(--muted-rgb) / 0.28) 0%,
+      rgb(var(--muted-rgb) / 0.14) 45%,
+      rgb(var(--muted-rgb) / 0) 100%
+    ),
+    radial-gradient(
+      120% 100% at 0% 0%,
+      rgb(var(--muted-rgb) / 0.64) 0%,
+      rgb(var(--muted-rgb) / 0) 100%
+    );
+}
+
+/* Grain (Figma 181:537 TEXTURE effect). The shared `noise-grain` utility sits
+   ~40% below Figma's measured high-frequency deviation; nudge this section's
+   copy up slightly rather than touching the shared opacity. */
+.grain {
+  opacity: 0.22;
+}
+
+/* ---- Motion ------------------------------------------------------------
+   Entry sequence (see TheFleetStage for the phases): the watercolour front
+   grows out of the vessel first, then the content follows, staggered by
+   `--enter` (0, 1, 2...). Only transform / opacity / filter are animated so the
+   compositor carries it. */
+.stage {
+  --enter-base: 700ms;
+  --enter-step: 110ms;
+}
+
+/* The shader replaces the static sea while it is running; the static layer is
+   what SSR, no-JS and reduced motion keep. */
+.canvas {
+  opacity: 0;
+}
+
+.stage[data-phase="armed"] .canvas,
+.stage[data-phase="revealing"] .canvas {
+  opacity: 1;
+}
+
+.stage[data-phase="armed"] .staticSea,
+.stage[data-phase="revealing"] .staticSea {
+  opacity: 0;
+}
+
+.staticSea {
+  transition: opacity 900ms var(--ease-out);
+}
+
+.washLayer {
+  transition: opacity 1400ms var(--ease-out) 300ms;
+}
+
+/* The wash is drawn by the shader too, so it follows the per-scale shape. */
+.stage[data-phase="armed"] .washLayer,
+.stage[data-phase="revealing"] .washLayer {
+  opacity: 0;
+  transition: none;
+}
+
+.enter {
+  transition:
+    opacity 900ms var(--ease-out),
+    transform 1100ms var(--ease-fluid),
+    filter 900ms var(--ease-out);
+  transition-delay: calc(
+    var(--enter-base) + var(--enter, 0) * var(--enter-step)
+  );
+}
+
+.stage[data-phase="armed"] .enter {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+  transition: none;
+}
+
+/* The vessel rises out of the water and comes into focus. */
+.stage[data-phase="armed"] .enterVessel {
+  transform: translate3d(0, 40px, 0) scale(0.94);
+  filter: blur(10px);
+}
+
+/* Scale switch: every render and ring variant is mounted and cross-dissolves,
+   so the outgoing vessel never blinks out before the incoming one lands. */
+.swap {
+  transition:
+    opacity 520ms var(--ease-fluid),
+    scale 720ms var(--ease-fluid),
+    filter 520ms var(--ease-fluid);
+}
+
+.swap[data-active="false"] {
+  opacity: 0;
+  scale: 0.96;
+  filter: blur(8px);
+}
+
+.swapRing {
+  transition: opacity 520ms var(--ease-fluid);
+}
+
+.swapRing[data-active="false"] {
+  opacity: 0;
+}
+
+/* ---- Specifications -----------------------------------------------------
+   A wipe that stays on the compositor: the panel slides in from the right
+   while its content slides the same distance the other way, so the content
+   holds still and the panel edge sweeps across it like a mask. Expo-out in,
+   a quicker expo-in out. */
+.specs {
+  --specs-in: cubic-bezier(0.16, 1, 0.3, 1);
+  --specs-out: cubic-bezier(0.7, 0, 0.84, 0);
+
+  transform: translate3d(101%, 0, 0);
+  transition: transform 460ms var(--specs-out);
+  will-change: transform;
+}
+
+.specsInner {
+  transform: translate3d(-101%, 0, 0);
+  transition: transform 460ms var(--specs-out);
+  will-change: transform;
+}
+
+.specs[data-shown="true"],
+.specs[data-shown="true"] .specsInner {
+  transform: translate3d(0, 0, 0);
+  transition: transform 900ms var(--specs-in);
+}
+
+.specsItem {
+  opacity: 0;
+  transform: translate3d(0, 16px, 0);
+  transition:
+    opacity 200ms var(--ease-out),
+    transform 200ms var(--ease-out);
+}
+
+.specs[data-shown="true"] .specsItem {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition:
+    opacity 600ms var(--ease-out),
+    transform 900ms var(--specs-in);
+  transition-delay: calc(280ms + var(--i, 0) * 60ms);
+}
+
+/* The render settles from slightly large, the camera easing back. */
+.specsVessel {
+  opacity: 0;
+  transform: scale(1.08);
+  transition:
+    opacity 200ms var(--ease-out),
+    transform 200ms var(--ease-out);
+}
+
+.specs[data-shown="true"] .specsVessel {
+  opacity: 1;
+  transform: scale(1);
+  transition:
+    opacity 700ms var(--ease-out) 220ms,
+    transform 1200ms var(--specs-in) 180ms;
+}

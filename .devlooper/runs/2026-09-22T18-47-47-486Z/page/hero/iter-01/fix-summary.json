@@ -1,0 +1,9 @@
+{
+  "changesMade": [
+    "Fetched the two missing hero raster layers. The earlier asset pass died on Figma's /v1/images render endpoint (429); instead I read the nodes' imageRef hashes and resolved them through /v1/files/<key>/images, which was not rate-limited. Saved as src/app/(home)/assets/hero-sky.png (181:671) and hero-vessel.png (247:655), both 2752x1940.",
+    "Replaced the two `photo-placeholder` divs in hero-stage.client.tsx with real next/image `fill` layers: sky = object-cover object-center, vessel = object-cover object-bottom inside the existing `hero-vessel-rise` parallax wrapper so the scroll timeline still drives it. This removes the invented grey vertical gradient the reviewer flagged - all visible tone now comes from the two image layers, as the spec states.",
+    "Fixed the wordmark/headline collision on tablet and mobile. Mechanism: the -12px optical tuck was a fixed px margin-bottom tuned for the 108px display size, but `--text-display-xl` is clamp(2.75rem, 7.5vw, 6.75rem), so at 44-56px the same -12px ate into the letterforms. Moved the tuck onto the h1 as a named custom property `--hero-wordmark-tuck: -0.111em`, which resolves against the headline's own font-size: still exactly -12px at 108px, and scales down to ~-4.9px at 44px.",
+    "Tagged the hero elements with data-figma-id (181:500 stage, 181:671 sky, 247:655 vessel, 181:505 title, 235:422 wordmark, 181:507 h1, 181:502 lead, 181:503 paragraph, 181:708 CTA) so the next iteration can measure positions precisely."
+  ],
+  "summary": "Landed the two missing hero image layers (fetched via the Figma image-fill endpoint after the render endpoint stayed rate-limited) and made the wordmark's optical tuck proportional to the headline size so it no longer overlaps the display type at tablet and mobile."
+}

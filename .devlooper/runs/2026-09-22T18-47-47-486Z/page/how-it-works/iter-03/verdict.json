@@ -1,0 +1,31 @@
+{
+  "breakpoints": {
+    "desktop": {
+      "score": 58,
+      "issues": [
+        { "severity": "critical", "actionable": false, "text": "All five photographs are missing: every tile renders the flat grey `photo-placeholder-mid` gradient instead of how-it-works-01..05.jpg. The section IS the photography (no heading, no copy), so the built strip carries none of the design's visual content. Blocked upstream, not a code defect: asset-fetch-summary.json records all five JPEGs as `REST API rate limit after 5 successful downloads`, and public/ contains no raster assets. The spec'd per-tile object-position crops (-13px 0 / -44px -70px / 4px 0 / -79px -101px / -291px -363px) are consequently unimplemented too. Nothing the fixer can change until the assets land." },
+        { "severity": "info", "actionable": true, "text": "Chip label colour/scrim reads slightly weak over the light placeholder: the radial scrim (rgba(43,38,38,0.8) -> transparent, farthest-side at 0% 0%) at opacity 0.64 is correct per spec, but against the mid-grey stand-in the white 8px label sits at low contrast. Expected to resolve once the real (darker) photography is in place - do not compensate by darkening the scrim." },
+        { "severity": "info", "actionable": false, "text": "Tile 1's `fig.01` chip is not visible in this frame because the marquee track has translated left and tile 1's top-left corner is off-canvas. Correct behaviour for spec §6.3 (continuous marquee), not a missing chip - the chip renders on tile 1 at mobile where the track is untranslated." },
+        { "severity": "info", "actionable": false, "text": "Geometry matches the spec exactly: tile widths 546/320/404/320/546 at 404px tall, 24px gaps, 8px radius, 12px section padding (428px total section height), strip overflowing and clipped rather than wrapping. Two-layer inside stroke (inset 0 0 0 1px #fff under inset 0 0 0 1px rgb(25 25 25 / .08)) is present rather than collapsed to flat #ECECEC - correct per the DESIGN.md recipe. Chip padding 24/32/32/24 and the 8px/700/0.01em uppercase Overpass Mono label match. Marquee is implemented with hover/focus pause and a prefers-reduced-motion fallback to a native scroller." }
+      ]
+    },
+    "tablet": {
+      "score": 60,
+      "issues": [
+        { "severity": "critical", "actionable": false, "text": "Same as desktop: all five tile photographs are missing and render as flat grey placeholders (assets blocked by Figma API rate limits, see asset-fetch-summary.json). Dominates the score at this breakpoint too." },
+        { "severity": "info", "actionable": false, "text": "No Figma tablet mock. The >=768 rule from the spec is followed literally - fixed tile widths, 404px height, 24px gap, strip overflows and is clipped - and nothing is broken: no vertical overflow, no clipped or unreadable text, section height 428px as at desktop, tile radius and hairline intact." },
+        { "severity": "info", "actionable": false, "text": "The red '2 Issues' pill at the lower-left of the screenshot is the Next.js dev-tools indicator, not part of the build." }
+      ]
+    },
+    "mobile": {
+      "score": 60,
+      "issues": [
+        { "severity": "critical", "actionable": false, "text": "Same as desktop/tablet: all five tile photographs are missing and render as flat grey placeholders (assets blocked by Figma API rate limits). Nothing else in the section carries content, so fidelity here is capped by this." },
+        { "severity": "info", "actionable": true, "text": "Trailing 24px right margin on the last tile of the run (the gap is a per-tile `mr-6` rather than a track `gap`), so the mobile scroller ends with 24px + 12px section padding = 36px of dead space after tile 5. Harmless but slightly off the 12px inset; only worth touching if the marquee seam maths stays intact." },
+        { "severity": "info", "actionable": false, "text": "No Figma mobile mock. The <768 rule from the spec is implemented correctly: native horizontal scroller with overflow-x auto, scroll-snap-type x mandatory, scroll-snap-align start on tiles, single (non-duplicated) run, tile height min(404px, 62vw) ~= 242px with widths held to the 546/320/404/320/546 ratios. No horizontal overflow of the viewport, chip label still legible at 8px, no clipped text, content hierarchy from the design survives." }
+      ]
+    }
+  },
+  "overallScore": 58,
+  "summary": "Structurally the strip is a faithful, precise build - exact tile widths, gaps, height, radius, two-layer hairline, chip scrim and typography, plus the §6.3 marquee with hover-pause and reduced-motion fallback - but all five photographs are absent (assets blocked by Figma rate limits), leaving grey placeholders where the section's only visual content should be."
+}

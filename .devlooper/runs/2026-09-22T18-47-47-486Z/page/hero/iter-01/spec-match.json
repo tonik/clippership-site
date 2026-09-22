@@ -1,0 +1,56 @@
+{
+  "scopeFound": true,
+  "measuredElements": 10,
+  "violations": [
+    {
+      "prop": "margin-top",
+      "value": "148px",
+      "severity": "warning",
+      "nearest": "64px",
+      "kind": "spacing",
+      "note": "margin-top 148px — nearest token 64px (Δ84px) — arbitrary value, snap to the token scale",
+      "count": 1
+    },
+    {
+      "prop": "margin-bottom",
+      "value": "-12px",
+      "severity": "warning",
+      "nearest": "4px",
+      "kind": "spacing",
+      "note": "margin-bottom -12px — nearest token 4px (Δ16px) — arbitrary value, snap to the token scale",
+      "count": 1
+    },
+    {
+      "prop": "margin-top",
+      "value": "96px",
+      "severity": "warning",
+      "nearest": "64px",
+      "kind": "spacing",
+      "note": "margin-top 96px — nearest token 64px (Δ32px) — arbitrary value, snap to the token scale",
+      "count": 1
+    },
+    {
+      "prop": "padding-right",
+      "value": "20px",
+      "severity": "info",
+      "nearest": "16px",
+      "kind": "spacing",
+      "note": "padding-right 20px — nearest token 16px (Δ4px)",
+      "count": 1
+    },
+    {
+      "prop": "padding-left",
+      "value": "20px",
+      "severity": "info",
+      "nearest": "16px",
+      "kind": "spacing",
+      "note": "padding-left 20px — nearest token 16px (Δ4px)",
+      "count": 1
+    }
+  ],
+  "elementDeltas": [],
+  "arbitraryCount": 3,
+  "warningCount": 3,
+  "matched": false,
+  "summary": "5 distinct off-token value(s) (3 arbitrary), 0 element delta(s), across 10 measured elements"
+}

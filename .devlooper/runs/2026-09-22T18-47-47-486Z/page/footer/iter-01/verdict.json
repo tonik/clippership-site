@@ -1,0 +1,106 @@
+{
+  "breakpoints": {
+    "desktop": {
+      "score": 40,
+      "issues": [
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "Wave backdrop missing entirely. Figma node 183:93 (footer-waves.png, 1416x478, opacity 0.64, object-fit: cover, top-anchored at -59px inside the 240px panel) is rendered as an empty `.photo-placeholder` div in footer.tsx, so the whole panel reads as a flat #E5E4E6 wash instead of the painted blue/peach wave band. This is the defining visual of the section - it is what the reference is almost entirely made of."
+        },
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "All nine backer logos are missing. The build renders uppercase Overpass Mono text placeholders (\"Y50\", \"JC\", \"LONG JOURNEY\", \"FOUNDERS FACTORY\", \"KM YACHTBUILDERS\", \"ABS\", \"RINA\", \"DYKSTRA NAVAL ARCHITECTS\", \"NVIDIA INCEPTION PROGRAM\") where Figma has nine 128x36 image slots with the real marks (Y50 badge, JC monogram, Long Journey lockup, FOUNDERS FACTORY block, KM Yachtbuilders, ABS, RINA, DYKSTRA, NVIDIA Inception Program) at opacity 0.6 + mix-blend-mode: darken. No image is present at all, so neither the blend nor the intended clipped-logo look exists."
+        },
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "Backer slot content is far lighter and physically smaller than Figma. In the reference each slot is a 36px-tall clipped logo plate with real visual weight across the row; the build shows a single line of 12px mono at 60% opacity, so the top row is nearly empty and the panel's upper half reads as blank."
+        },
+        {
+          "severity": "info",
+          "actionable": true,
+          "text": "Copyright/email rule: Figma 183:88 is a fixed 181px x 1px rule at rgba(25,25,25,0.16); the build uses `w-full self-stretch` so it tracks the block width (~181px here, matches in practice) - keep an eye on it once the real strings/locale change."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Panel geometry, radius (12px via --radius-lg), meta row padding (48px 0, 36px sides), wordmark centring (157x28, bottom 54px, translateX(-50%)) and the social icon row (YouTube/LinkedIn/X, 24px gap, opacity 0.8) all match the reference; the deterministic spec pass reports 0 token violations across 33 measured elements."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Mono type is correct: Overpass Mono 700 / 12px / line-height 12px / letter-spacing 0.12px on both the copyright paragraph and the email link, and the email is correctly NOT uppercased."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "A red \"5 Issues\" dev overlay badge sits over the bottom-left of the footer in all three screenshots. It is a dev-tool artifact, not part of the section - ignore for fidelity, but it does obscure the copyright block in the captures."
+        }
+      ]
+    },
+    "tablet": {
+      "score": 55,
+      "issues": [
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "Wave backdrop missing here too - the `.photo-placeholder` renders nothing, so the panel is a flat grey rectangle. This is asset loss, not a responsive decision, so it counts even without a tablet mock."
+        },
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "Backer logos missing - text placeholders only, same root cause as desktop."
+        },
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "Backer placeholder labels truncate with an ellipsis (\"DYKSTRA NAVAL ARCHITEC…\", \"NVIDIA INCEPTION PROGR…\"), i.e. content is clipped and unreadable. Real logo images in the 36px slot would remove this, but as rendered the row loses information."
+        },
+        {
+          "severity": "info",
+          "actionable": true,
+          "text": "Social icon links are only 16-23px tall with no padding, well under a 44px tap target on a touch breakpoint."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "No Figma tablet mock. The adaptation is sensible and matches the spec's stated 768-1023 behaviour: backer row wraps to 5 per row with 24px row-gap, panel height goes auto, meta row becomes static, wordmark stays centred. No overflow, no overlap."
+        }
+      ]
+    },
+    "mobile": {
+      "score": 55,
+      "issues": [
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "Wave backdrop missing - flat grey panel instead of the painted wave band."
+        },
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "Backer logos missing - nine mono text placeholders instead of the nine logo images."
+        },
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "Backer labels truncate (\"DYKSTRA NAVAL AR…\", \"NVIDIA INCEPTION…\") in the 3-up grid, so two of the nine backers are unreadable."
+        },
+        {
+          "severity": "info",
+          "actionable": true,
+          "text": "Social icon tap targets are ~16px with no surrounding padding - below the 44px touch minimum."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "No Figma mobile mock. The stack follows the spec's <768 rule correctly: backers 3 per row, then a centred column of wordmark → copyright/email (rule centred) → social row, 24px gaps, 32px/24px padding. Nothing overflows 390px and all content from the desktop mock survives."
+        }
+      ]
+    }
+  },
+  "overallScore": 40,
+  "summary": "Structure, type, spacing and tokens are right across all three breakpoints, but both of the footer's images are unbuilt placeholders - the 64%-opacity wave band and all nine backer logos - so the section renders as a near-empty grey panel instead of the painted wave footer in the design."
+}

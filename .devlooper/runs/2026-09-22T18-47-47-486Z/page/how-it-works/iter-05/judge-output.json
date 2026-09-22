@@ -1,0 +1,101 @@
+{
+  "exitCode": 0,
+  "parsed": {
+    "duration_api_ms": 199608,
+    "stop_reason": "end_turn",
+    "session_id": "0752cb59-d2fd-494a-b8d6-02798018f625",
+    "total_cost_usd": 1.4164035000000001,
+    "usage": {
+      "input_tokens": 40,
+      "cache_creation_input_tokens": 53836,
+      "cache_read_input_tokens": 943887,
+      "output_tokens": 16236,
+      "output_tokens_details": {
+        "thinking_tokens": 8847
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 53836,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 675,
+          "cache_read_input_tokens": 63845,
+          "cache_creation_input_tokens": 2822,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2822
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-opus-5": {
+        "inputTokens": 40,
+        "outputTokens": 16236,
+        "cacheReadInputTokens": 943887,
+        "cacheCreationInputTokens": 53836,
+        "webSearchRequests": 0,
+        "costUSD": 1.4164035000000001,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 8847,
+        "canonicalModel": "claude-opus-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "permission_denials": [],
+    "terminal_reason": "completed",
+    "fast_mode_state": "off",
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "is_error": false,
+    "num_turns": 26,
+    "subtype": "success",
+    "api_error_status": null,
+    "result": "Verdict written to `iter-05/verdict.json`.\n\n**Overall: 93** (desktop 93, tablet 93, mobile 97)\n\nThe strip measures spec-exact almost everywhere. I verified geometry numerically off the PNGs rather than by eye: section 1440x428, 12px top/bottom padding, tile height 404px, inter-tile gaps exactly 24px, tile widths 320 / 404 / (clipped 546), border `#ECECEC` hairline, chips at 24/32/32/24 with the radial top-left scrim actually rendering (luminance falls off ~122 → ~187 from 6px to 100px out on tile 2). Chip copy reproduces the drawn `fig.01 / fig.02 / fig.03 / fig.02` including the deliberate repeat. Mobile hits `min(404px, 62vw)` = 242px with widths held to ratio, as a real snap scroller.\n\nOne genuine defect found:\n\n- **Missing 24px gap at the marquee seam** (warning). The tile carries `last:mr-0`, which compiles to `.last\\:mr-0:last-child` (specificity 0,2,0) and beats the intended `md:mr-6` override (0,1,0 — media queries add no specificity). So run 1's `fig.05` tile butts straight against run 2's `fig.01` tile with 0px between them, once per loop, while every other gap is 24px. Scoping the reset to the mobile scroller (`max-md:last:mr-0`) fixes it; the loop stays seamless either way since `-50%` still equals one run.\n- Tile radius renders ~6px (Tailwind's default `rounded-md`; the theme defines `--radius-xs/-sm/-pill` but no `--radius-md`) against the spec's 8px — info-level, trivially fixed with `rounded-lg`.\n\nThe two off-token flags in `spec-match.json` (`#ECECEC` border, 32px chip padding) are spec-mandated values, so I did not count them against the build. No edits made to any project file.",
+    "ttft_ms": 1673,
+    "type": "result",
+    "duration_ms": 203069,
+    "uuid": "bc160cf6-ec73-4d12-8182-1d1905828f11",
+    "ttft_stream_ms": 1194,
+    "time_to_request_ms": 48,
+    "first_content_frame_ms": 1194,
+    "queued_turn_count": 0,
+    "result_index": 0
+  },
+  "stderr": ""
+}

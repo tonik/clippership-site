@@ -1,0 +1,101 @@
+{
+  "exitCode": 0,
+  "parsed": {
+    "duration_api_ms": 480823,
+    "stop_reason": "end_turn",
+    "session_id": "0fc1639f-7858-4610-a1b0-1056ba0d6d81",
+    "total_cost_usd": 3.0683629999999993,
+    "usage": {
+      "input_tokens": 60,
+      "cache_creation_input_tokens": 94798,
+      "cache_read_input_tokens": 2342916,
+      "output_tokens": 37945,
+      "output_tokens_details": {
+        "thinking_tokens": 25071
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 94798,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1077,
+          "cache_read_input_tokens": 107107,
+          "cache_creation_input_tokens": 2575,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2575
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-opus-5": {
+        "inputTokens": 60,
+        "outputTokens": 37945,
+        "cacheReadInputTokens": 2342916,
+        "cacheCreationInputTokens": 94798,
+        "webSearchRequests": 0,
+        "costUSD": 3.0683629999999993,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 25071,
+        "canonicalModel": "claude-opus-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "permission_denials": [],
+    "terminal_reason": "completed",
+    "fast_mode_state": "off",
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "is_error": false,
+    "num_turns": 36,
+    "subtype": "success",
+    "api_error_status": null,
+    "result": "Done. `tsc`, `eslint` and `npm run build` all pass.\n\n**What I changed** (`src/app/sections/hero/`, plus a new section-local `hero.module.css`):\n\n1. **Re-landed the two image plates.** `hero-stage.client.tsx` on disk had been reverted to the pre-iteration-1 version - grey `photo-placeholder` divs and TODOs - even though the iter-02 screenshot (built from the iteration-1 bundle) shows photographs. Without this, the pass would have shipped a hero with no imagery.\n\n2. **Fixed the plate scale/anchor CRITICAL.** Figma doesn't `object-fit` these rasters; it draws each at its natural pixel size inside the stage (sky 2279×1607, vessel 2252×1588) - the ~1.6× overscale the spec demands. `cover` only reached 1815×1280, hence the ship reading 20% small and 230px high over a band of empty water. The new `.plate` rule sizes off **stage height + the asset's own aspect-ratio** (sky: top -5.6%, height 125.5%; vessel: top 0, height 124.1%, translate -43.8% of its own width), which resolves to the exact Figma geometry at 1440 and holds at any width. Scoped to `lg` only - at 390px that plate would be 3× the stage wide, so smaller frames keep the spec's `cover` crop.\n\n3. **Found the real cause of the headline break bug.** The U+00A0 was a bare literal character in the source and had been silently normalised to a plain space - verified in the prerendered HTML (About's NBSP survived, both of the hero's did not). It's now the escape `\"\\u00A0\"`, confirmed present in the new output, plus an explicit `<br className=\"hidden lg:inline\" />` that pins Figma's `AI compute at` / `the maritime edge.` split at the desktop frame.\n\n4. **Lead-over-sails contrast (tablet + mobile).** The lead block is `mt-auto mb-9` below `lg`, parking it in the open-water band at the foot of the stage instead of across the masts; `lg:mt-24 lg:mb-0` keeps the drawn 96px at desktop. Stage min-height 620px → 680px so the water band holds lead + CTA at 390px. The 48% token is untouched.\n\n5. **Closed the -11.988px arbitrary margin** - the wordmark tuck is now `calc(var(--space-xs) * -1)` = exactly -12px at `lg`, proportional below.\n\n**Not fixed, needs a shared-file change:** the Exposure/Matter font CRITICAL. No WOFF2 exists in the repo and the wiring lives in `src/app/fonts.ts` / `layout.tsx` / `globals.css`, all owned by other agents this pass. The fallback stacks there are already named correctly; landing the real faces has to be applied on its own.\n\n**Deliberately not changed:** the 148px / 96px margins the gate flags as arbitrary - both are literal spec values on the 4px base unit with named tokens (`--space-6xl`, `--space-4xl`); the audit's list just tops out at 64px, so snapping them would be an 84px/32px fidelity regression.",
+    "ttft_ms": 1482,
+    "type": "result",
+    "duration_ms": 513983,
+    "uuid": "6383deb5-9c7d-499d-ae23-37515090ce3a",
+    "ttft_stream_ms": 1022,
+    "time_to_request_ms": 213,
+    "first_content_frame_ms": 1023,
+    "queued_turn_count": 0,
+    "result_index": 0
+  },
+  "stderr": ""
+}

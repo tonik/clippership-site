@@ -1,0 +1,101 @@
+{
+  "exitCode": 0,
+  "parsed": {
+    "duration_api_ms": 268598,
+    "stop_reason": "end_turn",
+    "session_id": "2c991f1e-bc69-4bef-8081-0e7ba16053ba",
+    "total_cost_usd": 2.2155085000000003,
+    "usage": {
+      "input_tokens": 68,
+      "cache_creation_input_tokens": 70661,
+      "cache_read_input_tokens": 1948867,
+      "output_tokens": 21365,
+      "output_tokens_details": {
+        "thinking_tokens": 10736
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 70661,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 918,
+          "cache_read_input_tokens": 79774,
+          "cache_creation_input_tokens": 1014,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1014
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-opus-5": {
+        "inputTokens": 68,
+        "outputTokens": 21365,
+        "cacheReadInputTokens": 1948867,
+        "cacheCreationInputTokens": 70661,
+        "webSearchRequests": 0,
+        "costUSD": 2.2155085000000003,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 10736,
+        "canonicalModel": "claude-opus-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "permission_denials": [],
+    "terminal_reason": "completed",
+    "fast_mode_state": "off",
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "is_error": false,
+    "num_turns": 34,
+    "subtype": "success",
+    "api_error_status": null,
+    "result": "Done. Two focused fixes this pass, both targeting the reviewer's criticals:\n\n**1. The missing hero images (critical on all three breakpoints).**\nThe earlier asset pass failed because Figma's render endpoint (`/v1/images/<key>?ids=…`) is still returning 429 on the Starter plan. I worked around it: read the two rectangles' `imageRef` hashes from `/v1/files/<key>/nodes`, then resolved them through `/v1/files/<key>/images` (the image-fill map), which was not rate-limited. Both plates landed as `src/app/(home)/assets/hero-sky.png` (181:671) and `hero-vessel.png` (247:655), 2752×1940 each - the oil-painted vessel scene.\n\nThey now render as `next/image` `fill` layers per the spec's CSS: sky `object-cover object-center`, vessel `object-cover object-bottom` inside the existing `hero-vessel-rise` wrapper so the scroll parallax still drives it. That also removes the invented grey gradient the reviewer flagged as a warning - the two `photo-placeholder` divs are gone.\n\n**2. The wordmark colliding with the headline (critical on tablet + mobile).**\nMechanism: the `-12px` tuck was a fixed px `margin-bottom` tuned for the 108px display size, but `--text-display-xl` is `clamp(2.75rem, 7.5vw, 6.75rem)`. At 44-56px the same -12px ate straight into the letterforms. Moved it onto the `h1` as a named custom property `--hero-wordmark-tuck: -0.111em`, which resolves against the headline's own font-size - still exactly -12px at 108px, ~-4.9px at 44px.\n\nAlso tagged the hero elements with `data-figma-id` for next iteration's measurement.\n\nTypecheck and `npm run build` both pass; I confirmed `mt-(--hero-wordmark-tuck)` emits `margin-top: var(--hero-wordmark-tuck)` in the built CSS.\n\nTwo things I deliberately left:\n\n- **The `148px` / `96px` \"arbitrary value\" deltas.** Those are both real tokens in `DESIGN.md` (`6xl: 148px`, `4xl: 96px`) and exact Figma values; the measurement tool's nearest-token list appears to stop at `3xl: 64px`. Snapping them would cost fidelity, and the deterministic CSS token audit reports no violations. Flagging rather than chasing.\n- **The foreground masts plate (`247:680`)**, a state-B-only layer for the scroll sequence - still a TODO, not visible in the static screenshots, and I didn't want to burn more Figma rate limit on it this pass.",
+    "ttft_ms": 1194,
+    "type": "result",
+    "duration_ms": 588894,
+    "uuid": "7a4b0f53-bb9e-488c-a248-85a428c14de8",
+    "ttft_stream_ms": 848,
+    "time_to_request_ms": 39,
+    "first_content_frame_ms": 848,
+    "queued_turn_count": 0,
+    "result_index": 0
+  },
+  "stderr": ""
+}

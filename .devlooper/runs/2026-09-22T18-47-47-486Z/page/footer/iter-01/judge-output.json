@@ -1,0 +1,101 @@
+{
+  "exitCode": 0,
+  "parsed": {
+    "duration_api_ms": 83590,
+    "stop_reason": "end_turn",
+    "session_id": "e575f186-c936-4ae4-95e1-adc2040a7b74",
+    "total_cost_usd": 0.7114755000000001,
+    "usage": {
+      "input_tokens": 20,
+      "cache_creation_input_tokens": 35881,
+      "cache_read_input_tokens": 351281,
+      "output_tokens": 7077,
+      "output_tokens_details": {
+        "thinking_tokens": 2194
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 35881,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 603,
+          "cache_read_input_tokens": 45792,
+          "cache_creation_input_tokens": 2920,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2920
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-opus-5": {
+        "inputTokens": 20,
+        "outputTokens": 7077,
+        "cacheReadInputTokens": 351281,
+        "cacheCreationInputTokens": 35881,
+        "webSearchRequests": 0,
+        "costUSD": 0.7114755000000001,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 2194,
+        "canonicalModel": "claude-opus-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "permission_denials": [],
+    "terminal_reason": "completed",
+    "fast_mode_state": "off",
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "is_error": false,
+    "num_turns": 14,
+    "subtype": "success",
+    "api_error_status": null,
+    "result": "Verdict written to `page/footer/iter-01/verdict.json`.\n\n**Overall score: 40** (lowest breakpoint = desktop)\n\nThe footer's skeleton is right, its content is not. Two critical asset gaps dominate:\n\n1. **Wave backdrop missing** - `footer.tsx:60` renders an empty `.photo-placeholder` div where Figma `183:93` has `footer-waves.png` (1416×478, opacity 0.64, top-anchored at -59px). The reference footer is almost entirely that painted wave band; the build shows a flat `#E5E4E6` panel.\n2. **All nine backer logos missing** - replaced by uppercase mono text placeholders, so the `opacity: 0.6` + `mix-blend-mode: darken` treatment and the clipped-plate look do not exist. On tablet and mobile two of the labels truncate with an ellipsis.\n\nEverything measurable checks out: 12px panel radius from `--radius-lg`, meta row padding 48px/36px, wordmark centred at 157×28 / bottom 54px, social row gap 24px at 80% opacity, and Overpass Mono 700 / 12px / 12px / +0.12px with the email correctly left un-uppercased. The spec pass reports 0 token violations over 33 elements.\n\nTablet and mobile have no Figma mock, so I scored them only on judgeable defects (missing assets, truncated labels, small tap targets) - both adaptations otherwise follow the spec's responsive rules cleanly with no overflow, hence 55 rather than a fidelity penalty.\n\nNote: a red \"5 Issues\" dev overlay badge appears over the bottom-left of the footer in all three screenshots. It's a dev-tool artifact, not part of the section, but it obscures the copyright block in the captures.",
+    "ttft_ms": 1506,
+    "type": "result",
+    "duration_ms": 89352,
+    "uuid": "1832457d-3c83-4cca-8a55-40f2de093377",
+    "ttft_stream_ms": 1185,
+    "time_to_request_ms": 297,
+    "first_content_frame_ms": 1185,
+    "queued_turn_count": 0,
+    "result_index": 0
+  },
+  "stderr": ""
+}

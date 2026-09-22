@@ -1,0 +1,520 @@
+{
+  "frame": {
+    "w": 1440,
+    "h": 252
+  },
+  "count": 29,
+  "elements": [
+    {
+      "id": "182:2961",
+      "name": "Wrapper",
+      "type": "FRAME",
+      "x": 12,
+      "y": 0,
+      "w": 1416,
+      "h": 240,
+      "depth": 1,
+      "parent": "Footer",
+      "border": {
+        "radius": 12
+      }
+    },
+    {
+      "id": "183:93",
+      "name": "waves",
+      "type": "RECTANGLE",
+      "x": 12,
+      "y": -59,
+      "w": 1416,
+      "h": 478,
+      "depth": 2,
+      "parent": "Wrapper",
+      "bg": {
+        "css": "image fill, object-fit cover",
+        "kind": "image"
+      },
+      "opacity": 0.64,
+      "pin": "center/top"
+    },
+    {
+      "id": "246:652",
+      "name": "Content",
+      "type": "FRAME",
+      "x": 12,
+      "y": 104,
+      "w": 1417,
+      "h": 136,
+      "depth": 2,
+      "parent": "Wrapper",
+      "layout": {
+        "dir": "row",
+        "gap": 415,
+        "pad": [
+          48,
+          0,
+          48,
+          0
+        ],
+        "justify": "space-between",
+        "align": "center",
+        "size": "fixed/hug"
+      },
+      "pin": "left/bottom"
+    },
+    {
+      "id": "183:79",
+      "name": "Text",
+      "type": "FRAME",
+      "x": 12,
+      "y": 152,
+      "w": 253,
+      "h": 40,
+      "depth": 3,
+      "parent": "Content",
+      "layout": {
+        "dir": "column",
+        "gap": 8,
+        "pad": [
+          0,
+          36,
+          0,
+          36
+        ],
+        "justify": "center",
+        "size": "hug/hug"
+      }
+    },
+    {
+      "id": "183:78",
+      "name": "(c)2026 Clippership inc.",
+      "type": "TEXT",
+      "x": 48,
+      "y": 152,
+      "w": 181,
+      "h": 12,
+      "depth": 4,
+      "parent": "Text",
+      "text": "(c)2026 Clippership inc.",
+      "font": "OverpassMono-Bold",
+      "fontSize": 12,
+      "fontWeight": 700,
+      "letterSpacing": 0.12,
+      "lineHeight": 12,
+      "case": "upper",
+      "color": "#191919",
+      "opacity": 0.8
+    },
+    {
+      "id": "183:80",
+      "name": "hello@clippership.co",
+      "type": "TEXT",
+      "x": 48,
+      "y": 180,
+      "w": 151,
+      "h": 12,
+      "depth": 4,
+      "parent": "Text",
+      "text": "hello@clippership.co",
+      "font": "OverpassMono-Bold",
+      "fontSize": 12,
+      "fontWeight": 700,
+      "letterSpacing": 0.12,
+      "lineHeight": 12,
+      "color": "#191919",
+      "opacity": 0.8
+    },
+    {
+      "id": "183:73",
+      "name": "Social",
+      "type": "FRAME",
+      "x": 1252,
+      "y": 164,
+      "w": 177,
+      "h": 16,
+      "depth": 3,
+      "parent": "Content",
+      "layout": {
+        "dir": "row",
+        "gap": 24,
+        "pad": [
+          0,
+          36,
+          0,
+          36
+        ],
+        "align": "center",
+        "size": "hug/hug"
+      },
+      "opacity": 0.8
+    },
+    {
+      "id": "235:514",
+      "name": "Logo",
+      "type": "FRAME",
+      "x": 642,
+      "y": 158,
+      "w": 157,
+      "h": 28,
+      "depth": 3,
+      "parent": "Content",
+      "absolute": true,
+      "pin": "center/center"
+    },
+    {
+      "id": "235:515",
+      "name": "Logo",
+      "type": "RECTANGLE",
+      "x": 642,
+      "y": 158,
+      "w": 157,
+      "h": 28,
+      "depth": 4,
+      "parent": "Logo",
+      "bg": {
+        "css": "image fill, object-fit cover",
+        "kind": "image"
+      }
+    },
+    {
+      "id": "235:516",
+      "name": "Color",
+      "type": "RECTANGLE",
+      "x": 642,
+      "y": 158,
+      "w": 157,
+      "h": 28,
+      "depth": 4,
+      "parent": "Logo",
+      "pin": "left_right/top_bottom"
+    },
+    {
+      "id": "246:631",
+      "name": "Backers",
+      "type": "FRAME",
+      "x": 12,
+      "y": 0,
+      "w": 1416,
+      "h": 84,
+      "depth": 2,
+      "parent": "Wrapper",
+      "layout": {
+        "dir": "row",
+        "gap": 24,
+        "pad": [
+          48,
+          36,
+          0,
+          36
+        ],
+        "align": "center",
+        "size": "fixed/hug"
+      }
+    },
+    {
+      "id": "246:633",
+      "name": "Brand",
+      "type": "FRAME",
+      "x": 48,
+      "y": 48,
+      "w": 128,
+      "h": 36,
+      "depth": 3,
+      "parent": "Backers",
+      "border": {
+        "radius": 4
+      }
+    },
+    {
+      "id": "246:634",
+      "name": "Rectangle 12",
+      "type": "RECTANGLE",
+      "x": 89,
+      "y": 42,
+      "w": 48,
+      "h": 48,
+      "depth": 4,
+      "parent": "Brand",
+      "blend": {
+        "mix": "darken"
+      },
+      "bg": {
+        "css": "image fill, object-fit contain",
+        "kind": "image"
+      },
+      "opacity": 0.6,
+      "pin": "center/center"
+    },
+    {
+      "id": "246:635",
+      "name": "Brand",
+      "type": "FRAME",
+      "x": 200,
+      "y": 48,
+      "w": 128,
+      "h": 36,
+      "depth": 3,
+      "parent": "Backers",
+      "border": {
+        "radius": 4
+      }
+    },
+    {
+      "id": "246:636",
+      "name": "Rectangle 12",
+      "type": "RECTANGLE",
+      "x": 250,
+      "y": 51,
+      "w": 30,
+      "h": 30,
+      "depth": 4,
+      "parent": "Brand",
+      "blend": {
+        "mix": "darken"
+      },
+      "bg": {
+        "css": "image fill, object-fit contain",
+        "kind": "image"
+      },
+      "opacity": 0.6,
+      "pin": "center/center"
+    },
+    {
+      "id": "246:637",
+      "name": "Brand",
+      "type": "FRAME",
+      "x": 352,
+      "y": 48,
+      "w": 128,
+      "h": 36,
+      "depth": 3,
+      "parent": "Backers",
+      "border": {
+        "radius": 4
+      }
+    },
+    {
+      "id": "246:638",
+      "name": "Rectangle 13",
+      "type": "RECTANGLE",
+      "x": 373,
+      "y": 55,
+      "w": 87,
+      "h": 22,
+      "depth": 4,
+      "parent": "Brand",
+      "blend": {
+        "mix": "darken"
+      },
+      "bg": {
+        "css": "image fill, object-fit cover",
+        "kind": "image"
+      },
+      "opacity": 0.6,
+      "pin": "center/center"
+    },
+    {
+      "id": "246:639",
+      "name": "Brand",
+      "type": "FRAME",
+      "x": 504,
+      "y": 48,
+      "w": 128,
+      "h": 36,
+      "depth": 3,
+      "parent": "Backers",
+      "border": {
+        "radius": 4
+      }
+    },
+    {
+      "id": "246:640",
+      "name": "Rectangle 14",
+      "type": "RECTANGLE",
+      "x": 540,
+      "y": 44,
+      "w": 58,
+      "h": 45,
+      "depth": 4,
+      "parent": "Brand",
+      "blend": {
+        "mix": "darken"
+      },
+      "bg": {
+        "css": "image fill, object-fit contain",
+        "kind": "image"
+      },
+      "opacity": 0.6,
+      "pin": "center/center"
+    },
+    {
+      "id": "246:641",
+      "name": "Brand",
+      "type": "FRAME",
+      "x": 656,
+      "y": 48,
+      "w": 128,
+      "h": 36,
+      "depth": 3,
+      "parent": "Backers",
+      "border": {
+        "radius": 4
+      }
+    },
+    {
+      "id": "246:642",
+      "name": "Image",
+      "type": "FRAME",
+      "x": 691,
+      "y": 47,
+      "w": 58,
+      "h": 45,
+      "depth": 4,
+      "parent": "Brand",
+      "blend": {
+        "mix": "darken"
+      },
+      "bg": {
+        "css": "image fill, object-fit contain",
+        "kind": "image"
+      },
+      "opacity": 0.6,
+      "pin": "center/center"
+    },
+    {
+      "id": "246:643",
+      "name": "Brand",
+      "type": "FRAME",
+      "x": 808,
+      "y": 48,
+      "w": 128,
+      "h": 36,
+      "depth": 3,
+      "parent": "Backers",
+      "border": {
+        "radius": 4
+      }
+    },
+    {
+      "id": "246:644",
+      "name": "Image",
+      "type": "FRAME",
+      "x": 838,
+      "y": 40,
+      "w": 68,
+      "h": 53,
+      "depth": 4,
+      "parent": "Brand",
+      "blend": {
+        "mix": "darken"
+      },
+      "bg": {
+        "css": "image fill, object-fit contain",
+        "kind": "image"
+      },
+      "opacity": 0.6,
+      "pin": "center/center"
+    },
+    {
+      "id": "246:645",
+      "name": "Brand",
+      "type": "FRAME",
+      "x": 960,
+      "y": 48,
+      "w": 128,
+      "h": 36,
+      "depth": 3,
+      "parent": "Backers",
+      "border": {
+        "radius": 4
+      }
+    },
+    {
+      "id": "246:646",
+      "name": "Image",
+      "type": "FRAME",
+      "x": 999,
+      "y": 47,
+      "w": 50,
+      "h": 39,
+      "depth": 4,
+      "parent": "Brand",
+      "blend": {
+        "mix": "darken"
+      },
+      "bg": {
+        "css": "image fill, object-fit contain",
+        "kind": "image"
+      },
+      "opacity": 0.6,
+      "pin": "center/center"
+    },
+    {
+      "id": "246:647",
+      "name": "Brand",
+      "type": "FRAME",
+      "x": 1112,
+      "y": 48,
+      "w": 128,
+      "h": 36,
+      "depth": 3,
+      "parent": "Backers",
+      "border": {
+        "radius": 4
+      }
+    },
+    {
+      "id": "246:648",
+      "name": "Image",
+      "type": "FRAME",
+      "x": 1137,
+      "y": 35,
+      "w": 80,
+      "h": 63,
+      "depth": 4,
+      "parent": "Brand",
+      "blend": {
+        "mix": "darken"
+      },
+      "bg": {
+        "css": "image fill, object-fit contain",
+        "kind": "image"
+      },
+      "opacity": 0.6,
+      "pin": "center/center"
+    },
+    {
+      "id": "246:649",
+      "name": "Brand",
+      "type": "FRAME",
+      "x": 1264,
+      "y": 48,
+      "w": 128,
+      "h": 36,
+      "depth": 3,
+      "parent": "Backers",
+      "border": {
+        "radius": 4
+      }
+    },
+    {
+      "id": "246:650",
+      "name": "Image",
+      "type": "FRAME",
+      "x": 1289,
+      "y": 52,
+      "w": 79,
+      "h": 28,
+      "depth": 4,
+      "parent": "Brand",
+      "blend": {
+        "mix": "darken"
+      },
+      "bg": {
+        "css": "image fill, object-fit 100% 100%",
+        "kind": "image"
+      },
+      "opacity": 0.6,
+      "pin": "center/center"
+    }
+  ]
+}

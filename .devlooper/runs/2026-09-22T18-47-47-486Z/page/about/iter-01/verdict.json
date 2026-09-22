@@ -1,0 +1,35 @@
+{
+  "breakpoints": {
+    "desktop": {
+      "score": 82,
+      "issues": [
+        { "severity": "warning", "actionable": true, "text": "Trades list (247:707) is not constrained to its 659px inner measure: it stretches the full 774px of columns 6-12, so the second bullet column starts at x=1017 instead of ~959 (measured from the PNG, bullet box at 1017-1024 vs expected 959-967). Add a max-width of 659px (or 660px) to the trades block in src/app/sections/about/about.tsx so 'Jet Propulsion Laboratory' / 'Mercedes-AMG Formula 1 Team' / 'Damen Shipyards Group' sit ~58px further left." },
+        { "severity": "warning", "actionable": true, "text": "Team photo (182:2559 / 182:2560) is not rendered: the 774x520 figure shows only the flat grey `photo-placeholder` gradient (sampled #EDECEE), where Figma shows the team group photo. The frame itself is correct (774x520, radius 4px, #ECECEC hairline, 'OUR TEAM' chip at 24px inset), only the image is absent. Export about-team.jpg (1114x740) from node 182:2560 and render it with object-fit: cover, object-position approx -170px -31px." },
+        { "severity": "info", "actionable": false, "text": "Section geometry matches the Figma frame exactly: 1440x948 render, 48px gutter, left block columns 1-4 ending at x=480, right block starting at x=618 (138px empty column-5 trough), row 2 at y=332, 96px bottom padding." },
+        { "severity": "info", "actionable": false, "text": "Type and colour tokens verified correct: h2 Exposure 450 48px/48px, -1.92px, ink rgb(41,29,29); eyebrow Overpass Mono Bold 12px/12px +0.12px at 60% (darkest sampled pixel #747474 = exactly 60% of #191919 on white); trade labels also at 60%; card border #ECECEC per spec." },
+        { "severity": "info", "actionable": false, "text": "FPO // Image Placeholder badge correctly NOT shipped, and the 'OUR TEAM' chip correctly has no scrim gradient, both per spec." },
+        { "severity": "info", "actionable": false, "text": "Bullet markers render as the intended 8x8 hairline box with a 4px arrow glyph (reads as a dot); the spec-match pass flags font-size 4px as off-token but the spec explicitly mandates it, so this is not a defect." },
+        { "severity": "info", "actionable": false, "text": "Card internals match: 432x146 each, 12px stack gap, 24px padding, 8px role-to-name, 28px identity-to-credentials, LinkedIn glyph absolutely positioned 24px from top and right at 60% opacity." },
+        { "severity": "info", "actionable": false, "text": "The red '2 Issues' pill at the bottom-left of the screenshot is the Next.js dev overlay, not build output; ignored." }
+      ]
+    },
+    "tablet": {
+      "score": 84,
+      "issues": [
+        { "severity": "warning", "actionable": true, "text": "Roughly 152px of dead space between the heading and 'Our team honed their trades at'. The desktop-only intro `pb-16` (64px, which exists purely to align the two grid rows at 1440) plus the 64px row gap plus the trades `pt-6` (24px) all stack once the layout collapses to one column. Scope the intro bottom padding and the trades top padding to `lg:` so the stacked rhythm is just the 64px row gap." },
+        { "severity": "warning", "actionable": true, "text": "Team photo still absent: same flat grey placeholder as desktop, occupying the largest block on the page (704x472). See the desktop note on exporting about-team.jpg." },
+        { "severity": "info", "actionable": false, "text": "No Figma tablet reference. Adaptation is sound: single-column stack in the intro / trades / cards / photo order, 32px gutter, trades list holds 2 columns, cards go full width, photo holds the 774/520 aspect (704x472 measured). No overflow, clipping or overlap." }
+      ]
+    },
+    "mobile": {
+      "score": 84,
+      "issues": [
+        { "severity": "warning", "actionable": true, "text": "Same stacked-padding void as tablet: approximately 136px between the heading and the trades lead (intro `pb-16` 64px + 48px row gap + trades `pt-6` 24px). Scope those paddings to `lg:`." },
+        { "severity": "warning", "actionable": true, "text": "Team photo still absent: flat grey placeholder at 342x230. See the desktop note on exporting about-team.jpg." },
+        { "severity": "info", "actionable": false, "text": "No Figma mobile reference. Adaptation is sound: 24px gutter, trades list correctly drops to 1 column at 12px row gap with DOM reading order preserved (Tesla, JPL, Canadian Special Forces, Mercedes-AMG, Microsoft, Damen, Bay Ship and Yacht), cards stretch full width, heading wraps to 2 lines. No horizontal overflow and nothing clipped." }
+      ]
+    }
+  },
+  "overallScore": 82,
+  "summary": "Structurally a very close build: the desktop section renders at exactly 1440x948 with the correct 12-column geometry, card metrics and type/colour tokens, but the team photo is still an unfilled grey placeholder, the trades list overruns its 659px measure by ~58px, and the desktop-only intro/trades paddings stack into a ~140px void above the trades lead on tablet and mobile."
+}

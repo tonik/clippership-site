@@ -1,0 +1,101 @@
+{
+  "exitCode": 0,
+  "parsed": {
+    "duration_api_ms": 197935,
+    "stop_reason": "end_turn",
+    "session_id": "5e08fc11-190e-410a-bfcf-8cb0bb740466",
+    "total_cost_usd": 1.412693,
+    "usage": {
+      "input_tokens": 52,
+      "cache_creation_input_tokens": 45724,
+      "cache_read_input_tokens": 1117636,
+      "output_tokens": 15855,
+      "output_tokens_details": {
+        "thinking_tokens": 6052
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 45724,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 657,
+          "cache_read_input_tokens": 55762,
+          "cache_creation_input_tokens": 2793,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2793
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-opus-5": {
+        "inputTokens": 52,
+        "outputTokens": 15855,
+        "cacheReadInputTokens": 1117636,
+        "cacheCreationInputTokens": 45724,
+        "webSearchRequests": 0,
+        "costUSD": 1.412693,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 6052,
+        "canonicalModel": "claude-opus-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "permission_denials": [],
+    "terminal_reason": "completed",
+    "fast_mode_state": "off",
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "is_error": false,
+    "num_turns": 31,
+    "subtype": "success",
+    "api_error_status": null,
+    "result": "Verdict written to `page/footer/iter-02/verdict.json`.\n\n**Overall: 80** (desktop 80, tablet 84, mobile 80)\n\nWhat the footer gets right - and it gets a lot right: panel box (x 12..1427, y 0..239), radius, no stroke, wordmark bbox, copyright/email block, social row and the wave's `-59px` anchor are all pixel-exact against the mock (wave cross-correlation peaks at shift 0, r=0.99). Type is correct too - the wordmark's darkest pixel is 33 in both build and Figma, so font, size and tracking are right. Copy matches exactly, including uppercase `(C)2026 CLIPPERSHIP INC.` and the deliberately non-uppercased `hello@clippership.co`. Spec-match reports 0 token violations across 33 elements.\n\nThe two real defects are both the same class of bug - an opacity applied twice:\n\n1. **Backer logos ~0.38 effective alpha instead of 0.6.** Darkest logo pixel is 154 in the build vs 97-120 in Figma, consistently across all nine slots. 0.6 x 0.6 = 0.36, which matches the measurement - the 0.6 is almost certainly on both the slot anchor and the image.\n2. **Wave backdrop ~0.41 instead of 0.64.** Every sampled row shows the build's wave contrast at a constant 0.64x the reference (y=228: Figma rgb(133,176,218), build rgb(174,201,228)). Alignment is perfect, so it is purely the opacity layer.\n\nSide by side the build's whole panel reads hazy next to the mock. On mobile the same bug costs content: the NVIDIA Inception logo sits over a darker wave and is effectively invisible (darkest pixel 158 against mid-blue).\n\nThe red \"5 Issues\" pill in the bottom-left of all three captures is injected dev tooling, not footer markup - flagged as non-actionable.",
+    "ttft_ms": 1498,
+    "type": "result",
+    "duration_ms": 208072,
+    "uuid": "22e3ab53-2e3d-40a1-ba77-933dbcb0e085",
+    "ttft_stream_ms": 1193,
+    "time_to_request_ms": 48,
+    "first_content_frame_ms": 1193,
+    "queued_turn_count": 0,
+    "result_index": 0
+  },
+  "stderr": ""
+}

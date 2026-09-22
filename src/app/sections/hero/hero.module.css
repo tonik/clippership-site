@@ -1,0 +1,202 @@
+/* Hero image plates - Figma 181:671 (sky) and 247:655 (vessel).
+   Section-local because globals.css is owned by another agent this pass.
+
+   Figma does NOT object-fit these rasters into the stage. It draws each at its
+   natural pixel size inside the 1416 x 1280 stage - 2279 x 1607 for the sky,
+   2252 x 1588 for the vessel - which is the ~1.6x overscale the spec asks for
+   ("overscaled ~1.6x so the brushwork keeps its grain - do not downscale to the
+   frame"). A plain `object-fit: cover` only reaches 1815 x 1280 for the vessel,
+   so the ship rendered ~20% too small and ~230px too high, with a band of empty
+   open water along the bottom that is not in the design.
+
+   The framing is therefore driven off the STAGE HEIGHT plus the asset's own
+   aspect-ratio, not off raw 1440 pixel offsets, so the crop is identical at any
+   stage width. Horizontally each plate is centred and then nudged by
+   --plate-shift, expressed as a percentage of the PLATE, so that too scales. */
+.plate {
+  position: absolute;
+  inset: 0;
+}
+
+@media (min-width: 992px) {
+  .plate {
+    inset: auto;
+    top: var(--plate-top);
+    left: 50%;
+    height: var(--plate-height);
+    aspect-ratio: var(--plate-ratio);
+    translate: var(--plate-shift) 0;
+  }
+}
+
+/* The wordmark drops into the headline's ascender space. Figma models it as
+   `itemSpacing: -12` on the Title frame; CSS has no negative gap, so it is a
+   negative margin on the headline instead (spec Section 1, "Negative gap").
+   Below the desktop frame the headline is a clamp, so a flat -12px would eat
+   into the letterforms - there the tuck is proportional to the type size. */
+.headline {
+  margin-top: -0.111em;
+}
+
+@media (min-width: 992px) {
+  .headline {
+    margin-top: calc(var(--space-xs) * -1); /* -12px at the 1440 frame */
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Wordmark scale
+
+   The wordmark is a small tag sitting over the headline, not a second headline.
+   Figma draws it 157px wide against the 108px display type, i.e. 157/108 =
+   1.4537 of the headline size. It was hard-locked at 157 x 28 at every width,
+   while `--text-display-xl` clamps down to 44px below the desktop frame - so
+   the tag kept its desktop size and outgrew its own headline (it measured 0.54
+   of the longest headline line at 390 and 0.38 at 768, against the 0.21 the
+   1440 frame sets).
+
+   The Title frame therefore carries the display size, which lets the wordmark
+   be measured in `em` of the headline and track it at every width: 157px at
+   1440, ~84px at 768, ~64px at 390. The aspect ratio comes from the asset's own
+   intrinsic 157 x 28, so only one axis is constrained.
+   --------------------------------------------------------------------------- */
+.title {
+  /* not inherited by the h1, which sets `--text-display-xl` itself */
+  font-size: var(--text-display-xl);
+  --hero-wordmark-ratio: 1.4537; /* 157 / 108 */
+}
+
+.wordmark {
+  width: calc(var(--hero-wordmark-ratio) * 1em);
+  height: auto;
+}
+
+/* ---------------------------------------------------------------------------
+   No legibility wash below the desktop frame
+
+   An earlier pass painted a radial wash of the surface colour behind the lead
+   at < 992px, to lift the 48% quiet run off the bright mast panels. It bleached
+   a ~600 x 260 patch of the painting: at 768 the mast behind the lead measured
+   rgb(195,211,222) against rgb(66,113,147) on the same mast just above it. The
+   design has no such layer, and the hero's whole subject is the painting - so
+   the wash is gone and the lead sits straight on the image at every width, the
+   way it already does at 1440 (where the drawn lead crosses the right-hand mast
+   in exactly the same way). The 48% run is a deliberate resting state: the
+   scroll timeline resolves it to 100% (spec Section 1, "Hero scroll
+   interaction"), which is the design's own answer to its low contrast.
+   --------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------
+   Display-face mass compensation
+
+   Exposure / Exposure-20 is a licensed face with no WOFF2 in the repo, so the
+   display stack in globals.css falls through to its self-hosted fallback,
+   Newsreader. Exposure is a heavy, low-contrast serif; Newsreader at the drawn
+   optical weight 450 is a high-contrast Didone with much thinner stems, and it
+   sets ~10% narrow at identical metrics - the headline is the section's
+   dominant element, so that reads as the wrong typeface at every breakpoint.
+
+   Newsreader is loaded as a variable font (wght 200-800), so the missing mass
+   can be bought back on the weight axis rather than by faking it with tracking
+   - the drawn `-0.04em` stays exactly as the token defines it.
+
+   Measured from the actual subset on disk at the drawn 108px / -0.04em
+   (glyph advances summed from hmtx, per weight instance):
+
+       wght   "AI compute at"        "the maritime edge."
+       450    600.7px  (-10.9%)      786.9px  (-8.3%)     <- what shipped
+       700    644.9px  ( -4.3%)      844.7px  (-1.6%)
+       750    659.0px  ( -2.2%)      862.9px  (+0.6%)     <- this value
+       800    673.3px  ( -0.1%)      881.7px  (+2.8%)
+       Figma  674px                  858px
+
+   750 is the balance point across both lines and lands the stem weight in
+   Exposure's territory. This belongs on `--text-display-xl--font-weight` in
+   globals.css once the real face ships (or is ruled out) - it is scoped here
+   because that file is owned by another agent this pass.
+   --------------------------------------------------------------------------- */
+.headline {
+  --hero-display-fallback-weight: 750;
+  font-weight: var(--hero-display-fallback-weight);
+}
+
+/* ---------------------------------------------------------------------------
+   Parallax rise, capped by the plate's overhang
+
+   Both plates are opaque paintings. The vessel plate hides the sky plate
+   completely, so any rise beyond how far the vessel plate hangs below the stage
+   opened a band at the bottom where the sky plate's clouds showed through - the
+   "second picture" under the sea. The rise is therefore a share of the stage
+   height that the overhang always covers:
+     - lg: the plate is drawn 124.1% tall from the top, a 24.1% overhang; the
+       rise is 18% (about half the old 461px, which also read as too fast).
+     - below lg the plate is a plain cover of the stage, so it gets a 12%
+       overhang of its own and rises by exactly that.
+   --------------------------------------------------------------------------- */
+.vesselRise {
+  --hero-rise: -12%;
+}
+
+@media (max-width: 991px) {
+  .vesselPlate {
+    bottom: -12%;
+  }
+}
+
+@media (min-width: 992px) {
+  .vesselRise {
+    --hero-rise: -18%;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Entry sequence
+
+   html[data-intro] is stamped by the inline script in hero.tsx before first
+   paint, then advanced by HeroStage once the plates have decoded:
+     pending - plates and content held back
+     play    - the painting fades in and settles, then the content follows;
+               the slider below the hero comes last (how-it-works)
+     done    - nothing here applies any more
+   Reduced motion never gets the attribute. If the script ran but JS never
+   hydrates, a 6s failsafe shows everything anyway.
+   --------------------------------------------------------------------------- */
+.settle {
+  transform-origin: 50% 62%;
+}
+
+:global(html[data-intro="pending"]) .settle {
+  opacity: 0;
+  transform: scale(1.06);
+  animation: heroFailsafeShow 0s 6s forwards;
+}
+
+:global(html[data-intro="play"]) .settle {
+  transition:
+    opacity 1200ms var(--ease-out),
+    transform 2600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Content follows the painting: wordmark, headline, lead, CTA. */
+:global(html[data-intro="pending"]) .enter {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+  filter: blur(10px);
+  animation: heroFailsafeShow 0s 6s forwards;
+}
+
+:global(html[data-intro="play"]) .enter {
+  transition:
+    opacity 1000ms var(--ease-out),
+    transform 1300ms var(--ease-fluid),
+    filter 1000ms var(--ease-out);
+  transition-delay: calc(500ms + var(--enter, 0) * 140ms);
+}
+
+@keyframes heroFailsafeShow {
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "breakpoints": {
+    "desktop": {
+      "score": 68,
+      "issues": [
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "Vessel plate is far too dark and blue. Sampled over the sail area (x 280-1160, y 520-1060) the build averages rgb(158,179,178) against Figma's rgb(220,226,217); the hull band averages rgb(66,112,141) vs Figma's rgb(101,168,199). In Figma the sails read near-white with pale blue shading - in the build they read mid-blue, which changes the tone of ~60% of the section. The rendered pixels match src/app/(home)/assets/hero-vessel.png exactly (159,180,179), so the plate is drawn correctly and the ASSET is the wrong one: figma/page/asset-fetch-summary.json lists hero-vessel.png (247:655) and hero-sky.png (181:671) as failed downloads (Figma MCP/REST rate limit). Re-export node 247:655 (spec notes it composites TWO image fills - it must be flattened, a single fill is darker) and replace the stand-in."
+        },
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "h1 does not render in Exposure. Computed font-family is \"Exposure, Exposure-20, Newsreader, ...\" and no Exposure woff2 exists in the project, so it falls back to Newsreader - a much lighter, higher-contrast, narrower serif. Measured ink bounding box of the two headline lines: 780px wide in the build vs 879px in Figma at the same 108px/-4.32px, and the block is 21px shorter. The headline is the page's loudest element and reads noticeably thinner and smaller than the design. If Exposure cannot be licensed, compensate on the fallback face: heavier weight (Newsreader ~600 rather than 450) plus a size-adjust so it fills the drawn 879px measure, as spec section 9 (\"Loading the fonts\") already requires."
+        },
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "Hero lead wraps to 5 lines where Figma has 4 (\"Autonomous vessels take AI compute / onto the wide-open ocean, where / clean energy and cooling are / plentiful, and the red tape is thin.\"). The 431px column with 48px right padding is correct, but Inter (standing in for Matter) sets wider at 24px/-0.96px, so \"compute\" drops to line 2. The extra line pushes the CTA pill down: its top sits at y=646 vs y=613 in Figma. Fix with a size-adjust on the Matter fallback face so the substitute matches Matter's advance widths."
+        },
+        {
+          "severity": "info",
+          "actionable": true,
+          "text": "Sky reads a touch darker than Figma overall (sky-only band mean rgb(141,154,149) vs rgb(144,157,154); top-left corner rgb(80,102,113) vs rgb(89,111,124)). This is the same wrong-asset root cause as the vessel plate - the opaque vessel PNG covers the sky plate entirely, so hero-sky.png currently contributes nothing but a wasted preload."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "A Next.js dev-overlay badge (\"5 Issues\") is baked into the desktop screenshot at bottom-left. Not part of the section; ignore for fidelity, but the build is reporting 5 dev-time issues worth a look."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Everything structural matches the mock: wordmark bounding box is pixel-identical (x 642-797, y 148-175, i.e. 157x28), the title block is centred on x=720 at the drawn 148px top, the lead starts at y=480 in both, the 12px white gutters and bottom-only 12px stage radius are correct, the split-opacity lead (100% / 48%) is right, and the CTA matches spec exactly (40px tall, 20px/12px padding, pill radius, rgba(246,246,247,0.16) fill, 8% hairline, 4px backdrop blur, 64% label). The vessel's sail edges land within 1-2px of Figma's at y=900 and y=1000 - the plate crop and scale are correct, only its tone is wrong."
+        }
+      ]
+    },
+    "tablet": {
+      "score": 80,
+      "issues": [
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "Headline breaks badly at 768: \"AI compute at the maritime\" / \"edge.\" leaves a single short word alone on line 2 under a near-full-width first line. Either keep the desktop two-line break (\"AI compute at\" / \"the maritime edge.\") at this width, or cap the title column so the two lines balance."
+        },
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "Same wrong vessel asset as desktop - the sails render mid-blue instead of the near-white of the Figma plate, so the whole stage reads colder and heavier than the design. Fixed by re-exporting 247:655; no tablet-specific change needed."
+        },
+        {
+          "severity": "info",
+          "actionable": true,
+          "text": "The 48% ghost run of the lead sits across the sail panels rather than the quiet sky band, so \"cooling are plentiful, and the red tape is thin.\" drops to roughly 3:1 contrast. Nudging the lead block up ~40px would put it back over open sky."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "No Figma tablet frame exists. The adaptation is sound: stage holds 9/8 (768x662 incl. the 12px gutters), title top at 11.5vw, lead centred at min(431px,72vw) and left-aligned under the title per the spec's 768-1023 rules, no overflow or clipping, content hierarchy from the desktop mock preserved."
+        }
+      ]
+    },
+    "mobile": {
+      "score": 80,
+      "issues": [
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "Same wrong vessel asset as desktop - sails render mid-blue rather than the near-white of the Figma plate. Fixed by re-exporting 247:655."
+        },
+        {
+          "severity": "info",
+          "actionable": true,
+          "text": "The lead's 48% run overlaps the sail panels (\"compute onto the wide-open ocean, where clean energy and\") instead of clearing onto open sky, leaving it legible but low-contrast at 20px."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "No Figma mobile frame exists. The adaptation is correct against the spec's <768 rules: stage 390x620 (3/4 aspect floored by the 620px min-height), 12px gutters and bottom radius intact, title top 72px, headline on three balanced lines, lead at calc(100% - 48px) centred, hulls still in frame via object-position center bottom, CTA a 40px tap target, no horizontal overflow."
+        }
+      ]
+    }
+  },
+  "overallScore": 68,
+  "summary": "Geometry, spacing and type metrics now track the Figma frame almost exactly, but two asset/font substitutions still read across the room: the hero vessel plate is a stand-in PNG roughly 60 RGB levels darker and bluer than the design, and the headline falls back from Exposure to a much lighter, narrower Newsreader."
+}

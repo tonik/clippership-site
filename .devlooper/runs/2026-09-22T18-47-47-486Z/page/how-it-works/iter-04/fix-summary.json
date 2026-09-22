@@ -1,0 +1,6 @@
+{
+  "changesMade": [
+    "Removed the trailing 24px right-margin from the last tile below the md breakpoint (mr-6 last:mr-0 md:mr-6) so the mobile scroller ends with the spec's 12px of white instead of 36px, while keeping the 24px seam margin on the desktop/tablet marquee"
+  ],
+  "summary": "Trimmed the mobile scroller's trailing whitespace to the spec's 12px by dropping the last tile's right margin below 768px, leaving the desktop/tablet marquee untouched."
+}

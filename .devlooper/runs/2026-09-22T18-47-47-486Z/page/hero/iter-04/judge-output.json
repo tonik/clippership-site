@@ -1,0 +1,101 @@
+{
+  "exitCode": 0,
+  "parsed": {
+    "duration_api_ms": 431444,
+    "stop_reason": "end_turn",
+    "session_id": "889fbd66-ab9f-40f9-bdeb-b79fa1c450e5",
+    "total_cost_usd": 2.838062000000001,
+    "usage": {
+      "input_tokens": 78,
+      "cache_creation_input_tokens": 83194,
+      "cache_read_input_tokens": 2432664,
+      "output_tokens": 31576,
+      "output_tokens_details": {
+        "thinking_tokens": 18407
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 83194,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 744,
+          "cache_read_input_tokens": 92667,
+          "cache_creation_input_tokens": 3358,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3358
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-opus-5": {
+        "inputTokens": 78,
+        "outputTokens": 31576,
+        "cacheReadInputTokens": 2432664,
+        "cacheCreationInputTokens": 83194,
+        "webSearchRequests": 0,
+        "costUSD": 2.838062000000001,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 18407,
+        "canonicalModel": "claude-opus-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "permission_denials": [],
+    "terminal_reason": "completed",
+    "fast_mode_state": "off",
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "is_error": false,
+    "num_turns": 44,
+    "subtype": "success",
+    "api_error_status": null,
+    "result": "Verdict written to `.devlooper/runs/2026-09-22T18-47-47-486Z/page/hero/iter-04/verdict.json`.\n\n**Overall: 68** (desktop 68, tablet 80, mobile 80)\n\nNo cached hero reference existed, so I pulled one screenshot of node `181:499` from Figma MCP and compared it pixel-for-pixel against the desktop build.\n\nWhat the build gets right (measured, not eyeballed):\n- Wordmark bounding box is pixel-identical (157x28 at y 148-175), title centred on x=720 at the drawn 148px top, lead starts at y=480 in both, 12px gutters and bottom-only radius correct.\n- Vessel plate crop and scale are correct: sail edges land within 1-2px of Figma's at two sample rows.\n- CTA matches spec exactly (40px, 20/12 padding, 16% glass fill, 8% hairline, 4px backdrop blur, 64% label); split-opacity lead is right.\n\nThe two real misses:\n1. **Vessel plate is the wrong asset** (critical). Sail area averages rgb(158,179,178) vs Figma's rgb(220,226,217); hull rgb(66,112,141) vs rgb(101,168,199). The render matches `hero-vessel.png` exactly, and `asset-fetch-summary.json` lists that file as a failed download (Figma rate limit), so a dark stand-in is shipping. Needs a re-export of `247:655`, flattened (the node has two composited fills).\n2. **h1 falls back to Newsreader** (warning). No Exposure woff2 in the project; the headline measures 780px wide vs 879px in Figma at the same 108px. Fixable short of licensing by bumping the fallback weight plus a `size-adjust`, which the spec already asks for. The same substitution on the lead (Inter for Matter) is what wraps it to 5 lines instead of 4 and pushes the CTA 33px low.\n\nTablet's own issue: the headline breaks to \"AI compute at the maritime\" / \"edge.\", leaving one word alone on line 2. Mobile adapts cleanly, no overflow, hulls in frame.",
+    "ttft_ms": 3070,
+    "type": "result",
+    "duration_ms": 448708,
+    "uuid": "d369f463-1a45-4ce5-a6bf-5c7d20da66ab",
+    "ttft_stream_ms": 2464,
+    "time_to_request_ms": 103,
+    "first_content_frame_ms": 2464,
+    "queued_turn_count": 0,
+    "result_index": 0
+  },
+  "stderr": ""
+}

@@ -1,0 +1,29 @@
+{
+  "iter": 5,
+  "page": "page",
+  "section": "the-fleet",
+  "runId": "2026-09-22T18-47-47-486Z",
+  "durationMs": 390392,
+  "costUsd": 1.9804732,
+  "score": 85,
+  "pixelDiffPct": null,
+  "judgeSkipped": false,
+  "phases": {
+    "polish": {
+      "durationMs": 137115,
+      "costUsd": 0.3729732,
+      "turns": 12
+    },
+    "screenshot": {
+      "durationMs": 11729
+    },
+    "pixelDiff": {
+      "durationMs": 52
+    },
+    "judge": {
+      "durationMs": 227517,
+      "costUsd": 1.6075,
+      "turns": 29
+    }
+  }
+}

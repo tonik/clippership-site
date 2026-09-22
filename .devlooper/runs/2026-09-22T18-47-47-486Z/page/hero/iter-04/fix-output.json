@@ -1,0 +1,101 @@
+{
+  "exitCode": 0,
+  "parsed": {
+    "duration_api_ms": 311306,
+    "stop_reason": "end_turn",
+    "session_id": "b7f3a1ea-882f-47ef-aa53-d61cb57e17d2",
+    "total_cost_usd": 2.1425895,
+    "usage": {
+      "input_tokens": 40,
+      "cache_creation_input_tokens": 79160,
+      "cache_read_input_tokens": 1492329,
+      "output_tokens": 24185,
+      "output_tokens_details": {
+        "thinking_tokens": 15355
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 79160,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 767,
+          "cache_read_input_tokens": 92306,
+          "cache_creation_input_tokens": 1738,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1738
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-opus-5": {
+        "inputTokens": 40,
+        "outputTokens": 24185,
+        "cacheReadInputTokens": 1492329,
+        "cacheCreationInputTokens": 79160,
+        "webSearchRequests": 0,
+        "costUSD": 2.1425895,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 15355,
+        "canonicalModel": "claude-opus-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "permission_denials": [],
+    "terminal_reason": "completed",
+    "fast_mode_state": "off",
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "is_error": false,
+    "num_turns": 24,
+    "subtype": "success",
+    "api_error_status": null,
+    "result": "Three changes in `src/app/sections/hero/hero-stage.client.tsx`, all verified against the real font metrics on disk (I measured the Newsreader/Inter subsets next/font emitted rather than eyeballing the screenshots):\n\n1. **h1 stretched to its column (`w-full`)** - the largest measured position delta. Figma's headline text node fills the 1002px Title frame and centres inside it; under `items-center` ours was hugging its longest line at 787px. 1002−787 = 215 wide and 107.5 right matches the reported \"217px narrower / 108px right\" exactly. Centred text renders identically; only the box changes.\n\n2. **Headline break moved to `md:`, NBSP → plain space.** At 768 the forced break gives 320px / 420px in a 696px column instead of the flagged orphaned \"edge.\"; below `md` the ordinary space lets the line fall after \"the\" (309px / 257px in 318px), two balanced lines instead of three.\n\n3. **CTA label given its own `<span data-figma-id=\"181:709\">`** - the text node was being measured against the whole pill, which is literally where \"20px left, 18px down, 46px wider, 24px taller\" came from (the pill's padding).\n\n`tsc`, `eslint --max-warnings=0` and `npm run build` all pass.\n\nTwo things I could not fix, both outside what this pass is allowed to touch:\n\n- **The vessel asset critical.** Binary images are off-limits (and auto-reverted), so `hero-vessel.png` can't be replaced from here. Node 247:655 needs re-exporting as a single flattened asset of its two image fills.\n- **The Exposure/Matter fallback metrics**, which cause both remaining desktop warnings. I confirmed the number: only the lead's first line overruns, by 17.1px (Inter 500 sets \"Autonomous vessels take AI compute\" at 400.1px against the correct 383px measure), and that one extra line is the source of the \"30px taller / 30px down\" deltas on Text, the paragraph and the CTA. The fix is `size-adjust` on the fallback `@font-face` in `fonts.ts`/`globals.css` — shared files another agent holds this pass. Forcing the break in markup would need `white-space: nowrap` plus a 17px overrun of the measure, so I left it.",
+    "ttft_ms": 1423,
+    "type": "result",
+    "duration_ms": 336589,
+    "uuid": "af84bf86-f038-4b22-a0b5-227205e0bf46",
+    "ttft_stream_ms": 1038,
+    "time_to_request_ms": 86,
+    "first_content_frame_ms": 1038,
+    "queued_turn_count": 0,
+    "result_index": 0
+  },
+  "stderr": ""
+}

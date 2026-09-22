@@ -1,0 +1,111 @@
+{
+  "breakpoints": {
+    "desktop": {
+      "score": 58,
+      "issues": [
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "Vessel plate renders far too dark and too saturated. Sampled means over the sails: Figma rgb(213,233,232) / rgb(246,246,236) / rgb(204,227,228) vs build rgb(107,152,171) / rgb(157,184,185) / rgb(97,143,164) - roughly 90-105 levels darker. Hull: Figma rgb(111,173,200) vs build rgb(61,114,151). The sky and water layers match within ~10 levels, so only the vessel layer (247:655) is wrong. In Figma the sails read near-white; in the build they read mid-blue, which changes the whole tonal character of the hero. Geometry of the plate is now spot on, so the cause is compositing, not placement: spec §1 notes 247:655 composites TWO image fills that must be exported as one flattened asset - check the exported PNG carries the bright upper fill, and that no mix-blend-mode / opacity is applied to the vessel <img>."
+        },
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "h1 still does not render Exposure - it falls through to Newsreader (computed font-family 'Exposure, Exposure-20, Newsreader, \"Newsreader Fallback\", ...' and --font-display-face is literally '\"Newsreader\", \"Newsreader Fallback\"', i.e. Exposure is never registered as a loaded face). Figma's Exposure-20 450 is a heavy, low-contrast display serif with thick stems; Newsreader is a light book serif with thin hairlines. Measured on the Figma frame: 'AI compute at' is 665px wide in Figma vs 585px in the build (-12%), and 'the maritime edge.' is 880px vs 767px (-13%). The headline reads visibly lighter and narrower than the design. Self-host the Exposure WOFF2 per spec §9. Matter -> Inter has the same problem on the lead and CTA label."
+        },
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "Lead paragraph wraps to 5 lines where Figma has 4 ('Autonomous vessels take AI compute' / 'onto the wide-open ocean, where' / 'clean energy and cooling are' / 'plentiful, and the red tape is thin.'). The 383px measure, the 961px left edge, the 478px top and the 24px gap are all correct - the extra line comes from Inter standing in for Matter Medium. Knock-on: the CTA pill sits at y=645-682 instead of Figma's y=612-652 (~32px low) and the open water below the CTA shrinks from 628px to 598px. Loading Matter should resolve this on its own."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Headline line break is now correct - the build sets 'AI compute at' / 'the maritime edge.' as in Figma. The NBSP fix from iteration 2 landed."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Image placement is now essentially exact: sail tops, hull deck line, horizon and cloud forms register with the Figma frame to within a few pixels, and the 12px white gutters, square top corners and rounded bottom corners are all correct. The iteration-2 under-scaled / mis-anchored plate problem is fixed."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "CTA pill matches the design: ~177x40 at x=961, rgba(246,246,247,0.16) fill, 1px rgba(25,25,25,0.08) hairline, 999px radius, label 14px/16px at -0.28px in rgba(25,25,25,0.64). Wordmark 157x28 centred at y=148 with the -12px optical tuck, and h1 ink #291D1D, 108px/108px, -4.32px tracking are all correct."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "The red '5 Issues' badge at bottom-left is the Next.js dev indicator, not page content."
+        }
+      ]
+    },
+    "tablet": {
+      "score": 55,
+      "issues": [
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "The lead paragraph is illegible. It now sits at y~510-580, directly over the dark blue water and the ship's reflection, and the 48% run ('take AI compute onto the wide-open ocean, where clean energy and cooling are plentiful, and the red tape is thin.') is dark grey on dark blue at roughly 1.3:1 - the middle two lines effectively disappear. This is worse than iteration 2, where it sat over the white sails. Do not change the 48% token: move the lead block back up under the title (spec §1 responsive, 768-1023: align-self center, margin-top 64px) where the sky is quiet, rather than pushing it to the bottom of the stage."
+        },
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "Same vessel-plate darkening as desktop - the sails render mid-blue instead of near-white, so the section's tonality is wrong at this width too."
+        },
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "h1 renders in the Newsreader fallback rather than Exposure, and the lead/CTA in Inter rather than Matter - the same missing self-hosted faces as desktop, so the wrong typefaces apply at every breakpoint."
+        },
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "The lead block appears bottom-anchored (CTA bottom at y=645 in a 680px stage, ~300px below the title block) rather than following the spec's 768-1023 rule of sitting under the title with margin-top: 64px. That is what drags it onto the water."
+        },
+        {
+          "severity": "info",
+          "actionable": true,
+          "text": "Headline breaks as 'AI compute at the maritime' / 'edge.', leaving a one-word orphan under a line that runs nearly edge to edge (x 72 to 697 in a 744px stage). No tablet mock to contradict it, but tightening the title measure at this width would read better."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "No Figma tablet frame exists, so the adaptation is not scored against a mock. Structurally it is sound: no horizontal overflow, nothing clipped, both image layers present, the wordmark / headline / lead / CTA hierarchy intact, 12px gutters and rounded bottom corners preserved, CTA 40px tall."
+        }
+      ]
+    },
+    "mobile": {
+      "score": 52,
+      "issues": [
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "Worst case of the lead legibility failure: all five lines sit over the hull and the dark water at 390px, and four of them ('compute onto the wide-open', 'ocean, where clean energy and', 'cooling are plentiful, and the red', 'tape is thin.') are essentially unreadable - dark grey at 48% on dark blue. Move the lead up over quiet sky (spec §1 <768: align-self center, width calc(100% - 48px), sitting below the title) instead of parking it at the bottom of the stage; do not lighten or darken the type token to compensate."
+        },
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "Same vessel-plate darkening as desktop - sails render mid-blue instead of near-white, so the hero's tonality is wrong here too."
+        },
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "h1 renders in the Newsreader fallback rather than Exposure, and the lead/CTA in Inter rather than Matter - the same missing self-hosted faces as the other breakpoints."
+        },
+        {
+          "severity": "info",
+          "actionable": true,
+          "text": "Stage height is 680px where spec §1 <768 asks for aspect-ratio 3/4 with min-height 620px (366px wide would give 488px, so 620px should apply). Not a visible defect, but it is 60px off the documented intent."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "No Figma mobile frame exists. On its own terms the title block is clean: wordmark tucked above the headline with no glyph collision, h1 wraps to three centred lines with no clipping, no horizontal overflow at 390px, CTA pill 40px tall (adequate tap target), and all content from the desktop mock survives."
+        }
+      ]
+    }
+  },
+  "overallScore": 52,
+  "summary": "Image placement and the headline line break are now essentially exact on desktop, but the vessel plate composites ~90-100 levels too dark (near-white sails render mid-blue), Exposure and Matter still fall through to Newsreader/Inter at every breakpoint, and on tablet and mobile the lead paragraph has been pushed down onto dark water where its 48% run is unreadable."
+}

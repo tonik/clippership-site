@@ -1,0 +1,111 @@
+{
+  "breakpoints": {
+    "desktop": {
+      "score": 64,
+      "issues": [
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "Vessel plate is far too dark/saturated. Mean RGB over the sails: left mast 104,150,170 / centre mast 162,186,185 / right mast 137,169,174, against Figma's 208,230,230 / 246,245,235 / 236,239,231 - roughly 80-100 levels darker. The hull is 63,112,145 vs 108,166,192. The sky layer matches within ~8 levels, so this is the vessel layer alone: Figma's vessel is a pale, washed-out plate that dissolves into the sky, the build's is a solid mid-blue object. This is the defining look of the hero and it has been unchanged since iter-03. Re-export the vessel with the Figma image adjustment applied (exposure/highlights), or reproduce it with a lightening blend/opacity on the vessel layer."
+        },
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "h1 renders in a substitute display face, not Exposure. Letterform comparison on 'edge.' shows a different 'd' (build has a pronounced angled top flag, Figma a flat one), a different 'g' loop and ear, and markedly lower thick/thin contrast - this is Newsreader falling through from the `Exposure, Exposure-20, Newsreader, ...` stack (no Exposure file exists in the project and it is not installed). Ship the real Exposure webfont via @font-face."
+        },
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "h1 font-weight is 750 (`--hero-display-fallback-weight`) against the design's 450. The weight boost fixes the width - line 1 is now 662px vs Figma's 673px, line 2 860px vs 879px, up from iter-07's 603/781 - but overshoots the colour: the headline reads visibly heavier and flatter than the reference, with the hairline serifs and thin strokes filled in. Dial back to roughly 600-650 while the substitute face is in use."
+        },
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "Lead paragraph wraps to 5 lines where Figma has 4. 'Autonomous vessels' measures 249px in the build vs 204px in Figma at identical 17px cap-height, i.e. the run is 22% wider - Matter is not present in the project and the paragraph is rendering in the Inter fallback. Figma's line 1 ends with 'take AI compute' at x1335; the build's ends at 'take AI' at x1258. Knock-on: the CTA pill sits ~30px lower than in the design. Self-host Matter, or apply `size-adjust` on the fallback @font-face so the 383px measure holds 4 lines."
+        },
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "Wordmark and headline collide. The wordmark occupies y148-175 in both, but the h1 ink starts at y170 in the build vs y183 in Figma - a 13px difference that turns Figma's 8px gap into a 5px overlap, so the 'AI compute at' ascenders run into the wordmark. The -12px optical tuck is being applied too aggressively for the substitute face's ascender height."
+        },
+        {
+          "severity": "info",
+          "actionable": true,
+          "text": "h1 font-weight 750 and the hero's 148px / 96px / -12px margins sit off the token scale (nearest tokens 700, --space-6xl aside, 64px and 4px). The margins are correct per spec, but the weight should track a `--text-display-xl--font-weight` value rather than a one-off."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "The red '5 Issues' badge at the left edge of the screenshot is the Next.js dev overlay, not page content - ignore it."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Geometry is close to pixel-exact: mast-top edge row 497 vs 496, hull edge rows 1098-1101 vs 1100-1102, mast verticals at x332/794/841/1092/1113 all within 1-2px. The 12px white gutter, square top / 12px-rounded bottom stage corners, lead ink top y481 with 28px leading, split-opacity lead (100% / 48%), and the ~176x40 glass CTA pill all match the reference."
+        }
+      ]
+    },
+    "tablet": {
+      "score": 70,
+      "issues": [
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "Same vessel-layer tone defect as desktop - the masts and hull render as solid saturated blue instead of the design's pale washed plate. It is worse here than on desktop because the lead paragraph's 48% run sits directly over the darkened masts, dropping its contrast further."
+        },
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "Same display-face substitution and 750 weight as desktop: the headline reads heavier and lower-contrast than the Figma type."
+        },
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "Lead paragraph renders in the Inter fallback rather than Matter, so its colour and measure differ from the design's type even though the wrap happens to land on 3 clean lines here."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "No Figma tablet reference. The adaptation itself is sound: title centred, lead moved out of the right gutter to sit centred below it with left-aligned text, CTA beneath, stage keeping the 1440/1280 aspect at 744px wide (662px tall). No overflow, no clipping, hierarchy from the desktop mock preserved."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "12px gutter, square top corners and rounded bottom carry over correctly at this width."
+        }
+      ]
+    },
+    "mobile": {
+      "score": 68,
+      "issues": [
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "Same vessel-layer tone defect as desktop - solid saturated blue masts instead of the design's pale plate. At 390px the lead paragraph overlaps the masts across its full width, so the darkened plate directly degrades the readability of the 48% text run."
+        },
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "The headline's non-breaking space is dropped at this width. The build uses `<br className=\"hidden md:inline\" />` plus a plain space, so mobile breaks 'AI compute at the' / 'maritime edge.'. The spec mandates `the&nbsp;maritime`, which would give 'AI compute at' / 'the maritime edge.' and keep the design's phrase binding at every width."
+        },
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "Same display-face substitution and 750 weight as desktop, and the lead paragraph still renders in the Inter fallback rather than Matter."
+        },
+        {
+          "severity": "info",
+          "actionable": true,
+          "text": "CTA pill is 40px tall - fine against the spec, but below the 44px tap-target guideline on touch. Worth padding out at this breakpoint only if it does not disturb the spec height."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "No Figma mobile reference. The adaptation is clean: stage at 3/4 aspect clamped to 620px min-height, title top-aligned, lead at calc(100% - 48px) centred with no overflow, CTA beneath, and the deep open-water margin at the bottom preserved."
+        }
+      ]
+    }
+  },
+  "overallScore": 64,
+  "summary": "Geometry, layout and imagery placement are near pixel-exact against the Figma mock, but two asset-level defects dominate: the vessel plate renders 80-100 RGB levels darker than the design's pale washed-out ship, and neither Exposure nor Matter is present, so the headline falls to Newsreader at an over-corrected 750 weight and the lead falls to Inter and wraps to 5 lines instead of 4."
+}

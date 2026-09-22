@@ -1,0 +1,101 @@
+{
+  "exitCode": 0,
+  "parsed": {
+    "duration_api_ms": 282511,
+    "stop_reason": "end_turn",
+    "session_id": "ca5a277b-78f5-42d8-b9a8-6cb037e069e6",
+    "total_cost_usd": 2.0887035,
+    "usage": {
+      "input_tokens": 40,
+      "cache_creation_input_tokens": 78244,
+      "cache_read_input_tokens": 1506177,
+      "output_tokens": 22119,
+      "output_tokens_details": {
+        "thinking_tokens": 14316
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 78244,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 998,
+          "cache_read_input_tokens": 91882,
+          "cache_creation_input_tokens": 1246,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1246
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-opus-5": {
+        "inputTokens": 40,
+        "outputTokens": 22119,
+        "cacheReadInputTokens": 1506177,
+        "cacheCreationInputTokens": 78244,
+        "webSearchRequests": 0,
+        "costUSD": 2.0887035,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 14316,
+        "canonicalModel": "claude-opus-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "permission_denials": [],
+    "terminal_reason": "completed",
+    "fast_mode_state": "off",
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "is_error": false,
+    "num_turns": 24,
+    "subtype": "success",
+    "api_error_status": null,
+    "result": "One focused change this pass, aimed at the CRITICAL that repeats on all three breakpoints: the headline's display face.\n\n**Mechanism.** Exposure/Exposure-20 is licensed and has no WOFF2 in the repo, so `--font-display` falls through to Newsreader. The drawn optical weight 450 in Newsreader is a high-contrast Didone with thin stems, and it also sets ~10% narrow. Newsreader is loaded as a variable font (`font-weight: 200 800`), so the missing mass can be bought back on the weight axis instead of faked with tracking — the drawn `-0.04em` token stays exactly as defined.\n\nI picked the weight by measurement rather than eye, summing glyph advances straight out of the subset WOFF2 on disk at the drawn 108px/-0.04em:\n\n| wght | \"AI compute at\" | \"the maritime edge.\" |\n|---|---|---|\n| 450 (shipped) | 600.7px (−10.9%) | 786.9px (−8.3%) |\n| 700 | 644.9px (−4.3%) | 844.7px (−1.6%) |\n| **750** | **659.0px (−2.2%)** | **862.9px (+0.6%)** |\n| 800 | 673.3px (−0.1%) | 881.7px (+2.8%) |\n| Figma | 674px | 858px |\n\nThe 450 row reproduces the reviewer's measured 603px/781px to within 0.5%, which calibrates the model; 750 is the balance point across both lines. It sits slightly above the reviewer's eyeballed ~600-700 suggestion, and the measurement is why.\n\n**Companion edit (required, not scope creep):** the heavier face widens \"AI compute at the\" from ~308px to 338px at the 44px mobile size, which would have overflowed the 318px measure and orphaned \"edge.\" onto a third line. The title inset is now `px-3` below the tablet frame (`md:px-6`, `lg:px-0` unchanged), giving 342px and keeping the two balanced mobile lines.\n\n`tsc --noEmit`, `eslint src/app/sections/hero --max-warnings=0` and `npm run build` all pass.\n\nThree things I deliberately left alone, recorded in the summary JSON:\n\n- **The real Exposure/Matter files** — licensed, absent, and the stacks live in `src/app/fonts.ts` / `globals.css`, shared files owned by other agents this pass. The weight compensation belongs on `--text-display-xl--font-weight` in `globals.css` (it affects every display heading, not just the hero) once the real face lands or is ruled out.\n- **The lead's 5-line wrap and the knock-on 30px CTA offset** — same missing-font root cause but a different axis: Inter has no width axis, so the levers are the shared stack or the drawn 431px column. Worth its own pass.\n- **Vessel plate tone** — needs a re-export of `hero-vessel.png`; binary assets are off-limits and reverted.",
+    "ttft_ms": 1532,
+    "type": "result",
+    "duration_ms": 331604,
+    "uuid": "292b55ae-aaf8-4bd5-94a6-886e0d6168fe",
+    "ttft_stream_ms": 1209,
+    "time_to_request_ms": 175,
+    "first_content_frame_ms": 1209,
+    "queued_turn_count": 0,
+    "result_index": 0
+  },
+  "stderr": ""
+}

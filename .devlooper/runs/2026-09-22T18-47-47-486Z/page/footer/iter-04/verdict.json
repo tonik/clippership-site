@@ -1,0 +1,81 @@
+{
+  "breakpoints": {
+    "desktop": {
+      "score": 96,
+      "issues": [
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Panel geometry matches the reference exactly: 12px inset each side, 240px tall panel + 12px bottom gutter, radius 12, no stroke (correct - spec says no border). Panel wash sampled at rgb(240,232,229) vs reference rgb(240,233,229)."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Backer row is pixel-aligned with the reference: all nine slots sit in the same 51-77px y-band and the logo x-runs match the reference within 0-1px; darken blend + 0.6 opacity reads the same (no white plates)."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Meta row matches: copyright block at x50-224 / y152-160 (ref y152-161), hairline rule present between copyright and email, email rendered lower-case (not uppercased) as the spec requires, wordmark bounding box 642-797 x 158-185 vs reference 642-798 x 158-185."
+        },
+        {
+          "severity": "info",
+          "actionable": true,
+          "text": "Social icon row sits ~2px left of the reference (icons span x1286-1390 vs 1288-1391) - sub-perceptual, only worth touching during a final polish."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "A red '5 Issues' dev-tooling badge overlays the bottom-left of the panel in the screenshot. It is a dev-server overlay, not section markup, and accounts for a large share of the pixel diff - not a build defect."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Wave backdrop crest position, 0.64 opacity and top-anchored overflow crop match the reference; nothing clipped or resized wrongly."
+        }
+      ]
+    },
+    "tablet": {
+      "score": 94,
+      "issues": [
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "No Figma tablet mock - judged only for structural soundness. Backer row wraps to 5 + 4 equal slots, panel height grows, meta row becomes static below the logos, exactly the 768-1023 behaviour the spec describes."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "No overflow or clipping: copyright, rule, email, centred wordmark and the three social icons are all present and legible; content hierarchy from the desktop reference survives."
+        },
+        {
+          "severity": "info",
+          "actionable": true,
+          "text": "Social icons are ~16-23px tall with no enlarged hit area, so tap targets are under the ~44px guideline at touch widths. Purely a padding addition; no visual change."
+        }
+      ]
+    },
+    "mobile": {
+      "score": 93,
+      "issues": [
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "No Figma mobile mock - judged structurally. Backers reflow to 3 per row over 3 rows and the meta block becomes a centred column (wordmark, then copyright + rule + email, then social row), matching the spec's <768 intent."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "No horizontal overflow at 390px; the panel keeps its 12px inset and radius, and the hairline rule is present and centred under the copyright line."
+        },
+        {
+          "severity": "info",
+          "actionable": true,
+          "text": "Social icons keep their 16-23px desktop size with no added padding - tap targets are well below ~44px on a touch viewport."
+        }
+      ]
+    }
+  },
+  "overallScore": 93,
+  "summary": "The footer is effectively a pixel match to the Figma node on desktop (panel, waves, nine blended backer logos, meta row, rule and centred wordmark all within 1-2px), and the tablet and mobile adaptations - which have no mock - reflow cleanly per the spec with no overflow or lost content; only sub-perceptual nudges and tap-target padding remain."
+}

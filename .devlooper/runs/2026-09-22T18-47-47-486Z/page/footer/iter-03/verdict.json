@@ -1,0 +1,34 @@
+{
+  "breakpoints": {
+    "desktop": {
+      "score": 96,
+      "issues": [
+        { "severity": "info", "actionable": false, "text": "Measured against the Figma mock the footer is effectively pixel-identical: panel inset (12px sides/bottom, radius 12) and wave backdrop match within 1px; copyright text spans x50-224 in both; email x49-196 in both; wordmark x642-798 vs x642-797; social row x1288-1391 vs x1286-1390; vertical bands for all three meta parts are identical (152-161, 180-190, 158-185, 164-179). Residual diff excluding the dev-overlay badge is 0.53% and is text antialiasing only." },
+        { "severity": "info", "actionable": false, "text": "A red 'N Issues' dev-server overlay badge is baked into the screenshot at the panel's lower-left; it is Next.js dev tooling, not markup from this section, and accounts for most of the reported 2.33% pixel mismatch." },
+        { "severity": "info", "actionable": false, "text": "Typography tokens confirmed correct: Overpass Mono 700 / 12px / line-height 12px / letter-spacing 0.12px on both p and a, matching spec type ramp row 11-12; no system-font fallback, no missing tracking." },
+        { "severity": "info", "actionable": false, "text": "Meta rule between copyright and email is present at y171, ~181px wide from the block's left edge, matching node 183:88 (border-rule, rgba(25,25,25,0.16)). Build renders it a touch more opaque than the reference at the same y, imperceptible at normal viewing." },
+        { "severity": "info", "actionable": false, "text": "Backer row: nine slots, correct order (Y50, JC, Long Journey, Founders Factory, KM Yachtbuilders, ABS, RINA, Dykstra, NVIDIA Inception), darken blend + 0.6 opacity reproduced - ink density per logo matches the reference. Panel correctly carries no stroke, per spec." }
+      ]
+    },
+    "tablet": {
+      "score": 93,
+      "issues": [
+        { "severity": "info", "actionable": false, "text": "No Figma tablet mock; judged on its own merits. Backer row wraps to 5 + 4 slots, meta row goes static below it, wordmark stays on the panel centre line (x~384 of 768) - exactly the 768-1023 behaviour the spec describes." },
+        { "severity": "info", "actionable": false, "text": "No overflow, no clipping, no lost content: all nine logos, copyright, rule, email, wordmark and all three social icons survive the adaptation." },
+        { "severity": "info", "actionable": true, "text": "Second backer row (ABS, RINA, Dykstra, NVIDIA) left-aligns under the first four slots, leaving an empty fifth column on the right; this follows the spec's fixed flex-basis, but centring the wrapped remainder would read more deliberately. Cosmetic only." },
+        { "severity": "info", "actionable": false, "text": "Social icons render at their Figma sizes (16-23px tall); tap targets are below the 44px guideline, but that is the design's own sizing, not a build deviation." }
+      ]
+    },
+    "mobile": {
+      "score": 88,
+      "issues": [
+        { "severity": "warning", "actionable": true, "text": "Backer rows 2 and 3 fall onto the dark wave band, and at 0.6 opacity + mix-blend-mode darken the third-row logos lose almost all contrast - the NVIDIA Inception mark is effectively invisible (its 'nVIDIA' wordmark and 'Inception Program' lockup read as noise against the blue crest). On desktop all nine logos sit over the pale sky. Push the wave image further down on mobile (raise the negative top offset) or add more panel height above the meta row so the wrapped logo rows stay over the light band." },
+        { "severity": "info", "actionable": false, "text": "No Figma mobile mock; judged on its own merits. Layout follows the spec's <768 rules: 3 logos per row, then a centred meta column - wordmark, then copyright with a centred rule, then email, then the social row. Hierarchy from the desktop mock survives." },
+        { "severity": "info", "actionable": false, "text": "No horizontal overflow at 390px: the widest string, '(C)2026 CLIPPERSHIP INC.', measures ~178px and sits centred with ample margin." },
+        { "severity": "info", "actionable": true, "text": "Wrapped rows give logos with wide aspect ratios (NVIDIA Inception, Dykstra) a much smaller optical size than the square marks (RINA, ABS); a per-slot min-height or a larger slot height on mobile would even out the row." }
+      ]
+    }
+  },
+  "overallScore": 88,
+  "summary": "Desktop is an essentially pixel-perfect reproduction of the Figma footer (geometry, waves, meta rule, type tokens and logo blend all match within 1-2px); tablet adapts cleanly per spec, and the only real defect is on mobile, where the wrapped backer rows land on the dark wave band and the NVIDIA Inception logo becomes illegible."
+}

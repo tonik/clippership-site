@@ -1,0 +1,34 @@
+{
+  "breakpoints": {
+    "desktop": {
+      "score": 80,
+      "issues": [
+        { "severity": "warning", "actionable": true, "text": "Backer logo row is far too faint: measured darkest logo pixel is 154 in the build vs 97-120 in the Figma reference, consistently across all 9 slots. Effective alpha computes to ~0.38 instead of the spec's 0.6 - the classic symptom of opacity:0.6 being applied to BOTH the slot <a> and the <img> (0.6 x 0.6 = 0.36). Apply the 0.6 + mix-blend-mode: darken once, on the img only (spec.md 'Backer row 246:631')." },
+        { "severity": "warning", "actionable": true, "text": "Wave backdrop (footer-waves) renders ~36% too transparent. Sampling the panel centre column: at y=228 Figma is rgb(133,176,218) but the build is rgb(174,201,228); across every row the build's wave contrast against the panel wash is a constant 0.64x the reference, i.e. effective opacity ~0.41 instead of the spec's 0.64. Crest alignment is exact (best vertical cross-correlation at shift 0, r=0.99), so this is purely opacity, not the -59px anchor. Check for a doubled opacity (0.64 on a wrapper AND on the img) or an extra wash layer over the image." },
+        { "severity": "info", "actionable": true, "text": "Meta rule between copyright and email sits 1px lower than Figma (build y=171, Figma y=172) - imperceptible, polish only." },
+        { "severity": "info", "actionable": false, "text": "A red '5 Issues' dev-overlay pill is baked into the screenshot at the panel's bottom-left corner. It is injected dev tooling, not footer markup - not a section defect and not fixable in the section file, but it obscures the bottom-left of the panel in every capture." },
+        { "severity": "info", "actionable": false, "text": "Geometry is essentially pixel-exact: panel spans x=12..1427 and y=0..239 in both; wordmark bbox 642..798 x 158..185 (Figma 642..798 x 158..185); copyright bbox 50..224 x 152..161; social row 1286..1390 x 164..179 (Figma 1288..1391 x 164..179). Type ink also matches (wordmark darkest pixel 33 in both), so the fonts, sizes and tracking are right - only the two opacity layers above are off." },
+        { "severity": "info", "actionable": false, "text": "All 9 backers present and in the Figma order (Y50, JC, Long Journey, Founders Factory, KM Yachtbuilders, ABS, RINA, Dykstra, NVIDIA Inception), copy matches exactly including the uppercase '(C)2026 CLIPPERSHIP INC.' and the non-uppercased hello@clippership.co. No extra elements, no panel stroke added (spec: none)." }
+      ]
+    },
+    "tablet": {
+      "score": 84,
+      "issues": [
+        { "severity": "warning", "actionable": true, "text": "Same doubled-opacity token bug as desktop carries over: backer logos render at roughly 0.36 effective alpha instead of the documented 0.6 + mix-blend-mode: darken, so the whole logo row reads ghosted. This is a token violation, judgeable without a tablet mock." },
+        { "severity": "info", "actionable": false, "text": "No Figma tablet mock. The adaptation follows the spec's own 768-1023 rules: backers wrap 5 + 4, panel height goes auto, meta row becomes static with the wordmark still centred on the panel centre line (x=383 in a 768 viewport). Nothing overflows or clips." },
+        { "severity": "info", "actionable": false, "text": "Content hierarchy from the mock survives: backer row on top, then copyright/rule/email left, wordmark centre, social icons right. All 9 logos and all copy present." }
+      ]
+    },
+    "mobile": {
+      "score": 80,
+      "issues": [
+        { "severity": "warning", "actionable": true, "text": "The NVIDIA Inception logo (slot 9, bottom-right of the 3x3 grid) is effectively invisible - its darkest pixel is 158 against a mid-blue wave, giving almost no contrast, and the eye-mark is clipped at the top. This is the doubled-opacity bug compounded by the darker wave behind it at this breakpoint; restoring the single 0.6 opacity brings it back. A backer logo that cannot be read is lost content, not a styling nuance." },
+        { "severity": "warning", "actionable": true, "text": "Same doubled-opacity token bug as desktop across the whole backer grid (effective ~0.36 vs the spec's 0.6 + mix-blend-mode: darken)." },
+        { "severity": "info", "actionable": true, "text": "Social icon links are only 16-23px tall with no extra hit area, below the ~44px tap-target minimum. Add vertical padding to the anchors without changing the icon sizes." },
+        { "severity": "info", "actionable": false, "text": "No Figma mobile mock. The adaptation follows the spec's own <768 rules: backers 3 per row, meta becomes a centred column (wordmark, then centred copyright + rule + email, then the social row). No horizontal overflow, no clipped or unreadable text, copy intact." }
+      ]
+    }
+  },
+  "overallScore": 80,
+  "summary": "Footer geometry, typography and copy are essentially pixel-exact against the Figma mock at desktop and the responsive adaptations follow the spec cleanly, but both the wave backdrop and the nine backer logos render at roughly 0.64x and 0.6x their specified opacity - the whole panel reads washed-out, and on mobile the NVIDIA logo disappears entirely."
+}

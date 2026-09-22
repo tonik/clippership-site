@@ -1,0 +1,29 @@
+{
+  "startedAt": "2026-09-22T18:52:44.833Z",
+  "finishedAt": "2026-09-22T21:21:51.225Z",
+  "elapsedMinutes": 149.1,
+  "threshold": 85,
+  "maxPixelDiffPct": 25,
+  "project": "/Users/arturgrzeda/Documents/Devlooper/clippership",
+  "branch": null,
+  "totalIterations": 27,
+  "lowestScore": 64,
+  "pagesPlanned": [
+    "page"
+  ],
+  "pagesBuilt": [
+    "page"
+  ],
+  "stopReason": "finished",
+  "buildBroken": false,
+  "pages": [
+    {
+      "name": "page",
+      "finalScore": 64,
+      "finalPixelDiffPct": null,
+      "iterations": 27,
+      "stopReason": "max-iterations",
+      "buildOk": true
+    }
+  ]
+}

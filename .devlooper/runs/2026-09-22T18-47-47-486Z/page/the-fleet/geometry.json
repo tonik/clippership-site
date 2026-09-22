@@ -1,0 +1,486 @@
+{
+  "frame": {
+    "w": 1440,
+    "h": 800
+  },
+  "count": 26,
+  "elements": [
+    {
+      "id": "181:535",
+      "name": "The fleet",
+      "type": "FRAME",
+      "x": 12,
+      "y": 12,
+      "w": 1416,
+      "h": 776,
+      "depth": 1,
+      "parent": "The fleet",
+      "border": {
+        "radius": 12
+      }
+    },
+    {
+      "id": "181:536",
+      "name": "BG",
+      "type": "FRAME",
+      "x": 12,
+      "y": 12,
+      "w": 1416,
+      "h": 776,
+      "depth": 2,
+      "parent": "The fleet"
+    },
+    {
+      "id": "181:537",
+      "name": "mask",
+      "type": "RECTANGLE",
+      "x": -62,
+      "y": -373,
+      "w": 1697,
+      "h": 1358,
+      "depth": 3,
+      "parent": "BG",
+      "bg": {
+        "css": "image fill, object-fit cover",
+        "kind": "image"
+      }
+    },
+    {
+      "id": "181:538",
+      "name": "bg",
+      "type": "RECTANGLE",
+      "x": -66,
+      "y": -231,
+      "w": 1572,
+      "h": 1054,
+      "depth": 3,
+      "parent": "BG",
+      "bg": {
+        "css": "image fill, object-fit cover",
+        "kind": "image"
+      },
+      "opacity": 0.64,
+      "pin": "center/center"
+    },
+    {
+      "id": "181:539",
+      "name": "Rectangle 6",
+      "type": "RECTANGLE",
+      "x": 12,
+      "y": 12,
+      "w": 1416,
+      "h": 776,
+      "depth": 3,
+      "parent": "BG",
+      "bg": {
+        "css": "radial-gradient(at 0% 0%, rgba(246,246,247,0.64) 0%, rgba(246,246,247,0.00) 100%)",
+        "kind": "gradient"
+      }
+    },
+    {
+      "id": "181:540",
+      "name": "Vessel Silhouette Render 1 1",
+      "type": "RECTANGLE",
+      "x": 520,
+      "y": 199,
+      "w": 400,
+      "h": 400,
+      "depth": 2,
+      "parent": "The fleet",
+      "bg": {
+        "css": "image fill, object-fit cover",
+        "kind": "image"
+      },
+      "pin": "center/center"
+    },
+    {
+      "id": "181:541",
+      "name": "3d Navigator",
+      "type": "GROUP",
+      "x": 480,
+      "y": 328,
+      "w": 480,
+      "h": 144,
+      "depth": 2,
+      "parent": "The fleet",
+      "pin": "center/top"
+    },
+    {
+      "id": "181:543",
+      "name": "Mask",
+      "type": "RECTANGLE",
+      "x": 480,
+      "y": 328,
+      "w": 480,
+      "h": 144,
+      "depth": 4,
+      "parent": "Subtract",
+      "pin": "center/center"
+    },
+    {
+      "id": "181:544",
+      "name": "Mask",
+      "type": "RECTANGLE",
+      "x": 573,
+      "y": 328,
+      "w": 294,
+      "h": 144,
+      "depth": 4,
+      "parent": "Subtract",
+      "pin": "center/center"
+    },
+    {
+      "id": "181:546",
+      "name": "CTA",
+      "type": "FRAME",
+      "x": 700,
+      "y": 380,
+      "w": 40,
+      "h": 40,
+      "depth": 2,
+      "parent": "The fleet",
+      "border": {
+        "radius": 20
+      },
+      "layout": {
+        "dir": "row",
+        "gap": -8,
+        "pad": [
+          12,
+          20,
+          12,
+          20
+        ],
+        "justify": "center",
+        "align": "center",
+        "size": "fixed/fixed"
+      },
+      "pin": "center/center"
+    },
+    {
+      "id": "181:547",
+      "name": "fi:arrow-up",
+      "type": "INSTANCE",
+      "x": 708,
+      "y": 392,
+      "w": 16,
+      "h": 16,
+      "depth": 3,
+      "parent": "CTA"
+    },
+    {
+      "id": "181:548",
+      "name": "fi:arrow-up",
+      "type": "INSTANCE",
+      "x": 716,
+      "y": 392,
+      "w": 16,
+      "h": 16,
+      "depth": 3,
+      "parent": "CTA"
+    },
+    {
+      "id": "181:549",
+      "name": "Segment Control",
+      "type": "FRAME",
+      "x": 529,
+      "y": 712,
+      "w": 384,
+      "h": 40,
+      "depth": 2,
+      "parent": "The fleet",
+      "border": {
+        "radius": 40
+      },
+      "layout": {
+        "dir": "row",
+        "gap": 4,
+        "pad": [
+          12,
+          4,
+          12,
+          4
+        ],
+        "align": "center",
+        "size": "hug/fixed"
+      },
+      "backdropBlur": 8,
+      "pin": "center/top"
+    },
+    {
+      "id": "181:550",
+      "name": "Btn",
+      "type": "FRAME",
+      "x": 533,
+      "y": 716,
+      "w": 120,
+      "h": 32,
+      "depth": 3,
+      "parent": "Segment Control",
+      "border": {
+        "radius": 32
+      },
+      "layout": {
+        "dir": "row",
+        "gap": 10,
+        "pad": [
+          8,
+          16,
+          8,
+          16
+        ],
+        "justify": "center",
+        "align": "center",
+        "size": "hug/hug"
+      }
+    },
+    {
+      "id": "181:551",
+      "name": "October 2026",
+      "type": "TEXT",
+      "x": 549,
+      "y": 724,
+      "w": 88,
+      "h": 16,
+      "depth": 4,
+      "parent": "Btn",
+      "text": "October 2026",
+      "font": "Matter-Medium",
+      "fontSize": 14,
+      "fontWeight": 500,
+      "letterSpacing": -0.28,
+      "lineHeight": 16,
+      "align": "center",
+      "color": "#ffffff"
+    },
+    {
+      "id": "181:552",
+      "name": "Btn",
+      "type": "FRAME",
+      "x": 657,
+      "y": 716,
+      "w": 124,
+      "h": 32,
+      "depth": 3,
+      "parent": "Segment Control",
+      "border": {
+        "radius": 32
+      },
+      "layout": {
+        "dir": "row",
+        "gap": 10,
+        "pad": [
+          8,
+          16,
+          8,
+          16
+        ],
+        "justify": "center",
+        "align": "center",
+        "size": "hug/hug"
+      }
+    },
+    {
+      "id": "181:553",
+      "name": "Mid-2027",
+      "type": "TEXT",
+      "x": 673,
+      "y": 724,
+      "w": 92,
+      "h": 16,
+      "depth": 4,
+      "parent": "Btn",
+      "text": "Mid-2027",
+      "font": "Matter-SemiBold",
+      "fontSize": 14,
+      "fontWeight": 600,
+      "letterSpacing": -0.28,
+      "lineHeight": 16,
+      "align": "center",
+      "color": "#191919",
+      "opacity": 0.64
+    },
+    {
+      "id": "181:554",
+      "name": "Btn",
+      "type": "FRAME",
+      "x": 785,
+      "y": 716,
+      "w": 124,
+      "h": 32,
+      "depth": 3,
+      "parent": "Segment Control",
+      "border": {
+        "radius": 32
+      },
+      "layout": {
+        "dir": "row",
+        "gap": 10,
+        "pad": [
+          8,
+          16,
+          8,
+          16
+        ],
+        "justify": "center",
+        "align": "center",
+        "size": "hug/hug"
+      }
+    },
+    {
+      "id": "181:555",
+      "name": "This decade",
+      "type": "TEXT",
+      "x": 801,
+      "y": 724,
+      "w": 92,
+      "h": 16,
+      "depth": 4,
+      "parent": "Btn",
+      "text": "This decade",
+      "font": "Matter-SemiBold",
+      "fontSize": 14,
+      "fontWeight": 600,
+      "letterSpacing": -0.28,
+      "lineHeight": 16,
+      "align": "center",
+      "color": "#191919",
+      "opacity": 0.64
+    },
+    {
+      "id": "181:556",
+      "name": "Header",
+      "type": "FRAME",
+      "x": 48,
+      "y": 48,
+      "w": 660,
+      "h": 188,
+      "depth": 2,
+      "parent": "The fleet",
+      "layout": {
+        "dir": "column",
+        "gap": 16,
+        "size": "fixed/hug"
+      }
+    },
+    {
+      "id": "181:557",
+      "name": "the roadmap",
+      "type": "TEXT",
+      "x": 48,
+      "y": 48,
+      "w": 660,
+      "h": 12,
+      "depth": 3,
+      "parent": "Header",
+      "text": "the roadmap",
+      "font": "OverpassMono-Bold",
+      "fontSize": 12,
+      "fontWeight": 700,
+      "letterSpacing": 0.12,
+      "lineHeight": 12,
+      "case": "upper",
+      "color": "#191919",
+      "opacity": 0.6
+    },
+    {
+      "id": "181:558",
+      "name": "One architecture, three scales",
+      "type": "TEXT",
+      "x": 48,
+      "y": 76,
+      "w": 660,
+      "h": 160,
+      "depth": 3,
+      "parent": "Header",
+      "text": "One architecture, three scales",
+      "font": "Exposure-20",
+      "fontSize": 80,
+      "fontWeight": 450,
+      "letterSpacing": -3.2,
+      "lineHeight": 80,
+      "color": "#291d1d"
+    },
+    {
+      "id": "181:559",
+      "name": "Text",
+      "type": "FRAME",
+      "x": 1008,
+      "y": 310,
+      "w": 384,
+      "h": 180,
+      "depth": 2,
+      "parent": "The fleet",
+      "layout": {
+        "dir": "column",
+        "gap": 56,
+        "size": "fixed/hug"
+      },
+      "pin": "left/center"
+    },
+    {
+      "id": "181:560",
+      "name": "Our roadmap starts with maritime edge compute and scales to ",
+      "type": "TEXT",
+      "x": 1008,
+      "y": 310,
+      "w": 384,
+      "h": 84,
+      "depth": 3,
+      "parent": "Text",
+      "text": "Our roadmap starts with maritime edge co",
+      "font": "ArticulatCF-Regular",
+      "fontSize": 24,
+      "fontWeight": 400,
+      "letterSpacing": -0.96,
+      "lineHeight": 28,
+      "color": "#191919"
+    },
+    {
+      "id": "181:561",
+      "name": "CTA",
+      "type": "FRAME",
+      "x": 1008,
+      "y": 450,
+      "w": 129,
+      "h": 40,
+      "depth": 3,
+      "parent": "Text",
+      "border": {
+        "w": 1,
+        "color": "rgba(25,25,25,0.08)",
+        "radius": 20
+      },
+      "layout": {
+        "dir": "row",
+        "gap": 24,
+        "pad": [
+          12,
+          20,
+          12,
+          20
+        ],
+        "align": "center",
+        "size": "hug/fixed"
+      }
+    },
+    {
+      "id": "181:562",
+      "name": "Specifications",
+      "type": "TEXT",
+      "x": 1028,
+      "y": 462,
+      "w": 89,
+      "h": 16,
+      "depth": 4,
+      "parent": "CTA",
+      "text": "Specifications",
+      "font": "Matter-SemiBold",
+      "fontSize": 14,
+      "fontWeight": 600,
+      "letterSpacing": -0.28,
+      "lineHeight": 16,
+      "color": "#191919"
+    }
+  ]
+}

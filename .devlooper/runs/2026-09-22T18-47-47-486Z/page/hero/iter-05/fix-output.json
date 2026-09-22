@@ -1,0 +1,101 @@
+{
+  "exitCode": 0,
+  "parsed": {
+    "duration_api_ms": 194881,
+    "stop_reason": "end_turn",
+    "session_id": "6658b55f-e24e-4d46-b124-9002b7e814c6",
+    "total_cost_usd": 1.5534035000000002,
+    "usage": {
+      "input_tokens": 30,
+      "cache_creation_input_tokens": 67672,
+      "cache_read_input_tokens": 986567,
+      "output_tokens": 15330,
+      "output_tokens_details": {
+        "thinking_tokens": 9493
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 67672,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 973,
+          "cache_read_input_tokens": 81226,
+          "cache_creation_input_tokens": 1330,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1330
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-opus-5": {
+        "inputTokens": 30,
+        "outputTokens": 15330,
+        "cacheReadInputTokens": 986567,
+        "cacheCreationInputTokens": 67672,
+        "webSearchRequests": 0,
+        "costUSD": 1.5534035000000002,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 9493,
+        "canonicalModel": "claude-opus-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "permission_denials": [],
+    "terminal_reason": "completed",
+    "fast_mode_state": "off",
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "is_error": false,
+    "num_turns": 15,
+    "subtype": "success",
+    "api_error_status": null,
+    "result": "Done. `tsc --noEmit`, `eslint src/app/sections/hero --max-warnings=0` and `npm run build` all pass.\n\n**What I changed** (only `src/app/sections/hero/`):\n\n1. **Wordmark now scales with the headline** (the tablet + mobile warning). It was `h-7 w-[157px]`, hard-locked at every width, while `--text-display-xl` is `clamp(2.75rem, 7.5vw, 6.75rem)` — so at 768/390 the tag kept its desktop size and outgrew its own headline (0.38 / 0.54 of the longest line vs the 0.21 the 1440 frame draws). The Title frame now carries `font-size: var(--text-display-xl)`, and the wordmark is `calc(var(--hero-wordmark-ratio) * 1em)` with `--hero-wordmark-ratio: 1.4537` (= 157/108, the ratio Figma draws) and `height: auto`. That resolves to exactly 157px at 1440, ~84px at 768, ~64px at 390.\n\n2. **Feathered legibility wash behind the lead, below 992px only** (the other tablet + mobile warning). Two earlier iterations tried to solve this by *moving* the block and neither position exists at these widths; re-anchoring the vessel doesn't help either, because the raster is 1.418:1 against a portrait stage so `object-fit: cover` crops horizontally only and `object-position` has no vertical effect there. So `.lead::before` paints a radial wash of the surface colour (`rgb(var(--white-rgb) / 0.68)` → 0 at 76%) inset by `--space-xlg`, fully feathered out inside its own bleed — no panel edge. Hard-gated off at ≥992px so the drawn desktop frame is untouched.\n\n3. **Token hygiene:** `lg:mt-37` → `lg:mt-[var(--space-6xl)]` (148px) and `lg:mt-24` → `lg:mt-[var(--space-4xl)]` (96px). Same computed values — both are literal spec numbers with existing named tokens — now referencing the tokens.\n\n**Two issues I could not act on:**\n\n- The CRITICAL hero-imagery tone is confirmed at the source: Figma node `247:655` has **two** image fills, and the opaque top one (`9f1c066f…`, with exposure +0.06 / contrast +0.04) is what renders — the build carries the *lower* fill (`b7f71aa1…`). Fixing it means re-exporting the flattened asset, and binary assets are off-limits this pass (any write is auto-reverted, which would leave a broken `src`). This needs an asset-level fix outside the section pass.\n- The Exposure/Matter `size-adjust` fallback faces live in the shared `globals.css`, which another agent owns — flagged for the shared-file follow-up, as the reviewer noted.",
+    "ttft_ms": 1417,
+    "type": "result",
+    "duration_ms": 209604,
+    "uuid": "c958aafb-a489-4057-b0e6-e825a7f1a238",
+    "ttft_stream_ms": 1074,
+    "time_to_request_ms": 44,
+    "first_content_frame_ms": 1074,
+    "queued_turn_count": 0,
+    "result_index": 0
+  },
+  "stderr": ""
+}

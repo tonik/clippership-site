@@ -1,0 +1,1540 @@
+{
+ "version": 1,
+ "updatedAt": "2026-09-22T21:22:01.202Z",
+ "note": "Written by devlooper. Claude Code deletes its transcripts after 30 days; this outlives them.",
+ "sessions": {
+  "06b30444-ea92-41c9-a578-c70c301674cf": {
+   "entrypoint": "sdk-cli",
+   "first": 1790102025853,
+   "last": 1790102025853,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 2,
+      "output": 14,
+      "cacheRead": 22824,
+      "cw1h": 0,
+      "cw5m": 0,
+      "cost": 0.011772,
+      "unpriced": 0,
+      "msgs": 1
+     }
+    ]
+   ]
+  },
+  "07336d1a-6903-4ac2-85bf-74c857685c91": {
+   "entrypoint": "sdk-cli",
+   "first": 1790101802989,
+   "last": 1790101803114,
+   "models": [
+    [
+     "claude-haiku-4-5-20251001",
+     {
+      "input": 20,
+      "output": 218,
+      "cacheRead": 27378,
+      "cw1h": 20650,
+      "cw5m": 0,
+      "cost": 0.0451478,
+      "unpriced": 0,
+      "msgs": 2
+     }
+    ]
+   ]
+  },
+  "158c482a-28f3-405a-968d-70b17693bd14": {
+   "entrypoint": "sdk-cli",
+   "first": 1790101792590,
+   "last": 1790101793618,
+   "models": [
+    [
+     "claude-opus-5-5",
+     {
+      "input": 4,
+      "output": 484,
+      "cacheRead": 20468,
+      "cw1h": 23212,
+      "cw5m": 0,
+      "cost": 0.254474,
+      "unpriced": 0,
+      "msgs": 2
+     }
+    ]
+   ]
+  },
+  "1e8a1357-7360-4720-9a5a-159f8646cd5a": {
+   "entrypoint": "sdk-cli",
+   "first": 1790102171297,
+   "last": 1790102171507,
+   "models": [
+    [
+     "claude-haiku-4-5-20251001",
+     {
+      "input": 20,
+      "output": 488,
+      "cacheRead": 48028,
+      "cw1h": 0,
+      "cw5m": 0,
+      "cost": 0.0072628,
+      "unpriced": 0,
+      "msgs": 2
+     }
+    ]
+   ]
+  },
+  "36a6c5be-572c-4bdd-8c1d-0cd4accfa98c": {
+   "entrypoint": "sdk-cli",
+   "first": 1790101830581,
+   "last": 1790101836854,
+   "models": [
+    [
+     "claude-sonnet-5",
+     {
+      "input": 10,
+      "output": 488,
+      "cacheRead": 151949,
+      "cw1h": 28739,
+      "cw5m": 0,
+      "cost": 0.2253687,
+      "unpriced": 0,
+      "msgs": 5
+     }
+    ]
+   ]
+  },
+  "4bae6d2a-bb6f-4d78-bf19-c6ee5f76e7b5": {
+   "entrypoint": "sdk-cli",
+   "first": 1790102169766,
+   "last": 1790102169766,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 2,
+      "output": 16,
+      "cacheRead": 22824,
+      "cw1h": 0,
+      "cw5m": 0,
+      "cost": 0.011822,
+      "unpriced": 0,
+      "msgs": 1
+     }
+    ]
+   ]
+  },
+  "53e8667b-a03c-4aeb-b265-26ee54614556": {
+   "entrypoint": "sdk-cli",
+   "first": 1790102034540,
+   "last": 1790102042419,
+   "models": [
+    [
+     "claude-sonnet-5",
+     {
+      "input": 12,
+      "output": 602,
+      "cacheRead": 204897,
+      "cw1h": 10877,
+      "cw5m": 0,
+      "cost": 0.1357971,
+      "unpriced": 0,
+      "msgs": 6
+     }
+    ]
+   ]
+  },
+  "698e8288-1d2a-40ac-b805-325e8e298e54": {
+   "entrypoint": "sdk-cli",
+   "first": 1790102027553,
+   "last": 1790102028720,
+   "models": [
+    [
+     "claude-haiku-4-5-20251001",
+     {
+      "input": 20,
+      "output": 684,
+      "cacheRead": 48028,
+      "cw1h": 0,
+      "cw5m": 0,
+      "cost": 0.0082428,
+      "unpriced": 0,
+      "msgs": 2
+     }
+    ]
+   ]
+  },
+  "7ec0df3f-be99-4c42-958b-d15f236c68a3": {
+   "entrypoint": "sdk-cli",
+   "first": 1790102161628,
+   "last": 1790102162393,
+   "models": [
+    [
+     "claude-opus-5-5",
+     {
+      "input": 4,
+      "output": 304,
+      "cacheRead": 43680,
+      "cw1h": 0,
+      "cw5m": 0,
+      "cost": 0.02946,
+      "unpriced": 0,
+      "msgs": 2
+     }
+    ]
+   ]
+  },
+  "9ded56e7-71e4-402d-8a88-67dfd3533661": {
+   "entrypoint": "sdk-cli",
+   "first": 1790102169534,
+   "last": 1790102169534,
+   "models": [
+    [
+     "claude-sonnet-5",
+     {
+      "input": 2,
+      "output": 18,
+      "cacheRead": 33344,
+      "cw1h": 0,
+      "cw5m": 0,
+      "cost": 0.0102792,
+      "unpriced": 0,
+      "msgs": 1
+     }
+    ]
+   ]
+  },
+  "b3e96b17-6807-436c-be4a-a4da8e6b850c": {
+   "entrypoint": "sdk-cli",
+   "first": 1790102016828,
+   "last": 1790102018107,
+   "models": [
+    [
+     "claude-opus-5-5",
+     {
+      "input": 4,
+      "output": 234,
+      "cacheRead": 43680,
+      "cw1h": 0,
+      "cw5m": 0,
+      "cost": 0.02771,
+      "unpriced": 0,
+      "msgs": 2
+     }
+    ]
+   ]
+  },
+  "b47e8469-16b8-4e0e-9815-d0a307885f68": {
+   "entrypoint": "sdk-cli",
+   "first": 1790102176579,
+   "last": 1790102183392,
+   "models": [
+    [
+     "claude-sonnet-5",
+     {
+      "input": 10,
+      "output": 492,
+      "cacheRead": 171209,
+      "cw1h": 9485,
+      "cw5m": 0,
+      "cost": 0.11568270000000001,
+      "unpriced": 0,
+      "msgs": 5
+     }
+    ]
+   ]
+  },
+  "b7e1e92e-3de9-4d93-96ea-cbc41cd5a848": {
+   "entrypoint": "sdk-cli",
+   "first": 1790101802004,
+   "last": 1790101802004,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 2,
+      "output": 18,
+      "cacheRead": 10234,
+      "cw1h": 12590,
+      "cw5m": 0,
+      "cost": 0.131477,
+      "unpriced": 0,
+      "msgs": 1
+     }
+    ]
+   ]
+  },
+  "c0b067fd-9c2c-42a9-bf54-7d1feb40a179": {
+   "entrypoint": "sdk-cli",
+   "first": 1790102026288,
+   "last": 1790102026288,
+   "models": [
+    [
+     "claude-sonnet-5",
+     {
+      "input": 2,
+      "output": 70,
+      "cacheRead": 33344,
+      "cw1h": 0,
+      "cw5m": 0,
+      "cost": 0.0110592,
+      "unpriced": 0,
+      "msgs": 1
+     }
+    ]
+   ]
+  },
+  "db211213-fa3e-463d-af9d-4f942e804db2": {
+   "entrypoint": "sdk-cli",
+   "first": 1790101801873,
+   "last": 1790101801873,
+   "models": [
+    [
+     "claude-sonnet-5",
+     {
+      "input": 2,
+      "output": 18,
+      "cacheRead": 18639,
+      "cw1h": 14705,
+      "cw5m": 0,
+      "cost": 0.09409769999999999,
+      "unpriced": 0,
+      "msgs": 1
+     }
+    ]
+   ]
+  },
+  "4de0fd22-2a3e-46fc-802e-60ad0d62dc54": {
+   "entrypoint": "sdk-cli",
+   "first": 1790102890322,
+   "last": 1790102890469,
+   "models": [
+    [
+     "claude-haiku-4-5-20251001",
+     {
+      "input": 20,
+      "output": 346,
+      "cacheRead": 48028,
+      "cw1h": 0,
+      "cw5m": 0,
+      "cost": 0.0065528,
+      "unpriced": 0,
+      "msgs": 2
+     }
+    ]
+   ]
+  },
+  "5e68a637-8493-4d93-b769-0fe5601af91f": {
+   "entrypoint": "sdk-cli",
+   "first": 1790102890158,
+   "last": 1790102890158,
+   "models": [
+    [
+     "claude-sonnet-5",
+     {
+      "input": 2,
+      "output": 31,
+      "cacheRead": 33344,
+      "cw1h": 0,
+      "cw5m": 0,
+      "cost": 0.010474200000000001,
+      "unpriced": 0,
+      "msgs": 1
+     }
+    ]
+   ]
+  },
+  "6804fc6a-549b-4abc-aa25-b74a7f85ad13": {
+   "entrypoint": "sdk-cli",
+   "first": 1790102889031,
+   "last": 1790102889031,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 2,
+      "output": 17,
+      "cacheRead": 22824,
+      "cw1h": 0,
+      "cw5m": 0,
+      "cost": 0.011847,
+      "unpriced": 0,
+      "msgs": 1
+     }
+    ]
+   ]
+  },
+  "bb6763cb-8ad1-439e-8751-7aa2e92b5973": {
+   "entrypoint": "sdk-cli",
+   "first": 1790102880118,
+   "last": 1790102881779,
+   "models": [
+    [
+     "claude-opus-5-5",
+     {
+      "input": 4,
+      "output": 296,
+      "cacheRead": 43680,
+      "cw1h": 0,
+      "cw5m": 0,
+      "cost": 0.014672,
+      "unpriced": 0,
+      "msgs": 2
+     }
+    ]
+   ]
+  },
+  "dbadd8e4-e7a0-4315-840a-95b94f48a494": {
+   "entrypoint": "sdk-cli",
+   "first": 1790102894797,
+   "last": 1790102901961,
+   "models": [
+    [
+     "claude-sonnet-5",
+     {
+      "input": 12,
+      "output": 606,
+      "cacheRead": 195960,
+      "cw1h": 45644,
+      "cw5m": 0,
+      "cost": 0.341778,
+      "unpriced": 0,
+      "msgs": 6
+     }
+    ]
+   ]
+  },
+  "3e1ab8cf-c5f3-4f4a-8fd1-0e2580112406": {
+   "entrypoint": "sdk-cli",
+   "first": 1790103177910,
+   "last": 1790104056321,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 192,
+      "output": 199836,
+      "cacheRead": 10131559,
+      "cw1h": 479200,
+      "cw5m": 0,
+      "cost": 14.8546395,
+      "unpriced": 0,
+      "msgs": 96
+     }
+    ]
+   ]
+  },
+  "d36b04b8-c537-4853-aeab-5a8db63853dd": {
+   "entrypoint": "sdk-cli",
+   "first": 1790102906396,
+   "last": 1790103162820,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 62,
+      "output": 60006,
+      "cacheRead": 1336776,
+      "cw1h": 174740,
+      "cw5m": 0,
+      "cost": 3.916248,
+      "unpriced": 0,
+      "msgs": 31
+     }
+    ]
+   ]
+  },
+  "094e8632-7252-41e4-8597-510a5cd4bc88": {
+   "entrypoint": "sdk-cli",
+   "first": 1790104613479,
+   "last": 1790104788566,
+   "models": [
+    [
+     "claude-haiku-4-5-20251001",
+     {
+      "input": 585,
+      "output": 44384,
+      "cacheRead": 4588671,
+      "cw1h": 151532,
+      "cw5m": 3867,
+      "cost": 0.9892698500000001,
+      "unpriced": 0,
+      "msgs": 72
+     }
+    ]
+   ]
+  },
+  "31e28ea3-965b-4a68-890b-a935b774981c": {
+   "entrypoint": "sdk-cli",
+   "first": 1790104806184,
+   "last": 1790106252836,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 194,
+      "output": 280293,
+      "cacheRead": 15694334,
+      "cw1h": 457271,
+      "cw5m": 0,
+      "cost": 19.428172,
+      "unpriced": 0,
+      "msgs": 97
+     }
+    ]
+   ]
+  },
+  "f4397481-180c-484f-87ec-8a7edc696fc9": {
+   "entrypoint": "sdk-cli",
+   "first": 1790104062040,
+   "last": 1790104577617,
+   "models": [
+    [
+     "claude-haiku-4-5-20251001",
+     {
+      "input": 275,
+      "output": 170601,
+      "cacheRead": 1343429,
+      "cw1h": 161414,
+      "cw5m": 0,
+      "cost": 1.3104509,
+      "unpriced": 0,
+      "msgs": 31
+     }
+    ],
+    [
+     "<synthetic>",
+     {
+      "input": 0,
+      "output": 0,
+      "cacheRead": 0,
+      "cw1h": 0,
+      "cw5m": 0,
+      "cost": 0,
+      "unpriced": 0,
+      "msgs": 1
+     }
+    ]
+   ]
+  },
+  "0effc96a-7670-424c-8833-81b8eb323cca": {
+   "entrypoint": "sdk-cli",
+   "first": 1790106488720,
+   "last": 1790106670771,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 74,
+      "output": 26169,
+      "cacheRead": 1857423,
+      "cw1h": 135167,
+      "cw5m": 0,
+      "cost": 2.9349765,
+      "unpriced": 0,
+      "msgs": 37
+     }
+    ]
+   ]
+  },
+  "0fc1639f-7858-4610-a1b0-1056ba0d6d81": {
+   "entrypoint": "sdk-cli",
+   "first": 1790107520609,
+   "last": 1790108033140,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 122,
+      "output": 88179,
+      "cacheRead": 4532035,
+      "cw1h": 226624,
+      "cw5m": 0,
+      "cost": 6.7373425,
+      "unpriced": 0,
+      "msgs": 61
+     }
+    ]
+   ]
+  },
+  "29229475-3bcc-4629-bc3b-874110353284": {
+   "entrypoint": "sdk-cli",
+   "first": 1790107025579,
+   "last": 1790107369444,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 144,
+      "output": 52901,
+      "cacheRead": 4786689,
+      "cw1h": 189852,
+      "cw5m": 0,
+      "cost": 5.6151095,
+      "unpriced": 0,
+      "msgs": 72
+     }
+    ]
+   ]
+  },
+  "2c991f1e-bc69-4bef-8081-0e7ba16053ba": {
+   "entrypoint": "sdk-cli",
+   "first": 1790106445103,
+   "last": 1790107032407,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 122,
+      "output": 46449,
+      "cacheRead": 3515295,
+      "cw1h": 134046,
+      "cw5m": 0,
+      "cost": 4.2599425,
+      "unpriced": 0,
+      "msgs": 61
+     }
+    ]
+   ]
+  },
+  "33addfee-abe8-4e0f-8f0c-6e7a3d640e44": {
+   "entrypoint": "sdk-cli",
+   "first": 1790107843912,
+   "last": 1790108227438,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 104,
+      "output": 62313,
+      "cacheRead": 3660179,
+      "cw1h": 191748,
+      "cw5m": 0,
+      "cost": 5.3059145,
+      "unpriced": 0,
+      "msgs": 52
+     }
+    ]
+   ]
+  },
+  "4af24c0c-c84f-4992-8391-45579407e284": {
+   "entrypoint": "sdk-cli",
+   "first": 1790106773794,
+   "last": 1790106949166,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 68,
+      "output": 32640,
+      "cacheRead": 1643228,
+      "cw1h": 134126,
+      "cw5m": 0,
+      "cost": 2.979214,
+      "unpriced": 0,
+      "msgs": 34
+     }
+    ]
+   ]
+  },
+  "4d344009-c6cd-4bac-9cbb-4e3ef3fd9f74": {
+   "entrypoint": "sdk-cli",
+   "first": 1790107097928,
+   "last": 1790107300686,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 66,
+      "output": 28196,
+      "cacheRead": 1672730,
+      "cw1h": 104063,
+      "cw5m": 0,
+      "cost": 2.582225,
+      "unpriced": 0,
+      "msgs": 33
+     }
+    ]
+   ]
+  },
+  "5272f09f-9a28-4233-ba55-26310980cca9": {
+   "entrypoint": "sdk-cli",
+   "first": 1790107626333,
+   "last": 1790107648707,
+   "models": [
+    [
+     "claude-sonnet-5",
+     {
+      "input": 22,
+      "output": 3671,
+      "cacheRead": 398714,
+      "cw1h": 49874,
+      "cw5m": 0,
+      "cost": 0.4739892,
+      "unpriced": 0,
+      "msgs": 11
+     }
+    ]
+   ]
+  },
+  "5db4490f-0609-448b-b12b-3885146ec6ce": {
+   "entrypoint": "sdk-cli",
+   "first": 1790107188356,
+   "last": 1790107353947,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 70,
+      "output": 26508,
+      "cacheRead": 1800459,
+      "cw1h": 132088,
+      "cw5m": 0,
+      "cost": 2.8841595,
+      "unpriced": 0,
+      "msgs": 35
+     }
+    ]
+   ]
+  },
+  "91820673-b3ec-4568-83b4-c34d6b0364df": {
+   "entrypoint": "sdk-cli",
+   "first": 1790106826893,
+   "last": 1790107029964,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 70,
+      "output": 34075,
+      "cacheRead": 1841727,
+      "cw1h": 149680,
+      "cw5m": 0,
+      "cost": 3.2698885,
+      "unpriced": 0,
+      "msgs": 35
+     }
+    ]
+   ]
+  },
+  "c7bc9ba3-aa7b-4977-b14f-3d9d7865f7a1": {
+   "entrypoint": "sdk-cli",
+   "first": 1790106560095,
+   "last": 1790106806693,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 90,
+      "output": 47900,
+      "cacheRead": 2424867,
+      "cw1h": 159484,
+      "cw5m": 0,
+      "cost": 4.0052235,
+      "unpriced": 0,
+      "msgs": 45
+     }
+    ]
+   ]
+  },
+  "ca52de7f-0202-48c3-9655-9ca230e0b451": {
+   "entrypoint": "sdk-cli",
+   "first": 1790107648959,
+   "last": 1790107667353,
+   "models": [
+    [
+     "claude-sonnet-5",
+     {
+      "input": 22,
+      "output": 2351,
+      "cacheRead": 387288,
+      "cw1h": 42035,
+      "cw5m": 0,
+      "cost": 0.4037274,
+      "unpriced": 0,
+      "msgs": 11
+     }
+    ]
+   ]
+  },
+  "dba90281-216c-425c-a570-ad8f33dc9897": {
+   "entrypoint": "sdk-cli",
+   "first": 1790106482388,
+   "last": 1790106612474,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 50,
+      "output": 21927,
+      "cacheRead": 1038559,
+      "cw1h": 113770,
+      "cw5m": 0,
+      "cost": 2.2054045,
+      "unpriced": 0,
+      "msgs": 25
+     }
+    ]
+   ]
+  },
+  "0752cb59-d2fd-494a-b8d6-02798018f625": {
+   "entrypoint": "sdk-cli",
+   "first": 1790107680296,
+   "last": 1790107881544,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 82,
+      "output": 33935,
+      "cacheRead": 1848014,
+      "cw1h": 123697,
+      "cw5m": 0,
+      "cost": 3.009762,
+      "unpriced": 0,
+      "msgs": 41
+     }
+    ]
+   ]
+  },
+  "20cb9555-385a-405f-8cb9-9b526ebdafa1": {
+   "entrypoint": "sdk-cli",
+   "first": 1790107331096,
+   "last": 1790107622139,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 112,
+      "output": 41046,
+      "cacheRead": 2762512,
+      "cw1h": 121595,
+      "cw5m": 0,
+      "cost": 3.623916,
+      "unpriced": 0,
+      "msgs": 56
+     }
+    ]
+   ]
+  },
+  "5585d151-42dd-44be-8ae6-28f10e6dd92d": {
+   "entrypoint": "sdk-cli",
+   "first": 1790106693043,
+   "last": 1790106819612,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 64,
+      "output": 28384,
+      "cacheRead": 1414376,
+      "cw1h": 184559,
+      "cw5m": 0,
+      "cost": 3.262698,
+      "unpriced": 0,
+      "msgs": 32
+     }
+    ]
+   ]
+  },
+  "63330932-ded9-4a0a-8e18-077202865e64": {
+   "entrypoint": "sdk-cli",
+   "first": 1790106833266,
+   "last": 1790107017636,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 74,
+      "output": 26323,
+      "cacheRead": 1624749,
+      "cw1h": 90496,
+      "cw5m": 0,
+      "cost": 2.3757795,
+      "unpriced": 0,
+      "msgs": 37
+     }
+    ]
+   ]
+  },
+  "693b812c-1f7d-482f-b1f2-a5dcad2078ab": {
+   "entrypoint": "sdk-cli",
+   "first": 1790106307802,
+   "last": 1790106475283,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 68,
+      "output": 29233,
+      "cacheRead": 1390831,
+      "cw1h": 125523,
+      "cw5m": 0,
+      "cost": 2.6818105,
+      "unpriced": 0,
+      "msgs": 34
+     }
+    ]
+   ]
+  },
+  "6c0ad2ff-90a2-432f-9b91-1e7403ae4afa": {
+   "entrypoint": "sdk-cli",
+   "first": 1790107397781,
+   "last": 1790107837057,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 160,
+      "output": 67648,
+      "cacheRead": 4783118,
+      "cw1h": 174575,
+      "cw5m": 0,
+      "cost": 5.829309,
+      "unpriced": 0,
+      "msgs": 80
+     }
+    ]
+   ]
+  },
+  "6d728a46-7b9a-4f7c-985f-334b1c7146e9": {
+   "entrypoint": "sdk-cli",
+   "first": 1790106315898,
+   "last": 1790106437496,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 40,
+      "output": 18911,
+      "cacheRead": 668116,
+      "cw1h": 102926,
+      "cw5m": 0,
+      "cost": 1.836293,
+      "unpriced": 0,
+      "msgs": 20
+     }
+    ]
+   ]
+  },
+  "86ced669-9020-442a-af55-c82c2bb7f42b": {
+   "entrypoint": "sdk-cli",
+   "first": 1790106635620,
+   "last": 1790106762985,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 52,
+      "output": 23266,
+      "cacheRead": 977377,
+      "cw1h": 116076,
+      "cw5m": 0,
+      "cost": 2.2313585,
+      "unpriced": 0,
+      "msgs": 26
+     }
+    ]
+   ]
+  },
+  "a33cb748-dfab-4ff3-97d9-cfccc3e0b283": {
+   "entrypoint": "sdk-cli",
+   "first": 1790107056897,
+   "last": 1790107179580,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 60,
+      "output": 25674,
+      "cacheRead": 1336553,
+      "cw1h": 129009,
+      "cw5m": 0,
+      "cost": 2.6005165,
+      "unpriced": 0,
+      "msgs": 30
+     }
+    ]
+   ]
+  },
+  "ad09e9f1-a6ec-4549-b9e3-7bc828f3b89f": {
+   "entrypoint": "sdk-cli",
+   "first": 1790106969874,
+   "last": 1790107085281,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 48,
+      "output": 17475,
+      "cacheRead": 847365,
+      "cw1h": 101132,
+      "cw5m": 0,
+      "cost": 1.8721175,
+      "unpriced": 0,
+      "msgs": 24
+     }
+    ]
+   ]
+  },
+  "bb3324f4-d162-4909-8ee0-d055efe83bb1": {
+   "entrypoint": "sdk-cli",
+   "first": 1790107697640,
+   "last": 1790107917805,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 118,
+      "output": 37059,
+      "cacheRead": 2958568,
+      "cw1h": 148934,
+      "cw5m": 0,
+      "cost": 3.895689,
+      "unpriced": 0,
+      "msgs": 59
+     }
+    ]
+   ]
+  },
+  "bfc0bcd4-f545-498e-9c9c-ef232721648c": {
+   "entrypoint": "sdk-cli",
+   "first": 1790107382998,
+   "last": 1790107644537,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 86,
+      "output": 39754,
+      "cacheRead": 2023234,
+      "cw1h": 146834,
+      "cw5m": 0,
+      "cost": 3.474237,
+      "unpriced": 0,
+      "msgs": 43
+     }
+    ]
+   ]
+  },
+  "c0c7b98e-a8cb-441d-9cc1-c506a93dfdda": {
+   "entrypoint": "sdk-cli",
+   "first": 1790107071710,
+   "last": 1790107513020,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 126,
+      "output": 76901,
+      "cacheRead": 3711652,
+      "cw1h": 197329,
+      "cw5m": 0,
+      "cost": 5.752271,
+      "unpriced": 0,
+      "msgs": 63
+     }
+    ]
+   ]
+  },
+  "c5ba4a54-bc8b-46f9-bd42-0d81e9faa253": {
+   "entrypoint": "sdk-cli",
+   "first": 1790106309895,
+   "last": 1790106482285,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 52,
+      "output": 27625,
+      "cacheRead": 1023575,
+      "cw1h": 102990,
+      "cw5m": 0,
+      "cost": 2.2325725,
+      "unpriced": 0,
+      "msgs": 26
+     }
+    ]
+   ]
+  },
+  "eb1d9e54-ffa0-4d00-8c74-8abbf3a03321": {
+   "entrypoint": "sdk-cli",
+   "first": 1790106318707,
+   "last": 1790106552644,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 60,
+      "output": 35142,
+      "cacheRead": 1276025,
+      "cw1h": 95235,
+      "cw5m": 0,
+      "cost": 2.4692125,
+      "unpriced": 0,
+      "msgs": 30
+     }
+    ]
+   ]
+  },
+  "8832a828-4c8b-4065-8d61-fbbbff986b0a": {
+   "entrypoint": "sdk-cli",
+   "first": 1790108019635,
+   "last": 1790108186584,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 64,
+      "output": 22061,
+      "cacheRead": 1726938,
+      "cw1h": 164267,
+      "cw5m": 0,
+      "cost": 3.057984,
+      "unpriced": 0,
+      "msgs": 32
+     }
+    ]
+   ]
+  },
+  "14dc09b4-65c1-498d-8522-e1e23f3b3d63": {
+   "entrypoint": "sdk-cli",
+   "first": 1790108260224,
+   "last": 1790108687657,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 142,
+      "output": 59229,
+      "cacheRead": 4545740,
+      "cw1h": 200855,
+      "cw5m": 0,
+      "cost": 5.762855,
+      "unpriced": 0,
+      "msgs": 71
+     }
+    ]
+   ]
+  },
+  "5e08fc11-190e-410a-bfcf-8cb0bb740466": {
+   "entrypoint": "sdk-cli",
+   "first": 1790108237300,
+   "last": 1790108443857,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 96,
+      "output": 31067,
+      "cacheRead": 2052925,
+      "cw1h": 99638,
+      "cw5m": 0,
+      "cost": 2.7999975,
+      "unpriced": 0,
+      "msgs": 48
+     }
+    ]
+   ]
+  },
+  "68095a8a-93f7-4a2b-9b5e-ed1ced5bcaef": {
+   "entrypoint": "sdk-cli",
+   "first": 1790108066967,
+   "last": 1790108436000,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 106,
+      "output": 41642,
+      "cacheRead": 2831751,
+      "cw1h": 153496,
+      "cw5m": 0,
+      "cost": 3.9924155,
+      "unpriced": 0,
+      "msgs": 53
+     }
+    ]
+   ]
+  },
+  "e575f186-c936-4ae4-95e1-adc2040a7b74": {
+   "entrypoint": "sdk-cli",
+   "first": 1790107922570,
+   "last": 1790108010356,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 40,
+      "output": 14575,
+      "cacheRead": 670004,
+      "cw1h": 85790,
+      "cw5m": 0,
+      "cost": 1.557477,
+      "unpriced": 0,
+      "msgs": 20
+     }
+    ]
+   ]
+  },
+  "29b13f8b-6480-41ba-94ae-a4d43f9b60dc": {
+   "entrypoint": "sdk-cli",
+   "first": 1790110412308,
+   "last": 1790110768588,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 92,
+      "output": 52885,
+      "cacheRead": 3620329,
+      "cw1h": 185800,
+      "cw5m": 0,
+      "cost": 4.9907495,
+      "unpriced": 0,
+      "msgs": 46
+     }
+    ]
+   ]
+  },
+  "29d0d51f-311e-448c-914d-1cfa32335883": {
+   "entrypoint": "sdk-cli",
+   "first": 1790108691831,
+   "last": 1790108824486,
+   "models": [
+    [
+     "claude-sonnet-5",
+     {
+      "input": 44,
+      "output": 23660,
+      "cacheRead": 970086,
+      "cw1h": 79373,
+      "cw5m": 0,
+      "cost": 1.1222958,
+      "unpriced": 0,
+      "msgs": 22
+     }
+    ]
+   ]
+  },
+  "42321594-6698-4e59-8faf-7662a4d55f3c": {
+   "entrypoint": "sdk-cli",
+   "first": 1790108446279,
+   "last": 1790108616013,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 56,
+      "output": 21606,
+      "cacheRead": 1702826,
+      "cw1h": 121096,
+      "cw5m": 0,
+      "cost": 2.602803,
+      "unpriced": 0,
+      "msgs": 28
+     }
+    ]
+   ]
+  },
+  "6658b55f-e24e-4d46-b124-9002b7e814c6": {
+   "entrypoint": "sdk-cli",
+   "first": 1790109877687,
+   "last": 1790110085821,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 52,
+      "output": 30548,
+      "cacheRead": 1687352,
+      "cw1h": 132527,
+      "cw5m": 0,
+      "cost": 2.932906,
+      "unpriced": 0,
+      "msgs": 26
+     }
+    ]
+   ]
+  },
+  "85710ff9-0c82-4d72-978f-2daf6c1c0e2a": {
+   "entrypoint": "sdk-cli",
+   "first": 1790108780661,
+   "last": 1790108941801,
+   "models": [
+    [
+     "claude-sonnet-5",
+     {
+      "input": 38,
+      "output": 22130,
+      "cacheRead": 796879,
+      "cw1h": 66516,
+      "cw5m": 0,
+      "cost": 0.9702236999999999,
+      "unpriced": 0,
+      "msgs": 19
+     }
+    ]
+   ]
+  },
+  "a05cc135-f274-46ea-982e-a030f719ed11": {
+   "entrypoint": "sdk-cli",
+   "first": 1790110201392,
+   "last": 1790112088797,
+   "models": [
+    [
+     "claude-opus-5-5",
+     {
+      "input": 394,
+      "output": 248438,
+      "cacheRead": 27498529,
+      "cw1h": 650487,
+      "cw5m": 0,
+      "cost": 26.4670545,
+      "unpriced": 0,
+      "msgs": 197
+     }
+    ]
+   ]
+  },
+  "b7f3a1ea-882f-47ef-aa53-d61cb57e17d2": {
+   "entrypoint": "sdk-cli",
+   "first": 1790109106451,
+   "last": 1790109441538,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 82,
+      "output": 52865,
+      "cacheRead": 2897155,
+      "cw1h": 208146,
+      "cw5m": 0,
+      "cost": 4.8520725,
+      "unpriced": 0,
+      "msgs": 41
+     }
+    ]
+   ]
+  },
+  "bb4df4f6-8e0f-47bb-b9bd-ee85a4c88ecd": {
+   "entrypoint": "sdk-cli",
+   "first": 1790108452318,
+   "last": 1790108520204,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 34,
+      "output": 14844,
+      "cacheRead": 803493,
+      "cw1h": 131672,
+      "cw5m": 0,
+      "cost": 2.0897365,
+      "unpriced": 0,
+      "msgs": 17
+     }
+    ]
+   ]
+  },
+  "193f0a75-121a-4f51-88cf-8c0cc1082ff8": {
+   "entrypoint": "sdk-cli",
+   "first": 1790108549736,
+   "last": 1790108774042,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 122,
+      "output": 34030,
+      "cacheRead": 2874817,
+      "cw1h": 124648,
+      "cw5m": 0,
+      "cost": 3.5352485,
+      "unpriced": 0,
+      "msgs": 61
+     }
+    ]
+   ]
+  },
+  "5df74624-c936-48ad-8a90-79c557c25233": {
+   "entrypoint": "sdk-cli",
+   "first": 1790108970255,
+   "last": 1790109081350,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 84,
+      "output": 18429,
+      "cacheRead": 1745686,
+      "cw1h": 98792,
+      "cw5m": 0,
+      "cost": 2.321908,
+      "unpriced": 0,
+      "msgs": 42
+     }
+    ]
+   ]
+  },
+  "7705c958-c6a3-4bd6-b01f-86f3740ef2ec": {
+   "entrypoint": "sdk-cli",
+   "first": 1790108855858,
+   "last": 1790109078090,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 88,
+      "output": 34453,
+      "cacheRead": 2320312,
+      "cw1h": 152128,
+      "cw5m": 0,
+      "cost": 3.543201,
+      "unpriced": 0,
+      "msgs": 44
+     }
+    ]
+   ]
+  },
+  "889fbd66-ab9f-40f9-bdeb-b79fa1c450e5": {
+   "entrypoint": "sdk-cli",
+   "first": 1790108651453,
+   "last": 1790109097129,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 140,
+      "output": 63834,
+      "cacheRead": 4229644,
+      "cw1h": 176381,
+      "cw5m": 0,
+      "cost": 5.475182,
+      "unpriced": 0,
+      "msgs": 70
+     }
+    ]
+   ]
+  },
+  "a26789c7-b9a0-4062-b74f-bdf11313f44b": {
+   "entrypoint": "sdk-cli",
+   "first": 1790110114793,
+   "last": 1790110403855,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 114,
+      "output": 47479,
+      "cacheRead": 3115651,
+      "cw1h": 162779,
+      "cw5m": 0,
+      "cost": 4.3731605,
+      "unpriced": 0,
+      "msgs": 57
+     }
+    ]
+   ]
+  },
+  "d76a27b2-3307-405d-8afc-f4e33256f637": {
+   "entrypoint": "sdk-cli",
+   "first": 1790109472076,
+   "last": 1790109868605,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 116,
+      "output": 69131,
+      "cacheRead": 3294208,
+      "cw1h": 162721,
+      "cw5m": 0,
+      "cost": 5.003169,
+      "unpriced": 0,
+      "msgs": 58
+     }
+    ]
+   ]
+  },
+  "462db72f-2546-4571-829d-d70802354d28": {
+   "entrypoint": "sdk-cli",
+   "first": 1790110799586,
+   "last": 1790111148379,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 114,
+      "output": 49360,
+      "cacheRead": 3102463,
+      "cw1h": 150679,
+      "cw5m": 0,
+      "cost": 4.2925915,
+      "unpriced": 0,
+      "msgs": 57
+     }
+    ]
+   ]
+  },
+  "ca5a277b-78f5-42d8-b9a8-6cb037e069e6": {
+   "entrypoint": "sdk-cli",
+   "first": 1790111160751,
+   "last": 1790111490583,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 80,
+      "output": 54671,
+      "cacheRead": 2872667,
+      "cw1h": 209612,
+      "cw5m": 0,
+      "cost": 4.8996285,
+      "unpriced": 0,
+      "msgs": 40
+     }
+    ]
+   ]
+  },
+  "61348721-099c-4776-8d2b-0e5f62f4adf3": {
+   "entrypoint": "sdk-cli",
+   "first": 1790111562557,
+   "last": 1790112051483,
+   "models": [
+    [
+     "claude-opus-5",
+     {
+      "input": 148,
+      "output": 68188,
+      "cacheRead": 4253913,
+      "cw1h": 167646,
+      "cw5m": 0,
+      "cost": 5.5088565,
+      "unpriced": 0,
+      "msgs": 74
+     }
+    ]
+   ]
+  },
+  "329d7bb5-89b0-4b79-b90e-69b6887bce10": {
+   "entrypoint": "sdk-cli",
+   "first": 1790112082086,
+   "last": 1790112110794,
+   "models": [
+    [
+     "claude-sonnet-5",
+     {
+      "input": 44,
+      "output": 21420,
+      "cacheRead": 802127,
+      "cw1h": 169766,
+      "cw5m": 0,
+      "cost": 1.5806661000000002,
+      "unpriced": 0,
+      "msgs": 22
+     }
+    ]
+   ]
+  }
+ }
+}

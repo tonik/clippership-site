@@ -1,0 +1,111 @@
+{
+  "breakpoints": {
+    "desktop": {
+      "score": 52,
+      "issues": [
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "Lead + CTA column is in the wrong place: spec §3 puts .fleet__text at `right: 36px; width: 384px` (x 1008-1392, vertically centred). Measured build: the lead paragraph ink runs x 663-1014, i.e. the whole column sits ~345px too far left, roughly on the panel centre instead of flush right. The `lg:grid-cols-[minmax(0,660px)_minmax(0,1fr)_minmax(0,384px)]` / `lg:col-start-3` placement is not resolving to the third track."
+        },
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "Segment control is right-aligned instead of centred: spec §3 is `bottom: 36px; left: 50%; translateX(-50%)` (track centre x = 720). Measured build: track ink x 1050-1370, right edge flush to the 36px content edge, centre ≈1210 - about 490px right of the design position. Vertical position (track box ~712-752) is correct."
+        },
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "Lead paragraph collides with the 3D navigator: because the text column sits at panel centre, line 3 (`of 3MW vessels for AI inference`, y≈370-392) runs straight through the 40px white drag-CTA circle (centre 720/399) and across the right arc of the orbit ring. In the design the navigator sits in clear space between the 660px header column and the 384px text column."
+        },
+        {
+          "severity": "critical",
+          "actionable": false,
+          "text": "Full-bleed painted backdrop missing: spec §3 stacks `fleet-sky.png` (1697x1358, object-fit cover) under `fleet-backdrop.png` (1572x1054 @ opacity 0.64) inside .panel__bg. The build renders a flat `photo-placeholder` div instead, so the panel is an almost-uniform light grey. Asset fetch failed on the Figma REST rate limit (see figma/page/asset-fetch-summary.json) - the component already carries the TODO, so this is an asset blocker, not a code defect."
+        },
+        {
+          "severity": "critical",
+          "actionable": false,
+          "text": "Vessel render missing: `vessel-silhouette.png` (181:540, 400x400 grey 3D model, centre 720/399) is the focal element of the section and is absent - the panel centre is empty apart from the orbit ring and drag CTA. Same rate-limited asset fetch; TODO is present in the code."
+        },
+        {
+          "severity": "info",
+          "actionable": true,
+          "text": "Segment track is content-sized (~362px measured, 1030-1392) where the spec fixes it at 384x40 with items 120/124/124. ~6% narrow - only visible once the track is re-centred."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Headline, eyebrow and panel are accurate: h2 computes Exposure 450 80px/80px, letter-spacing -3.2px, colour rgb(41,29,29) = #291D1D; eyebrow computes Overpass Mono 700 12px/12px, +0.12px, uppercase at 60% opacity; panel is 12px inset, 12px radius, panel-wash fill, no stroke - all exactly per spec §3."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Orbit ring is correct: the exported orbit-ring.svg keeps the subtract mask (two 93px windows at x 0-93 and 387-480) over a 480x93 ellipse with a 1px #191919 stroke at opacity 0.12, rendered centred on the panel. The faint twin arcs read as intended."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Specifications CTA matches the button-solid spec: #F6F6F7 fill, 1px rgba(25,25,25,0.08) hairline border, 999px radius, 40px height, 12px/20px padding, cursor-pointer and a colour transition. The `button` row in the computed-styles snapshot (white fill, 16px) is the 40px drag CTA, not this button - white is correct there per spec."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "A small red strip renders at x 24-122, y 793-799 (in the section's bottom 12px padding, below the panel) and again at the foot of the mobile shot. Nothing in the fleet component draws there - it looks like a dev/source-location overlay badge, not a design element. Noted, not scored."
+        }
+      ]
+    },
+    "tablet": {
+      "score": 76,
+      "issues": [
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "Segment control track stretches the full panel width (x 49-719) while its three pills only occupy the first ~340px, leaving half the frosted track empty on the right. The track should hug its items (w-fit) rather than stretch - as drawn it reads as an unfinished component."
+        },
+        {
+          "severity": "warning",
+          "actionable": false,
+          "text": "~440px of empty panel between the headline (ends y≈113) and the lead (starts y≈602), because the missing vessel render leaves the centred viewer stack with nothing but the orbit ring and the 40px drag CTA. Resolves once vessel-silhouette.png is available; no code change to make in the meantime."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "No tablet mock exists. Judged on adaptation quality only: headline reflows to one line at the clamped display-lg size, the three-part hierarchy (header / viewer / lead+CTA / segments) survives the stack, nothing overflows or clips, and the orbit ring fits inside the 720px content width."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Flat grey panel here too - same missing fleet-sky.png / fleet-backdrop.png asset blocker described under desktop."
+        }
+      ]
+    },
+    "mobile": {
+      "score": 64,
+      "issues": [
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "Third segment label is clipped mid-word: `This decade` renders as `This decad`, cut at x 352 against the 354px content edge. The track is an overflow-x-auto scroller so the content is reachable by swiping, but there is no scroll affordance and a truncated word reads as a bug. Let the track wrap, shrink the horizontal padding, or add a visible edge fade at this width."
+        },
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "Orbit ring is hard-sized `w-[480px] max-w-none` while the panel content is only 342px wide, so both arcs are sliced off by the panel's overflow and render as two disconnected line stubs touching the left and right edges (y≈258-340). Scale the ring with the viewer box (it already uses `size-[min(400px,62vw)]`) so the arcs stay inside the panel."
+        },
+        {
+          "severity": "warning",
+          "actionable": false,
+          "text": "~336px of dead space between the headline (ends y≈126) and the lead (starts y≈462) - the centred viewer column is empty without the vessel render. Asset blocker, same as desktop/tablet."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "No mobile mock exists. Aside from the two items above the adaptation is sound: no horizontal viewport overflow, headline wraps cleanly to two lines, lead and the split-opacity ghost run stay legible, and the Specifications button and segment pills are all 40px/32px tall - adequate tap targets."
+        }
+      ]
+    }
+  },
+  "overallScore": 52,
+  "summary": "Typography, tokens, panel treatment, orbit ring and segment-control styling are faithful to the spec, but on desktop the lead/CTA column and the segment control are both badly mis-placed (column ~345px left of its `right: 36px` position and colliding with the drag CTA; track right-aligned instead of centred), and the section's painted backdrop and centrepiece vessel render are missing because those Figma assets could not be fetched."
+}

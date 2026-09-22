@@ -1,0 +1,111 @@
+{
+  "breakpoints": {
+    "desktop": {
+      "score": 70,
+      "issues": [
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "Hero imagery renders far darker and bluer than Figma. Sampled at identical stage coordinates: mast body (330,800) Figma rgb(160,210,217) vs build rgb(67,117,148); centre mast (860,800) Figma rgb(218,237,235) (near-white) vs build rgb(108,164,185) (steel blue); hull (600,1140) Figma rgb(115,179,205) vs build rgb(68,126,161). Mean luminance across scanline y=800 is 217.6 in Figma vs 180.5 in the build. Warm tones and the dark sea match almost exactly (cloud rgb(255,236,209) vs rgb(254,229,196); sea rgb(41,73,95) vs rgb(43,74,95)), so this is not a gamma shift - the light blue/white range is wrong. The value is already baked into src/app/(home)/assets/hero-vessel.png itself (asset pixel at the mapped coordinate is rgb(73,123,154)), so it is an asset-export problem, not CSS: spec Section 1 says node 247:655 composites TWO image fills and must be exported as a single flattened asset. The fetched PNG looks like the un-composited lower fill. Re-export the flattened node. The luminous white sails are the subject of the hero and currently read as mid-blue."
+        },
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "h1 sets ~11% narrow vs Figma: line 2 'the maritime edge.' measures 780px in the build vs 879px in Figma (both nominally 108px/-4.32px, and both centred on x=721, so the size and centring are right - the face is not). Exposure is not self-hosted (no public/fonts/ directory), so the stack falls through to Newsreader, which is both narrower and much lighter in stroke than Exposure's optical 450. Spec Section 9 ('Loading the fonts') requires a matching `size-adjust` on the fallback @font-face precisely so the 108px headline does not reflow - that is missing. Add size-adjust (and a heavier fallback weight) to close the metric gap. NOTE: the @font-face declarations live in the shared globals.css, which this pass must not touch - flagging for the shared-file follow-up."
+        },
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "Lead paragraph wraps to 5 lines where Figma sets 4 ('Autonomous vessels take AI compute / onto the wide-open ocean, where / clean energy and cooling are / plentiful, and the red tape is thin.'). The measure is correct (383px, text right edge lands on 1343px per spec) but the Inter fallback is ~7% wider than Matter at 24px ('Autonomous vessels' measures 221px vs Figma's 207px). Measured consequence: the lead+CTA block runs y481-699 in the build vs y481-671 in Figma - the top edge is exact, the block is 28px taller, and the CTA pill is pushed ~28px below its designed position. Same fix as the headline: size-adjust on the Inter fallback face (shared globals.css)."
+        },
+        {
+          "severity": "info",
+          "actionable": true,
+          "text": "hero-sky.png (181:671) is never visible at any breakpoint: hero-vessel.png is an opaque RGB PNG with no alpha channel and its plate fully covers the stage at every size, so the sky plate underneath is painted over. Both are loaded with next/image `priority`, so a ~3.7MB raster is preloaded and discarded. Likely the same root cause as the tone issue above (the two fills were meant to composite, not stack opaquely)."
+        },
+        {
+          "severity": "info",
+          "actionable": true,
+          "text": "h1 ink block ends at y=378 vs y=399 in Figma (21px shorter over two 108px lines) and the wordmark-to-cap gap is ~4px vs Figma's ~8px. Both are fallback-metric side effects of the same missing size-adjust, not a separate spacing bug."
+        },
+        {
+          "severity": "info",
+          "actionable": true,
+          "text": "Foreground vessel plate 247:680 (the masts-only layer that passes in front of the headline in scroll state B) is still a TODO in hero-stage.client.tsx. Invisible at rest, so it does not affect this screenshot, but the scroll sequence is incomplete without it."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "A red 'S Issues' Next.js dev-overlay badge appears at the left edge of the screenshot. Dev-server chrome, not part of the build output."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Geometry is essentially exact: wordmark 157x28 with its top at y=148 (spec margin-top 148px), lead block top at y=481 in both, 383px measure with the right edge on 1344px, CTA 174x40 glass pill with rgba(246,246,247,0.16) fill and the rgba(25,25,25,0.08) hairline, stage radius 0 0 12px 12px, 12px gutters. Split-opacity lead is present with the correct 100%/48% runs, and the NBSP holds the 'AI compute at / the maritime edge.' break."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Motion scaffolding checks out: hero-cta has a transition on background-color/color using --duration-fast/--ease-fluid tokens plus a hover state, the scroll sequence is driven by a single --hero-p custom property interpolated in CSS, and prefers-reduced-motion leaves the stage in state A."
+        }
+      ]
+    },
+    "tablet": {
+      "score": 72,
+      "issues": [
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "Same wrong-tone hero imagery as desktop - the masts render steel blue instead of the design's near-white. Asset-level, so it carries to every breakpoint. See the desktop entry for the sampled values."
+        },
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "The wordmark does not scale with the headline. It is hard-locked to 157x28 at every breakpoint (`width={157} height={28}` plus `h-7 w-[157px]`), while the h1 drops to ~64px here. Measured: wordmark 158px against a 420px headline line, a 0.38 ratio, versus 0.21 on the desktop frame where the design sets the proportion. The wordmark now competes with the headline instead of sitting over it as a small tag. Scale it down below lg (e.g. a width in em of the headline, or a ~120px cap at md)."
+        },
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "The 48% quiet run of the lead sits directly over the bright masts and is hard to read (effective ~#8C8C8C on the pale blue mast panels, roughly 2.5:1). The code comment says the block was raised to sit in the 'quiet sky' band, but at 768 the masts reach up into that band, so the intent does not hold here. Either move the block clear of the masts at this width or give it a scrim/backdrop."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "No Figma frame exists at this width (the file contains the 1440 frame only), so layout is not scored against a mock. The adaptation itself is sound: stage holds aspect-ratio 9/8, the lead moves below the title and centres per the spec's 768-1023 rule, the two-line headline break is preserved, nothing overflows or clips."
+        }
+      ]
+    },
+    "mobile": {
+      "score": 68,
+      "issues": [
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "Same wrong-tone hero imagery as desktop - the masts render steel blue instead of the design's near-white. See the desktop entry for the sampled values."
+        },
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "The fixed 157px wordmark is most disproportionate here: it measures ~163px against a ~46px headline whose longest line is 301px, a 0.54 ratio versus 0.21 on the desktop frame. It reads as a second headline rather than a wordmark. Same fix as tablet."
+        },
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "Lead legibility is worst at this width: lines 2-5 of the 48% quiet run cross the bright mast panels and the hull ('compute onto the wide-open', 'ocean, where clean energy and', 'cooling are plentiful, and the red'). Contrast falls well below readable on the light mast fills. Needs the block moved clear of the masts or a scrim behind it."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Headline breaks 'AI compute at the / maritime edge.' rather than the designed 'AI compute at / the maritime edge.'. This is deliberate and documented in hero-stage.client.tsx - the explicit <br> is hidden below md so 'edge.' is not orphaned on a third line. With no mobile mock to contradict it, the two balanced lines are a reasonable adaptation; not a defect to fix."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "No Figma frame exists at this width, so layout is not scored against a mock. The adaptation holds up: stage at aspect-ratio 3/4 with the 620px min-height floor, lead at calc(100% - 48px) centred, 40px CTA tap target, vessel stays bottom-anchored so the hulls remain in frame, no horizontal overflow and no clipped text."
+        }
+      ]
+    }
+  },
+  "overallScore": 68,
+  "summary": "Layout, spacing and tokens are close to exact against the 1440 frame (wordmark, lead block top, 383px measure and CTA pill all land on their designed pixels), but the hero's dominant visual - the sails - renders steel blue where Figma shows near-white because the vessel asset was exported un-composited, and the unavailable licensed faces reflow both the headline (11% narrow) and the lead (5 lines instead of 4) for want of a size-adjust on the fallbacks."
+}

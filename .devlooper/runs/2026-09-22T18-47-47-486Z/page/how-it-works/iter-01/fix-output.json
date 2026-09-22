@@ -1,0 +1,101 @@
+{
+  "exitCode": 0,
+  "parsed": {
+    "duration_api_ms": 123839,
+    "stop_reason": "end_turn",
+    "session_id": "dba90281-216c-425c-a570-ad8f33dc9897",
+    "total_cost_usd": 1.0618620000000003,
+    "usage": {
+      "input_tokens": 30,
+      "cache_creation_input_tokens": 45943,
+      "cache_read_input_tokens": 664014,
+      "output_tokens": 10811,
+      "output_tokens_details": {
+        "thinking_tokens": 4677
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 45943,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 715,
+          "cache_read_input_tokens": 55088,
+          "cache_creation_input_tokens": 982,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 982
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-opus-5": {
+        "inputTokens": 30,
+        "outputTokens": 10811,
+        "cacheReadInputTokens": 664014,
+        "cacheCreationInputTokens": 45943,
+        "webSearchRequests": 0,
+        "costUSD": 1.0618620000000003,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 4677,
+        "canonicalModel": "claude-opus-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "permission_denials": [],
+    "terminal_reason": "completed",
+    "fast_mode_state": "off",
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "is_error": false,
+    "num_turns": 17,
+    "subtype": "success",
+    "api_error_status": null,
+    "result": "Done. Build and typecheck pass.\n\n**What I changed** (all inside `src/app/sections/how-it-works/` - no shared files touched):\n\n1. **The marquee (spec §6.3)** - the largest gap, and absent in kind rather than mistimed. The five-tile run is now rendered twice inside one track that translates `-50%` on a constant linear loop. The `@keyframes` live in a new section-local `how-it-works.module.css`, because `globals.css` is owned by another agent this pass.\n\n2. **Gap moved from the track to the tiles** (`mr-6` instead of `gap-6`). This is the mechanism that makes the loop seamless: with `gap` on the track, one run is 2232px but 50% of the track is 2340px, so `-50%` overshoots by 84px and the seam visibly jumps. With the gap carried by each tile, one run is exactly 50% of the track.\n\n3. **Pause on hover/focus-within**, and a `prefers-reduced-motion: reduce` fallback that stops the animation and restores a native horizontal scroller.\n\n4. **Removed the invented `group-hover:scale-105`** zoom - the design documents no hover transform here; the hover affordance is the pause.\n\n5. **Mobile 12px inset** - added `scroll-p-3`. With `snap-mandatory` and no scroll-padding the snapport started at the padding-box edge, so the first `snap-start` ate the section's `padding-left` and tile 1 sat at x=0.\n\nThe animation is gated to ≥768px and the duplicate run is hidden below `md`, so mobile stays the native snap scroller the spec asks for rather than gaining five phantom tiles. The duplicate run is `aria-hidden` so each figure is announced once.\n\n**Not fixable this pass:** the five photographs. `how-it-works-01..05.jpg` are recorded as failed downloads in `asset-fetch-summary.json`, and binary assets are off-limits to me, so the tiles keep the on-token `photo-placeholder-mid` stand-in and the existing TODO with the `object-position` crops. Asset fetch needs to be re-run before that can be closed in code.",
+    "ttft_ms": 1039,
+    "type": "result",
+    "duration_ms": 131210,
+    "uuid": "7de7fc0d-8a0b-493f-a25f-b7546fe54e00",
+    "ttft_stream_ms": 677,
+    "time_to_request_ms": 46,
+    "first_content_frame_ms": 678,
+    "queued_turn_count": 0,
+    "result_index": 0
+  },
+  "stderr": ""
+}

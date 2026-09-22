@@ -1,0 +1,38 @@
+{
+  "scopeFound": true,
+  "measuredElements": 43,
+  "violations": [
+    {
+      "prop": "border-top-color",
+      "value": "#ECECEC",
+      "severity": "info",
+      "nearest": "#E5E4E6",
+      "kind": "color",
+      "note": "border-top-color #ECECEC not in palette (nearest token #E5E4E6)",
+      "count": 10
+    },
+    {
+      "prop": "padding-right",
+      "value": "32px",
+      "severity": "info",
+      "nearest": "28px",
+      "kind": "spacing",
+      "note": "padding-right 32px — nearest token 28px (Δ4px)",
+      "count": 10
+    },
+    {
+      "prop": "padding-bottom",
+      "value": "32px",
+      "severity": "info",
+      "nearest": "28px",
+      "kind": "spacing",
+      "note": "padding-bottom 32px — nearest token 28px (Δ4px)",
+      "count": 10
+    }
+  ],
+  "elementDeltas": [],
+  "arbitraryCount": 0,
+  "warningCount": 0,
+  "matched": true,
+  "summary": "3 distinct off-token value(s) (0 arbitrary), 0 element delta(s), across 43 measured elements"
+}

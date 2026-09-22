@@ -1,0 +1,101 @@
+{
+  "exitCode": 0,
+  "parsed": {
+    "duration_api_ms": 440338,
+    "stop_reason": "end_turn",
+    "session_id": "61348721-099c-4776-8d2b-0e5f62f4adf3",
+    "total_cost_usd": 2.715620999999999,
+    "usage": {
+      "input_tokens": 76,
+      "cache_creation_input_tokens": 75491,
+      "cache_read_input_tokens": 2277112,
+      "output_tokens": 32871,
+      "output_tokens_details": {
+        "thinking_tokens": 18827
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 75491,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 836,
+          "cache_read_input_tokens": 85149,
+          "cache_creation_input_tokens": 3173,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3173
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-opus-5": {
+        "inputTokens": 76,
+        "outputTokens": 32871,
+        "cacheReadInputTokens": 2277112,
+        "cacheCreationInputTokens": 75491,
+        "webSearchRequests": 0,
+        "costUSD": 2.715620999999999,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 18827,
+        "canonicalModel": "claude-opus-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "permission_denials": [],
+    "terminal_reason": "completed",
+    "fast_mode_state": "off",
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "is_error": false,
+    "num_turns": 44,
+    "subtype": "success",
+    "api_error_status": null,
+    "result": "Verdict written to `page/hero/iter-08/verdict.json`.\n\n**Overall: 64** (desktop 64, tablet 70, mobile 68)\n\nA desktop mock does exist despite the prompt saying otherwise - `page/hero/reference-hero.png`, 1440x1280, same canvas as the build screenshot - so desktop was scored against it directly; tablet and mobile under the no-mock rules.\n\nWhat holds up: geometry is essentially pixel-exact. Mast-top edge row 497 vs 496, hull edge 1098-1101 vs 1100-1102, mast verticals within 1-2px, 12px gutter, square top / rounded bottom corners, lead ink top y481 with 28px leading, split-opacity lead, ~176x40 glass CTA.\n\nThree real defects:\n\n1. **Vessel plate 80-100 RGB levels too dark (critical).** Sail means 104,150,170 / 162,186,185 / 137,169,174 vs Figma's 208,230,230 / 246,245,235 / 236,239,231; hull 63,112,145 vs 108,166,192. The sky layer matches within 8 levels, so it is the vessel layer alone. Figma's ship is a pale plate dissolving into the sky; the build's is a solid object. Unchanged since iter-03.\n2. **Display face substituted (critical) + weight overshoot (warning).** Letterforms on \"edge.\" differ - different 'd' flag, different 'g' loop, much lower stroke contrast: Newsreader, not Exposure. The iter-08 bump to weight 750 fixed the width gap (662 vs 673 on line 1, up from 603) but made the headline visibly heavier and flatter than the reference. ~600-650 would be closer while the substitute is in use.\n3. **Lead wraps 5 lines vs 4 (warning).** \"Autonomous vessels\" is 249px vs 204px at identical cap-height - 22% wider, i.e. Inter, not Matter. Pushes the CTA ~30px low.\n\nPlus a 13px wordmark/headline collision on desktop (h1 ink starts y170 vs y183, turning an 8px gap into a 5px overlap) and a dropped non-breaking space that lets mobile break \"AI compute at the / maritime edge.\" against the spec's `the&nbsp;maritime`.\n\nNote: the two critical items are both blocked on shared assets (font files, vessel export), not on `hero.module.css`, so they may not be fixable inside this section's own files.",
+    "ttft_ms": 1719,
+    "type": "result",
+    "duration_ms": 490654,
+    "uuid": "a1208c7a-d130-4059-8b17-2af3fe74b55f",
+    "ttft_stream_ms": 1411,
+    "time_to_request_ms": 229,
+    "first_content_frame_ms": 1412,
+    "queued_turn_count": 0,
+    "result_index": 0
+  },
+  "stderr": ""
+}

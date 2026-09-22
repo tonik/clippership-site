@@ -1,0 +1,10 @@
+{
+  "scopeFound": true,
+  "measuredElements": 33,
+  "violations": [],
+  "elementDeltas": [],
+  "arbitraryCount": 0,
+  "warningCount": 0,
+  "matched": true,
+  "summary": "0 distinct off-token value(s) (0 arbitrary), 0 element delta(s), across 33 measured elements"
+}

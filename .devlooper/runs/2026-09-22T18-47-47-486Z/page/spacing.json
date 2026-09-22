@@ -1,0 +1,82 @@
+{
+  "seams": [
+    {
+      "a": "hero",
+      "b": "how-it-works",
+      "figma": 0,
+      "dom": 0,
+      "delta": 0,
+      "off": false
+    },
+    {
+      "a": "how-it-works",
+      "b": "the-fleet",
+      "figma": 0,
+      "dom": 0,
+      "delta": 0,
+      "off": false
+    },
+    {
+      "a": "the-fleet",
+      "b": "about",
+      "figma": 0,
+      "dom": 0,
+      "delta": 0,
+      "off": false
+    },
+    {
+      "a": "about",
+      "b": "footer",
+      "figma": 0,
+      "dom": 0,
+      "delta": 0,
+      "off": false
+    }
+  ],
+  "offSeams": [],
+  "block": "",
+  "figmaGaps": [
+    {
+      "a": "hero",
+      "b": "how-it-works",
+      "gap": 0
+    },
+    {
+      "a": "how-it-works",
+      "b": "the-fleet",
+      "gap": 0
+    },
+    {
+      "a": "the-fleet",
+      "b": "about",
+      "gap": 0
+    },
+    {
+      "a": "about",
+      "b": "footer",
+      "gap": 0
+    }
+  ],
+  "domGaps": [
+    {
+      "a": "hero",
+      "b": "how-it-works",
+      "gap": 0
+    },
+    {
+      "a": "how-it-works",
+      "b": "the-fleet",
+      "gap": 0
+    },
+    {
+      "a": "the-fleet",
+      "b": "about",
+      "gap": 0
+    },
+    {
+      "a": "about",
+      "b": "footer",
+      "gap": 0
+    }
+  ]
+}

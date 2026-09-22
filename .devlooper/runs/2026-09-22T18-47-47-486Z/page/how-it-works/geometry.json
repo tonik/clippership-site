@@ -1,0 +1,417 @@
+{
+  "frame": {
+    "w": 1440,
+    "h": 428
+  },
+  "count": 21,
+  "elements": [
+    {
+      "id": "181:764",
+      "name": "Images",
+      "type": "FRAME",
+      "x": 12,
+      "y": 12,
+      "w": 2232,
+      "h": 404,
+      "depth": 1,
+      "parent": "How it works",
+      "layout": {
+        "dir": "row",
+        "gap": 24,
+        "align": "center",
+        "size": "hug/hug"
+      }
+    },
+    {
+      "id": "181:726",
+      "name": "Image",
+      "type": "FRAME",
+      "x": 12,
+      "y": 12,
+      "w": 546,
+      "h": 404,
+      "depth": 2,
+      "parent": "Images",
+      "border": {
+        "w": 1,
+        "color": "rgba(255,255,255,1.00)",
+        "radius": 8
+      }
+    },
+    {
+      "id": "247:662",
+      "name": "IMG_8487 1",
+      "type": "RECTANGLE",
+      "x": -1,
+      "y": 12,
+      "w": 729,
+      "h": 423,
+      "depth": 3,
+      "parent": "Image",
+      "bg": {
+        "css": "image fill, object-fit cover",
+        "kind": "image"
+      }
+    },
+    {
+      "id": "181:751",
+      "name": "Frame 4",
+      "type": "FRAME",
+      "x": 12,
+      "y": 12,
+      "w": 86,
+      "h": 64,
+      "depth": 3,
+      "parent": "Image",
+      "layout": {
+        "dir": "row",
+        "gap": 4,
+        "pad": [
+          24,
+          32,
+          32,
+          24
+        ],
+        "justify": "center",
+        "align": "center",
+        "size": "hug/hug"
+      },
+      "bg": {
+        "css": "radial-gradient(at 0% 0%, rgba(43,38,38,0.80) 0%, rgba(43,38,38,0.00) 100%)",
+        "kind": "gradient"
+      }
+    },
+    {
+      "id": "181:749",
+      "name": "fig.01",
+      "type": "TEXT",
+      "x": 36,
+      "y": 36,
+      "w": 30,
+      "h": 8,
+      "depth": 4,
+      "parent": "Frame 4",
+      "text": "fig.01",
+      "font": "OverpassMono-Bold",
+      "fontSize": 8,
+      "fontWeight": 700,
+      "letterSpacing": 0.08,
+      "lineHeight": 8,
+      "case": "upper",
+      "color": "#ffffff"
+    },
+    {
+      "id": "181:765",
+      "name": "Image",
+      "type": "FRAME",
+      "x": 582,
+      "y": 12,
+      "w": 320,
+      "h": 404,
+      "depth": 2,
+      "parent": "Images",
+      "border": {
+        "w": 1,
+        "color": "rgba(255,255,255,1.00)",
+        "radius": 8
+      }
+    },
+    {
+      "id": "235:614",
+      "name": "IMG_0491 1",
+      "type": "RECTANGLE",
+      "x": 538,
+      "y": -58,
+      "w": 408,
+      "h": 544,
+      "depth": 3,
+      "parent": "Image",
+      "bg": {
+        "css": "image fill, object-fit cover",
+        "kind": "image"
+      }
+    },
+    {
+      "id": "181:769",
+      "name": "Frame 4",
+      "type": "FRAME",
+      "x": 582,
+      "y": 12,
+      "w": 86,
+      "h": 64,
+      "depth": 3,
+      "parent": "Image",
+      "layout": {
+        "dir": "row",
+        "gap": 4,
+        "pad": [
+          24,
+          32,
+          32,
+          24
+        ],
+        "justify": "center",
+        "align": "center",
+        "size": "hug/hug"
+      },
+      "bg": {
+        "css": "radial-gradient(at 0% 0%, rgba(43,38,38,0.80) 0%, rgba(43,38,38,0.00) 100%)",
+        "kind": "gradient"
+      }
+    },
+    {
+      "id": "181:770",
+      "name": "fig.02",
+      "type": "TEXT",
+      "x": 606,
+      "y": 36,
+      "w": 30,
+      "h": 8,
+      "depth": 4,
+      "parent": "Frame 4",
+      "text": "fig.02",
+      "font": "OverpassMono-Bold",
+      "fontSize": 8,
+      "fontWeight": 700,
+      "letterSpacing": 0.08,
+      "lineHeight": 8,
+      "case": "upper",
+      "color": "#ffffff"
+    },
+    {
+      "id": "235:616",
+      "name": "Image",
+      "type": "FRAME",
+      "x": 926,
+      "y": 12,
+      "w": 404,
+      "h": 404,
+      "depth": 2,
+      "parent": "Images",
+      "border": {
+        "w": 1,
+        "color": "rgba(255,255,255,1.00)",
+        "radius": 8
+      }
+    },
+    {
+      "id": "235:629",
+      "name": "IMG_3134 (1) 1",
+      "type": "RECTANGLE",
+      "x": 930,
+      "y": 12,
+      "w": 538,
+      "h": 404,
+      "depth": 3,
+      "parent": "Image",
+      "bg": {
+        "css": "image fill, object-fit cover",
+        "kind": "image"
+      }
+    },
+    {
+      "id": "235:618",
+      "name": "Frame 4",
+      "type": "FRAME",
+      "x": 926,
+      "y": 12,
+      "w": 86,
+      "h": 64,
+      "depth": 3,
+      "parent": "Image",
+      "layout": {
+        "dir": "row",
+        "gap": 4,
+        "pad": [
+          24,
+          32,
+          32,
+          24
+        ],
+        "justify": "center",
+        "align": "center",
+        "size": "hug/hug"
+      },
+      "bg": {
+        "css": "radial-gradient(at 0% 0%, rgba(43,38,38,0.80) 0%, rgba(43,38,38,0.00) 100%)",
+        "kind": "gradient"
+      }
+    },
+    {
+      "id": "235:619",
+      "name": "fig.03",
+      "type": "TEXT",
+      "x": 950,
+      "y": 36,
+      "w": 30,
+      "h": 8,
+      "depth": 4,
+      "parent": "Frame 4",
+      "text": "fig.03",
+      "font": "OverpassMono-Bold",
+      "fontSize": 8,
+      "fontWeight": 700,
+      "letterSpacing": 0.08,
+      "lineHeight": 8,
+      "case": "upper",
+      "color": "#ffffff"
+    },
+    {
+      "id": "235:622",
+      "name": "Image",
+      "type": "FRAME",
+      "x": 1354,
+      "y": 12,
+      "w": 320,
+      "h": 404,
+      "depth": 2,
+      "parent": "Images",
+      "border": {
+        "w": 1,
+        "color": "rgba(255,255,255,1.00)",
+        "radius": 8
+      }
+    },
+    {
+      "id": "235:627",
+      "name": "IMG_0349 1",
+      "type": "RECTANGLE",
+      "x": 1275,
+      "y": -89,
+      "w": 492,
+      "h": 656,
+      "depth": 3,
+      "parent": "Image",
+      "bg": {
+        "css": "image fill, object-fit cover",
+        "kind": "image"
+      },
+      "pin": "center/center"
+    },
+    {
+      "id": "235:624",
+      "name": "Frame 4",
+      "type": "FRAME",
+      "x": 1354,
+      "y": 12,
+      "w": 86,
+      "h": 64,
+      "depth": 3,
+      "parent": "Image",
+      "layout": {
+        "dir": "row",
+        "gap": 4,
+        "pad": [
+          24,
+          32,
+          32,
+          24
+        ],
+        "justify": "center",
+        "align": "center",
+        "size": "hug/hug"
+      },
+      "bg": {
+        "css": "radial-gradient(at 0% 0%, rgba(43,38,38,0.80) 0%, rgba(43,38,38,0.00) 100%)",
+        "kind": "gradient"
+      }
+    },
+    {
+      "id": "235:625",
+      "name": "fig.02",
+      "type": "TEXT",
+      "x": 1378,
+      "y": 36,
+      "w": 30,
+      "h": 8,
+      "depth": 4,
+      "parent": "Frame 4",
+      "text": "fig.02",
+      "font": "OverpassMono-Bold",
+      "fontSize": 8,
+      "fontWeight": 700,
+      "letterSpacing": 0.08,
+      "lineHeight": 8,
+      "case": "upper",
+      "color": "#ffffff"
+    },
+    {
+      "id": "247:657",
+      "name": "Image",
+      "type": "FRAME",
+      "x": 1698,
+      "y": 12,
+      "w": 546,
+      "h": 404,
+      "depth": 2,
+      "parent": "Images",
+      "border": {
+        "w": 1,
+        "color": "rgba(255,255,255,1.00)",
+        "radius": 8
+      }
+    },
+    {
+      "id": "247:658",
+      "name": "IMG_2875 (1) 1",
+      "type": "RECTANGLE",
+      "x": 1407,
+      "y": -351,
+      "w": 837,
+      "h": 1116,
+      "depth": 3,
+      "parent": "Image",
+      "bg": {
+        "css": "image fill, object-fit cover",
+        "kind": "image"
+      }
+    },
+    {
+      "id": "247:659",
+      "name": "Frame 4",
+      "type": "FRAME",
+      "x": 1698,
+      "y": 12,
+      "w": 86,
+      "h": 64,
+      "depth": 3,
+      "parent": "Image",
+      "layout": {
+        "dir": "row",
+        "gap": 4,
+        "pad": [
+          24,
+          32,
+          32,
+          24
+        ],
+        "justify": "center",
+        "align": "center",
+        "size": "hug/hug"
+      },
+      "bg": {
+        "css": "radial-gradient(at 0% 0%, rgba(43,38,38,0.80) 0%, rgba(43,38,38,0.00) 100%)",
+        "kind": "gradient"
+      }
+    },
+    {
+      "id": "247:660",
+      "name": "fig.05",
+      "type": "TEXT",
+      "x": 1722,
+      "y": 36,
+      "w": 30,
+      "h": 8,
+      "depth": 4,
+      "parent": "Frame 4",
+      "text": "fig.05",
+      "font": "OverpassMono-Bold",
+      "fontSize": 8,
+      "fontWeight": 700,
+      "letterSpacing": 0.08,
+      "lineHeight": 8,
+      "case": "upper",
+      "color": "#ffffff"
+    }
+  ]
+}

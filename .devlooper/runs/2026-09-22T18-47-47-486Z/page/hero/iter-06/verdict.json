@@ -1,0 +1,86 @@
+{
+  "breakpoints": {
+    "desktop": {
+      "score": 70,
+      "issues": [
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "Vessel plate (247:655) still renders far darker and bluer than Figma - unchanged from iter-05 (desktop render is pixel-identical to iter-05: 0.04% of pixels differ, and that is only the dev-overlay badge). Sampled at identical stage coordinates: left mast (330,800) Figma rgb(160,210,217) vs build rgb(67,117,148); centre mast (860,800) Figma rgb(218,237,235) near-white vs build rgb(108,164,185) steel blue; hull (600,1140) Figma rgb(115,179,205) vs build rgb(68,126,161). Mean luminance on scanline y=800 is 215.2 in Figma vs 178.6 in the build; y=600 217.2 vs 177.9; y=1150 148.6 vs 108.4. The sky layer matches (cloud (200,120) 136/147/145 vs 130/142/138; warm sky (1300,300) 184/219/220 vs 162/205/207), so this is isolated to the vessel asset, not a global gamma shift. Spec Section 1 'Image layers' states node 247:655 composites TWO image fills and must be exported as a single flattened asset - the fetched PNG looks like the un-composited lower fill. Re-export the flattened node. The luminous near-white sails are the subject of the hero and currently read as mid-blue across roughly 60% of the section."
+        },
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "h1 is not set in Exposure. Computed font-family is \"Exposure, Exposure-20, Newsreader, 'Newsreader Fallback', Georgia, ...\" and --font-display-face resolves to '\"Newsreader\", \"Newsreader Fallback\"', i.e. no Exposure face is registered. Figma's Exposure-20 450 is a heavy, low-contrast display serif with thick stems and short descenders; Newsreader is a light, high-contrast book serif with hairline thins. The two are plainly different typefaces side by side, and the headline is the loudest element on the page. Measured ink width of line 2 'the maritime edge.': 880px in Figma vs 781px in the build (-11.3%) at the same nominal 108px / -4.32px; line 1 'AI compute at' 674px vs 650px. Size, weight-value, tracking, colour (#291D1D) and centring are all correct - only the face is wrong. Self-host the Exposure WOFF2 per spec Section 9, or at minimum add a matching size-adjust + heavier fallback weight on the @font-face so the 108px headline fills the drawn measure. NOTE: the @font-face block lives in the shared globals.css, which this section pass must not touch - flagging for the shared-file follow-up."
+        },
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "Hero lead wraps to 5 lines where Figma sets 4 ('Autonomous vessels take AI compute / onto the wide-open ocean, where / clean energy and cooling are / plentiful, and the red tape is thin.'). The build breaks after 'take AI'. Column geometry is correct (left edge 962px, first line top 480px vs Figma 479px, 431px column with 48px right padding), so the extra line comes from Inter standing in for Matter Medium at 24px/-0.96px - Inter sets wider advances. Knock-on: the CTA pill top sits at y=645 instead of Figma's y=612 (33px low) and the open water below the CTA shrinks by the same amount. Fix with a size-adjust on the Matter fallback @font-face (shared globals.css - same shared-file caveat as above)."
+        },
+        {
+          "severity": "info",
+          "actionable": true,
+          "text": "Headline block sits ~7px higher than Figma: cap top of line 1 at y=185 vs y=192, and the line-2 'g' descender bottoms at y=350 vs y=375. Both blocks start from the same 148px margin-top, so this is purely the Newsreader fallback's different cap-height/descender metrics - it will resolve with the correct face."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "A red '5 Issues' Next.js dev-overlay badge is rendered at the left edge (x 20-125, y 848-876). It is a dev-tools artefact, not part of the section markup, but it does indicate the app is reporting 5 runtime issues worth checking outside this review."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Correct and matching Figma: 12px side gutters and square-top / 12px-bottom stage radius (verified at rows 0, 640 and 1279); stage 1440x1280; split-opacity lead (dark 'Autonomous vessels' + 48% remainder) present; CTA pill 174x40 at x=962 with the rgba(25,25,25,0.08) hairline, rgba(246,246,247,0.16) fill, 999px radius and visible backdrop blur; every computed type value matches the spec exactly (h1 108/108/-4.32/450/#291D1D, lead 24/28.32/-0.96/500, CTA label 14/16/-0.28/600 at 64% ink); NBSP line breaks 'AI compute at' / 'the maritime edge.' correct."
+        }
+      ]
+    },
+    "tablet": {
+      "score": 82,
+      "issues": [
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "Same font-substitution defect as desktop: the headline renders in Newsreader rather than Exposure and the lead/CTA in Inter rather than Matter. This is a token violation judgeable without a mock - the design system names Exposure and Matter as the only two families on this page and neither is loaded."
+        },
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "The vessel asset carries the same un-flattened, too-dark export as on desktop (see the desktop critical). It is one shared asset, so re-exporting node 247:655 fixes all three breakpoints at once."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "No Figma tablet reference exists. The adaptation is sound and follows the spec's own 768-1023 rule: stage holds aspect-ratio 9/8 (768x662 with 12px gutters = 744 x 661), title stays centred, and the lead column moves out of the right gutter to align-self: center with left-aligned text under the title. No overflow, no clipping, no overlap; the wordmark / headline / lead / CTA hierarchy from the desktop mock survives intact."
+        }
+      ]
+    },
+    "mobile": {
+      "score": 80,
+      "issues": [
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "CTA pill measures ~34px tall (y 373-407), below the 40px the design specifies and well below the 44px minimum tap target. On a touch breakpoint this is the one interactive element in the section; restore the 12px vertical padding so it reaches at least 40px."
+        },
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "Same font-substitution defect as desktop: Newsreader instead of Exposure on the h1, Inter instead of Matter on the lead and CTA label. Neither licensed face is registered anywhere in the build."
+        },
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "The vessel asset carries the same un-flattened, too-dark export as on desktop (see the desktop critical); it is the same shared asset."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "No Figma mobile reference exists. The adaptation follows the spec's own <768 rule: stage is 390x620 (min-height 620 wins over aspect-ratio 3/4) with 12px gutters, headline drops to ~45px on two lines, lead is full-measure and centred with padding-right: 0, and object-position: center bottom keeps the hulls in frame. No horizontal overflow, no clipped or unreadable text, all four content elements present."
+        }
+      ]
+    }
+  },
+  "overallScore": 70,
+  "summary": "Hero geometry, spacing, colours and every computed type value match Figma exactly, but the two defects carried since iter-03 are untouched - the vessel asset is still the un-flattened, ~37-level-too-dark export so the near-white sails read mid-blue, and Exposure/Matter are still not loaded, leaving the headline 11% narrow in a much lighter serif and the lead wrapping to 5 lines instead of 4."
+}

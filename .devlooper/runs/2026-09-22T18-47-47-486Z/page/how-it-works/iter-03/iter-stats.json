@@ -1,0 +1,29 @@
+{
+  "iter": 3,
+  "page": "page",
+  "section": "how-it-works",
+  "runId": "2026-09-22T18-47-47-486Z",
+  "durationMs": 351904,
+  "costUsd": 2.2253185,
+  "score": 58,
+  "pixelDiffPct": null,
+  "judgeSkipped": false,
+  "phases": {
+    "screenshot": {
+      "durationMs": 8539
+    },
+    "pixelDiff": {
+      "durationMs": 14
+    },
+    "judge": {
+      "durationMs": 117828,
+      "costUsd": 0.820695,
+      "turns": 15
+    },
+    "fix": {
+      "durationMs": 210178,
+      "costUsd": 1.4046235,
+      "turns": 19
+    }
+  }
+}

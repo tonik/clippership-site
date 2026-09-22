@@ -1,0 +1,101 @@
+{
+  "exitCode": 0,
+  "parsed": {
+    "duration_api_ms": 238659,
+    "stop_reason": "end_turn",
+    "session_id": "c7bc9ba3-aa7b-4977-b14f-3d9d7865f7a1",
+    "total_cost_usd": 1.743943,
+    "usage": {
+      "input_tokens": 44,
+      "cache_creation_input_tokens": 64963,
+      "cache_read_input_tokens": 1211186,
+      "output_tokens": 19540,
+      "output_tokens_details": {
+        "thinking_tokens": 11947
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 64963,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 865,
+          "cache_read_input_tokens": 74004,
+          "cache_creation_input_tokens": 1086,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1086
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-opus-5": {
+        "inputTokens": 44,
+        "outputTokens": 19540,
+        "cacheReadInputTokens": 1211186,
+        "cacheCreationInputTokens": 64963,
+        "webSearchRequests": 0,
+        "costUSD": 1.743943,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 11947,
+        "canonicalModel": "claude-opus-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "permission_denials": [],
+    "terminal_reason": "completed",
+    "fast_mode_state": "off",
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "is_error": false,
+    "num_turns": 26,
+    "subtype": "success",
+    "api_error_status": null,
+    "result": "Done. Summary of this pass:\n\n**The main fix — one root cause behind all three desktop criticals.** The segment-control wrapper carried `lg:col-span-3 lg:row-start-3` with no explicit column. Row 3 / column 3 was already taken by the `lg:row-span-3` text column, so auto-placement couldn't fit a 3-column span anywhere in the explicit grid and pushed the control into **implicit columns 4-6**. Those extra auto tracks consumed container width, collapsing the `minmax(0,1fr)` middle track to zero and dragging column 3 (lead + Specifications CTA) back to panel centre at ~663px, right on top of the 3D navigator, while the control landed right-flush at ~1050-1370. Adding `lg:col-start-1` places the span explicitly over columns 1-3: the lead column resolves to the 384px third track and the control centres on x 720.\n\n**Other edits:**\n- `gap-14` (56px) → `gap-12` (48px) on the lead + CTA column - 56px is off the DESIGN.md scale, which steps 48 → 64. This closes the arbitrary-value measurement gate.\n- Segment track gets `w-fit` so it hugs its pills instead of stretching the full panel (tablet warning).\n- Segment pills `px-3 md:px-4` - brings the mobile track to ~312px inside the 318px content box, so \"This decade\" is no longer clipped.\n- Orbit ring `w-[480px] max-w-none` → `w-[120%] h-auto`, so it scales with the `size-[min(400px,62vw)]` viewer box instead of being sliced by the panel at mobile. Unchanged at desktop (480/400 = 120%).\n- Added `data-figma-id` on the panel, header, eyebrow, headline, text column, lead, both CTAs, the track and the three segment buttons.\n\n`npm run build` and the TypeScript check both pass.\n\n**Left alone, deliberately:** `fleet-sky.png`, `fleet-backdrop.png` and `vessel-silhouette.png` are still missing - the earlier fetch hit the Figma Starter-plan MCP limit and then REST rate limiting. The TODOs are in place and the placeholder is neutral. I did not attempt a re-fetch because the brief states binary asset changes are reverted after the turn, so it would burn the iteration without landing the files. The dead space between headline and lead on tablet/mobile, and the flat grey panel, both resolve once those three rasters exist. I also did not touch `globals.css`, the composing page, or any shared primitive.",
+    "ttft_ms": 1185,
+    "type": "result",
+    "duration_ms": 247835,
+    "uuid": "9f0c8af9-fa84-4972-919e-b645d214b2ed",
+    "ttft_stream_ms": 857,
+    "time_to_request_ms": 44,
+    "first_content_frame_ms": 857,
+    "queued_turn_count": 0,
+    "result_index": 0
+  },
+  "stderr": ""
+}

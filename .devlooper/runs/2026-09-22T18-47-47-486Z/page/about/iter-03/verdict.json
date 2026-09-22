@@ -1,0 +1,81 @@
+{
+  "breakpoints": {
+    "desktop": {
+      "score": 80,
+      "issues": [
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "Team photo (182:2559 / 182:2560) is still not rendered - third iteration unchanged. The frame is pixel-perfect (measured 618-1391 = 774px wide, 332-851 = 520px tall, 4px radius, #ECECEC hairline, 'OUR TEAM' chip at 24px inset, correctly no scrim), but the entire interior is the flat `photo-placeholder` gradient (sampled #F6F6F7 at the top fading to #E5E4E6 at the bottom). That is a 774x520 empty grey rectangle - about a third of the section's visible area - where Figma shows the team group photo. src/app/sections/about/about.tsx still carries the TODO with the exact export values: about-team.jpg from 182:2560, natural 1114 x 740, object-fit: cover, object-position approx -170px -31px at 1440."
+        },
+        {
+          "severity": "info",
+          "actionable": true,
+          "text": "LinkedIn glyph on the team cards is sized `h-4 w-[17px]`; Figma draws 16 x 16 (182:2097 / 2099 / 2101). One pixel of horizontal stretch - imperceptible, but a one-character fix in about.tsx."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Section geometry re-measured from the PNG and matches the Figma frame exactly: 1440 x 948 render, 48px gutter, cards block x=48-479 (432px), photo block x=618-1391 (774px) so the empty column-5 trough is the full 138px, row 2 starts at y=332, cards at y=332-477 / 490-635 / 648-793 (146px tall, 12px stack gap) against nodes 182:1880 / 1889 / 1899, section ends 96px below the photo."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Trades list sits on its Figma measure: rows at y=116 / 144 / 172 / 200 with the right-hand column's labels starting at x=977 against Figma's 976 (247:677), and the last row (Bay Ship and Yacht) correctly spans the full 659px with no right-hand partner. The 8x8 bullet box with its 4px arrow glyph reads as the intended dot rather than a list marker."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Type and colour tokens verified against the computed styles: h2 at 48px / 48px line-height, -1.92px tracking, weight 450, rgb(41,29,29) = ink #291D1D; eyebrow Overpass Mono Bold 12px / 12px, +0.12px, uppercase at 60%; card padding 24px with a 28px internal gap, border #ECECEC, credentials at 64% and roles at 60% per spec 4c. Card hover transitions border-hairline -> border-rule on --ease-fluid."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Restraint holds: the `FPO // Image Placeholder` badge (182:2564) is correctly not shipped, the 'Our Team' chip correctly carries no scrim gradient, and no background ruler lines were invented (spec section 7 states this page has none). The red pill bottom-left of the screenshot is the Next.js dev overlay, not build output."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Exposure (heading) and Matter (body) are licensed faces absent from the project, so the build falls back to Newsreader and Inter. That is the shared font config, not this section's file - noted, not scored against the section."
+        }
+      ]
+    },
+    "tablet": {
+      "score": 84,
+      "issues": [
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "Team photo still absent here too - the same flat grey placeholder, at 702 x 470, and it is the single largest block on the screen. Same fix as the desktop note."
+        },
+        {
+          "severity": "info",
+          "actionable": true,
+          "text": "Heading uses the global `text-display-md` clamp (2rem -> 3rem on 3.3333vw), so it renders at 32px at 768px and ~34px at 1024px. The spec's responsive table asks for clamp(36px, 3.8vw, 48px) in the 1024-1279 band, which this undershoots by roughly 5px at 1024. Changing the global token is a shared-file edit; a section-local heading clamp would close it. No tablet mock exists to contradict either value and the build reads fine as drawn."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "No Figma tablet reference. The adaptation is sound and matches the spec's 768-1023 intent: single-column stack in intro / trades / cards / photo order, 32px gutter (content measured x=32-735), 64px row gap, trades list holds its 2 columns, cards go full width, photo holds the 774/520 aspect. No overflow, clipping or overlap."
+        }
+      ]
+    },
+    "mobile": {
+      "score": 84,
+      "issues": [
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "Team photo still absent - flat grey placeholder at 342 x 230. Same fix as the desktop note."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "No Figma mobile reference. The adaptation is sound and matches the spec's <768 intent: 24px gutter (content measured to x=365 of 390, no horizontal overflow), 48px row gap, trades list drops to 1 column at 12px row gap with the Figma reading order preserved (Tesla, Jet Propulsion Laboratory, Canadian Special Forces, Mercedes-AMG Formula 1 Team, Microsoft, Damen Shipyards Group, Bay Ship and Yacht), cards stretch full width, heading wraps to 2 lines, photo keeps its aspect. Nothing clipped or overlapping."
+        }
+      ]
+    }
+  },
+  "overallScore": 80,
+  "summary": "Layout, type and colour are now pixel-exact against the Figma frame at every breakpoint and iteration 3 introduced no visual regressions, leaving the still-unfilled 774x520 team photo as the one substantive gap between the build and the design."
+}

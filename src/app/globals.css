@@ -1,0 +1,319 @@
+@import "tailwindcss";
+/* devlooper: don't let Tailwind scan run artifacts in .devlooper/ - they hold Figma token
+   names with slashes (e.g. body/rg-3) that Tailwind would emit as invalid CSS variables. */
+@source not "../../.devlooper";
+
+/* ---------------------------------------------------------------------------
+   Clippership design tokens - see DESIGN.md.
+   Every grey in the system is one ink at an alpha, so the raw channels live here
+   and every colour token is composed from them. Nothing hardcodes a hex twice.
+   --------------------------------------------------------------------------- */
+:root {
+  color-scheme: light;
+
+  /* ink channels */
+  --ink-warm-rgb: 41 29 29; /* #291D1D - display type + wordmark */
+  --ink-rgb: 25 25 25; /* #191919 - body, UI, icons, borders */
+  --panel-rgb: 229 228 230; /* #E5E4E6 - section panels */
+  --scrim-rgb: 43 38 38; /* #2B2626 - figure-chip scrim */
+  --muted-rgb: 246 246 247; /* #F6F6F7 - solid buttons, radial washes */
+  --white-rgb: 255 255 255;
+
+  /* spacing scale (4px base unit) - mirrors DESIGN.md `spacing:` */
+  --space-3xs: 4px;
+  --space-2xs: 8px;
+  --space-xs: 12px;
+  --space-sm: 16px;
+  --space-smd: 20px;
+  --space-md: 24px;
+  --space-lg: 28px;
+  --space-xlg: 32px;
+  --space-xl: 36px;
+  --space-2xl: 48px;
+  --space-xxl: 56px;
+  --space-3xl: 64px;
+  --space-4xl: 96px;
+  --space-5xl: 100px;
+  --space-6xl: 148px;
+
+  /* motion - one expo-out curve everywhere, no bounce */
+  --duration-fast: 160ms;
+  --duration-base: 360ms;
+  --duration-slow: 640ms;
+
+  /* hero scroll progress, 0 to 1. Written by the hero client island. */
+  --hero-p: 0;
+}
+
+@theme {
+  /* ---- breakpoints: base = mobile 390, md = tablet 768, lg = desktop ≥992 ---- */
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+
+  /* ---- spacing: pin the scale to a 4px grid so p-9 is exactly 36px ---- */
+  --spacing: 4px;
+
+  /* ---- colour ---- */
+  --color-ink: rgb(var(--ink-warm-rgb));
+  --color-text: rgb(var(--ink-rgb));
+  --color-surface: #ffffff;
+  --color-surface-muted: #f6f6f7;
+  --color-panel: #e5e4e6;
+  --color-scrim: #2b2626;
+  --color-on-dark: #ffffff;
+
+  /* the alpha ladder - one ink at six opacities */
+  --color-text-strong: rgb(var(--ink-rgb));
+  --color-text-secondary: rgb(var(--ink-rgb) / 0.64);
+  --color-text-tertiary: rgb(var(--ink-rgb) / 0.6);
+  --color-text-quiet: rgb(var(--ink-rgb) / 0.48);
+  --color-text-ghost: rgb(
+    var(--ink-rgb) / 0.24
+  ); /* ghosted run of the fleet lead */
+  --color-border-rule: rgb(var(--ink-rgb) / 0.16);
+  --color-border-hairline: rgb(var(--ink-rgb) / 0.08);
+  /* white ring + hairline flattened against white - tiles, cards, photo frame */
+  --color-border-flat: #ececec;
+
+  /* translucent surfaces */
+  --color-panel-wash: rgb(var(--panel-rgb) / 0.32);
+  --color-glass-light: rgb(var(--muted-rgb) / 0.16);
+  --color-glass-mid: rgb(var(--muted-rgb) / 0.64);
+  --color-glass-white: rgb(var(--white-rgb) / 0.4);
+  --color-scrim-chip: rgb(var(--scrim-rgb) / 0.8);
+  --color-orbit: rgb(var(--ink-rgb) / 0.12);
+
+  /* Specifications overlay - page-local, lives only inside the dark panel */
+  --color-specs-panel: #191919;
+  --color-specs-chip: #4d80e6;
+  --color-specs-chip-wash: rgb(77 128 230 / 0.12);
+  --color-specs-rule: rgb(var(--white-rgb) / 0.08);
+  --color-specs-label: rgb(var(--white-rgb) / 0.48);
+
+  /* ---- type ---- */
+  --font-display:
+    "Exposure", "Exposure-20", var(--font-display-face), Georgia,
+    "Times New Roman", serif;
+  --font-sans:
+    "Matter", var(--font-sans-face), -apple-system, "Helvetica Neue", Arial,
+    sans-serif;
+  --font-mono:
+    "Overpass Mono", var(--font-mono-face), ui-monospace, "SF Mono", Menlo,
+    monospace;
+  --font-server-mono:
+    "Server Mono", var(--font-mono-face), ui-monospace, "SF Mono", Menlo,
+    monospace;
+
+  /* Display line-height is locked at 1.0 and tracking at -0.04em; the clamps hit
+     the drawn size exactly at the 1440 frame and scale down from there. */
+  --text-display-xl: clamp(2.75rem, 7.5vw, 6.75rem); /* 108px @1440 */
+  --text-display-xl--line-height: 1;
+  --text-display-xl--letter-spacing: -0.04em;
+  --text-display-xl--font-weight: 450;
+
+  --text-display-lg: clamp(2.25rem, 5.5556vw, 5rem); /* 80px @1440 */
+  --text-display-lg--line-height: 1;
+  --text-display-lg--letter-spacing: -0.04em;
+  --text-display-lg--font-weight: 450;
+
+  --text-display-md: clamp(2rem, 3.3333vw, 3rem); /* 48px @1440 */
+  --text-display-md--line-height: 1;
+  --text-display-md--letter-spacing: -0.04em;
+  --text-display-md--font-weight: 450;
+
+  --text-lead: clamp(1.25rem, 1.6667vw, 1.5rem); /* 24px @1440 */
+  --text-lead--line-height: 1.18; /* 28.32px */
+  --text-lead--letter-spacing: -0.04em;
+  --text-lead--font-weight: 500;
+
+  --text-body: 1rem;
+  --text-body--line-height: 1.24; /* 19.84px */
+  --text-body--letter-spacing: -0.04em;
+  --text-body--font-weight: 400;
+
+  --text-label: 0.875rem;
+  --text-label--line-height: 1.1428571;
+  --text-label--letter-spacing: -0.02em;
+  --text-label--font-weight: 600;
+
+  --text-label-active: 0.875rem;
+  --text-label-active--line-height: 1.1428571;
+  --text-label-active--letter-spacing: -0.02em;
+  --text-label-active--font-weight: 500;
+
+  --text-eyebrow: 0.75rem;
+  --text-eyebrow--line-height: 1;
+  --text-eyebrow--letter-spacing: 0.01em;
+  --text-eyebrow--font-weight: 700;
+
+  --text-caption-mono: 0.5rem;
+  --text-caption-mono--line-height: 1;
+  --text-caption-mono--letter-spacing: 0.01em;
+  --text-caption-mono--font-weight: 700;
+
+  /* Specifications overlay only */
+  --text-stat: 1rem;
+  --text-stat--line-height: 1.24;
+  --text-stat--letter-spacing: -0.02em;
+  --text-stat--font-weight: 400;
+
+  --text-stat-label: 0.75rem;
+  --text-stat-label--line-height: 1;
+  --text-stat-label--letter-spacing: -0.02em;
+  --text-stat-label--font-weight: 400;
+
+  /* the 4px arrow inside an 8px bullet marker - reads as a dot, by design */
+  --text-micro: 0.25rem;
+  --text-micro--line-height: 1;
+  --text-micro--letter-spacing: 0.01em;
+  --text-micro--font-weight: 700;
+
+  /* ---- shape ---- */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+
+  /* ---- motion ---- */
+  --ease-fluid: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-surface);
+  color: var(--color-text-strong);
+  font-family: var(--font-sans);
+}
+
+/* ---------------------------------------------------------------------------
+   Utilities the token layer cannot express as a single Tailwind class:
+   gradients, blends and the scroll-linked hero interpolations.
+   --------------------------------------------------------------------------- */
+
+/* Figure-chip scrim: a radial from the tile's top-left corner, so the label never
+   sits on a hard box. */
+@utility chip-scrim {
+  background-image: radial-gradient(
+    farthest-side at 0% 0%,
+    var(--color-scrim-chip) 0%,
+    rgb(var(--scrim-rgb) / 0) 100%
+  );
+}
+
+/* Fleet panel: an ellipse anchored at the panel's top-left, wider than tall,
+   fading out - it is what keeps the headline legible over the sky. */
+@utility fleet-wash {
+  background-image: radial-gradient(
+    120% 100% at 0% 0%,
+    rgb(var(--muted-rgb) / 0.64) 0%,
+    rgb(var(--muted-rgb) / 0) 100%
+  );
+}
+
+/* Grain on the fleet backdrop (Figma TEXTURE effect) - stops the large flat
+   washes from banding. */
+@utility noise-grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 160px 160px;
+  opacity: 0.16;
+  mix-blend-mode: overlay;
+}
+
+/* Neutral stand-in for a painted backdrop whose asset has not landed yet.
+   Deliberately flat and on-token - never a screenshot of the design frame. */
+@utility photo-placeholder {
+  background-color: var(--color-panel);
+  background-image: linear-gradient(
+    180deg,
+    var(--color-surface-muted) 0%,
+    var(--color-panel) 100%
+  );
+}
+
+/* Mid-tone stand-in for photography that carries a white figure chip, so the
+   chip still reads while the real image is missing. */
+@utility photo-placeholder-mid {
+  background-color: var(--color-panel);
+  background-image: linear-gradient(
+    180deg,
+    rgb(var(--scrim-rgb) / 0.22) 0%,
+    rgb(var(--scrim-rgb) / 0.42) 100%
+  );
+}
+
+@utility photo-placeholder-dark {
+  background-color: var(--color-specs-panel);
+  background-image: linear-gradient(
+    180deg,
+    rgb(var(--white-rgb) / 0.06) 0%,
+    rgb(var(--white-rgb) / 0) 100%
+  );
+}
+
+/* Scroll-linked hero sequence (Figma states 181:690 to 181:699). Every value is
+   interpolated on --hero-p, which the hero island writes on the stage. */
+/* The rise is a share of the stage height (--hero-rise, set in
+   hero.module.css), capped by how far the opaque vessel plate overhangs the
+   stage - rising further than that opened a gap onto the sky plate beneath. */
+@utility hero-vessel-rise {
+  transform: translate3d(0, calc(var(--hero-p) * var(--hero-rise, 0%)), 0);
+}
+
+@utility hero-title-recede {
+  transform: translate3d(0, calc(var(--hero-p) * -100px), 0);
+  opacity: calc(1 - var(--hero-p) * 0.4);
+  filter: blur(calc(var(--hero-p) * 8px));
+}
+
+@utility hero-lead-rise {
+  transform: translate3d(0, calc(var(--hero-p) * -96px), 0);
+}
+
+/* The ghosted run of the split-opacity lead resolves to full contrast. */
+@utility hero-lead-ghost {
+  color: rgb(var(--ink-rgb) / calc(0.48 + var(--hero-p) * 0.52));
+}
+
+@utility hero-cta {
+  background-color: rgb(var(--muted-rgb) / calc(0.16 + var(--hero-p) * 0.16));
+  color: rgb(var(--ink-rgb) / calc(0.64 + var(--hero-p) * 0.36));
+  transition:
+    background-color var(--duration-fast) var(--ease-fluid),
+    color var(--duration-fast) var(--ease-fluid);
+
+  &:hover {
+    background-color: var(--color-glass-mid);
+    color: var(--color-text-strong);
+  }
+}
+
+/* The strip scrolls natively on touch; hide the bar, keep the gesture. */
+@utility scrollbar-none {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: var(--duration-fast) !important;
+    transition-property: opacity !important;
+  }
+}

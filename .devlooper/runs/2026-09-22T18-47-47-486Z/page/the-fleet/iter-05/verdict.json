@@ -1,0 +1,32 @@
+{
+  "breakpoints": {
+    "desktop": {
+      "score": 89,
+      "issues": [
+        { "severity": "critical", "actionable": false, "text": "Display serif is not rendering as Exposure - the computed stack is `Exposure, Exposure-20, Newsreader, ...` and the glyphs drawn are Newsreader: 'One architecture,' measures ~540px wide vs ~607px in the Figma node (-11%) and the stroke weight is visibly lighter/higher-contrast than the reference. Size/tracking are correct (80px/80px, -3.2px). No Exposure webfont exists in the repo and the @font-face stack lives in the shared global stylesheet, which this section must not touch - flagging as a real mismatch, not a section-file fix." },
+        { "severity": "warning", "actionable": false, "text": "Body/UI sans falls back to Inter instead of Matter (computed `Matter, Inter, Inter Fallback, ...`). Inter's wider metrics re-break the lead from `...with maritime edge / compute and scales...` (Figma) to `...with maritime / edge compute and scales...`, and widen the Specifications pill by ~10px and the segment labels by ~3px each. Same shared-font-stack constraint as above." },
+        { "severity": "info", "actionable": true, "text": "Headline block renders ~6px higher than the reference (ink bbox y 78-224 vs 84-229) - a side effect of the fallback face's ascender, not a padding error; worth re-checking once the real display face loads." },
+        { "severity": "info", "actionable": false, "text": "A small red rounded badge clips into the bottom-left of the capture below the panel. It is present identically in iterations 01-05 and is the devlooper source-location dev overlay (`dl-source-loc-loader.cjs`), not section markup - do not chase it." },
+        { "severity": "info", "actionable": false, "text": "Everything structural now matches the node: 12px panel inset + 12px radius with no stroke, three-layer background stack, radial top-left wash (sea/sky tones now within 1-3 levels of the reference - the iter-04 'wash too dark bottom-left' defect is fixed), 400x400 vessel, masked orbit-ring arcs, 40px drag CTA with overlapping chevrons, eyebrow pixel-identical, 384px segment track bottom-centred with the correct `October 2026 / Mid-2027 / This decade` labels. Mean abs pixel diff vs reference is 7.4, concentrated only in the two text blocks." }
+      ]
+    },
+    "tablet": {
+      "score": 85,
+      "issues": [
+        { "severity": "warning", "actionable": true, "text": "The 24%-opacity run of the lead ('and scales to fleets of 3MW vessels for AI inference') lands on the dark rippled sea band and drops to roughly 1.4:1 contrast - the last line is effectively unreadable, where on desktop the same run sits over pale sky and reads as intended ghosting. Nudge the text block up so it sits over the lighter sky, or lift the ghost opacity below 1024, so the copy stays legible." },
+        { "severity": "warning", "actionable": false, "text": "Same Exposure->Newsreader and Matter->Inter fallbacks as desktop (shared font stack, not editable from this section)." },
+        { "severity": "info", "actionable": false, "text": "No Figma tablet mock exists; judged on adaptation quality only. The spec's 768-1023 intent is followed: panel becomes a flow column with 36px padding, header stays top-left, viewer centres, text column is exactly centred at 384px, segment control stays bottom-centred. No overflow, no clipping, no lost content." }
+      ]
+    },
+    "mobile": {
+      "score": 88,
+      "issues": [
+        { "severity": "warning", "actionable": false, "text": "Same Exposure->Newsreader and Matter->Inter fallbacks as desktop (shared font stack, not editable from this section)." },
+        { "severity": "info", "actionable": true, "text": "Content inset reads ~40px from the viewport edge (12px panel inset + ~28px padding); the spec's <768 rule is `padding: 24px` inside the panel, i.e. 36px. 4px drift - polish only." },
+        { "severity": "info", "actionable": false, "text": "No Figma mobile mock exists. The stack follows the spec's <768 order exactly - eyebrow, headline (2 lines, no overflow), viewer with orbit ring, lead, Specifications CTA, segment control - all three segments fit without horizontal scroll, the ghosted lead run sits over light sky and stays readable, and nothing overflows 390px." }
+      ]
+    }
+  },
+  "overallScore": 85,
+  "summary": "Desktop is now essentially pixel-exact against the Figma node - the radial wash and sea tones match within a few levels and every structural detail (masked orbit ring, drag chevrons, 384px segment track, borderless panel) is present, leaving only the licensed Exposure/Matter faces still falling back to Newsreader/Inter; tablet and mobile adapt cleanly, with the one real defect being the ghosted half of the tablet lead sinking into the dark water."
+}

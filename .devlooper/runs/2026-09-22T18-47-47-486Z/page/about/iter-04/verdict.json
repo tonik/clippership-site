@@ -1,0 +1,81 @@
+{
+  "breakpoints": {
+    "desktop": {
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "Team photo frame (182:2559) has the wrong hairline: about.tsx uses `border-on-dark` (--color-on-dark = #FFFFFF), so the 1px ring is invisible on the white page. Spec 4d and the explicit border table in spec section 8 both flatten this frame's two inside strokes to `1px solid #ECECEC` - the same value the three team cards correctly use via `border-border-flat`. Pixel-sampled proof: card 1 shows rgb(236,236,236) at x=48 and y=332, while the photo edges at x=618 / y=332 / y=851 go straight from white page to photo content with no grey line. Result is the 774x520 photo floating without the ring its neighbouring cards have. Fix in about.tsx: `border-on-dark` -> `border-border-flat` on the figure."
+        },
+        {
+          "severity": "info",
+          "actionable": true,
+          "text": "LinkedIn glyph on the team cards is still `h-4 w-[17px]` (about.tsx line ~105); Figma draws 16 x 16 (182:2097 / 2099 / 2101). One pixel of horizontal stretch - imperceptible, but a one-character fix carried over unfixed from iteration 3."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Team photo is now shipped and the crop is correct - this was the critical blocker for three iterations and it is resolved. Verified numerically, not by eye: the Figma plate (182:2560, natural 1114 x 740) sits at -170 / -31 inside the 774 x 520 window, and the build reproduces that with `w-[143.93%] left-[-21.96%] top-[-5.96%]`. Cropping the shipped about-team.png to the Figma rect and diffing it against the screenshot region x=618-1392 / y=332-852 gives a mean absolute pixel difference of 3.1 (resampling noise). The percentage-based offsets also hold the same crop at every width instead of only at 1440."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Section geometry measured from the PNG still matches the Figma frame exactly: 1440 x 948, 48px gutter (content right edge at x=1390 of 1392), cards block x=48-479 (432px), photo block x=618-1391 (774px) so the empty column-5 trough is the full 138px, row 1 at y=48, row 2 at y=332, section ends 96px below the photo. Trades rows at y=116 / 144 / 172 / 200 with the last row spanning the full 659px measure."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Type and colour tokens verified against the computed styles: h2 48px / 48px line-height, -1.92px tracking, weight 450, rgb(41,29,29) = ink #291D1D; eyebrow Overpass Mono Bold 12px / 12px, +0.12px, uppercase at 60%; card padding 24px with a 28px internal gap, credentials at 64% and roles/trades at 60% per spec 4c/4b. Card hover transitions border-hairline -> border-rule on --ease-fluid."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Restraint holds: the `FPO // Image Placeholder` badge (182:2564) is correctly not shipped, the 'Our Team' chip carries no scrim gradient and sits at the spec's 24/64/32/24 padding with 8px caption-mono at 60%, and no background ruler lines were invented (spec section 7 states this page has none). The red pill bottom-left of every screenshot is the Next.js dev overlay, not build output."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Exposure (heading) and Matter (body) are licensed faces absent from the project, so the stacks fall back to Newsreader and Inter. The section requests them correctly (`Exposure, Exposure-20, Newsreader...` and `Matter, Inter, ...`); this is the shared font config, not this section's file - noted, not scored against the section."
+        }
+      ]
+    },
+    "tablet": {
+      "score": 92,
+      "issues": [
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "Same missing photo hairline as desktop - the 702 x 470 figure renders with a white (invisible) 1px border where spec section 8 asks for `1px solid #ECECEC`, so the largest block on the screen has no frame while the three cards above it do."
+        },
+        {
+          "severity": "info",
+          "actionable": true,
+          "text": "Heading uses the global `text-display-md` clamp (2rem -> 3rem on 3.3333vw), so it renders at 32px at 768px and ~34px at 1024px. The spec's responsive table asks for clamp(36px, 3.8vw, 48px) in the 1024-1279 band, which this undershoots by roughly 5px at 1024. Changing the global token is a shared-file edit; a section-local heading clamp would close it. No tablet mock exists to contradict either value and the build reads fine as drawn."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "No Figma tablet reference. The adaptation is sound and matches the spec's 768-1023 intent: single-column stack in intro / trades / cards / photo order, 32px gutter (content measured x=30-735 of 768), 48px top and bottom padding, 64px row gap, trades list holds its 2 columns, cards go full width, photo holds the 774/520 aspect (702 x 470). No overflow, clipping or overlap. The faint full-width band at the very last row of the capture is the following section's panel bleeding into the clip, not an about-section element."
+        }
+      ]
+    },
+    "mobile": {
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "Same missing photo hairline as desktop - the 342 x 230 figure uses the white `border-on-dark` ring instead of the spec's `1px solid #ECECEC`, so it reads as a bare photo next to three correctly-framed cards."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "No Figma mobile reference. The adaptation is sound and matches the spec's <768 intent: 24px gutter (content measured to x=369 of 390, no horizontal overflow), 48px row gap, trades list drops to 1 column at 12px row gap with the Figma reading order preserved (Tesla, Jet Propulsion Laboratory, Canadian Special Forces, Mercedes-AMG Formula 1 Team, Microsoft, Damen Shipyards Group, Bay Ship and Yacht), cards stretch full width, heading wraps to 2 lines, photo keeps its aspect and its Figma crop. Nothing clipped or overlapping."
+        }
+      ]
+    }
+  },
+  "overallScore": 92,
+  "summary": "The team photo landed this iteration with a numerically verified Figma crop, closing the one critical gap, and the only substantive difference left is the photo frame's white ring where the design calls for the same #ECECEC hairline the team cards already use."
+}

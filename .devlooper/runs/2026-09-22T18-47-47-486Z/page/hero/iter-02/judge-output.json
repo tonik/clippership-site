@@ -1,0 +1,101 @@
+{
+  "exitCode": 0,
+  "parsed": {
+    "duration_api_ms": 432253,
+    "stop_reason": "end_turn",
+    "session_id": "c0c7b98e-a8cb-441d-9cc1-c506a93dfdda",
+    "total_cost_usd": 2.5663514999999997,
+    "usage": {
+      "input_tokens": 60,
+      "cache_creation_input_tokens": 82421,
+      "cache_read_input_tokens": 1852383,
+      "output_tokens": 32626,
+      "output_tokens_details": {
+        "thinking_tokens": 22266
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 82421,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1030,
+          "cache_read_input_tokens": 87950,
+          "cache_creation_input_tokens": 7302,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7302
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-opus-5": {
+        "inputTokens": 60,
+        "outputTokens": 32626,
+        "cacheReadInputTokens": 1852383,
+        "cacheCreationInputTokens": 82421,
+        "webSearchRequests": 0,
+        "costUSD": 2.5663514999999997,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 22266,
+        "canonicalModel": "claude-opus-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "permission_denials": [],
+    "terminal_reason": "completed",
+    "fast_mode_state": "off",
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "is_error": false,
+    "num_turns": 36,
+    "subtype": "success",
+    "api_error_status": null,
+    "result": "Verdict written to `.devlooper/runs/2026-09-22T18-47-47-486Z/page/hero/iter-02/verdict.json`.\n\n**Overall: 60** (desktop 60, tablet 76, mobile 70)\n\nNo cached reference image existed, so I pulled the hero node (`181:499`) from Figma once and compared pixel-for-pixel against the 1440x1280 desktop capture.\n\nBig improvement over iteration 1: both image layers now render at all three breakpoints, and the wordmark/headline collision on tablet and mobile is gone.\n\nWhat still differs from the mock:\n\n- **Image plates under-scaled (critical).** They use plain `object-fit: cover`, which sizes the vessel to ~1815x1280. Figma draws it at 2252x1588, i.e. ~159% of the stage. Measured: hull left tip at x=235 vs x=143 in Figma, waterline at y~880 vs y~1100. The ship reads ~20% too small and ~230px too high, leaving a ~250px band of empty water at the bottom that is not in the design.\n- **Headline is not Exposure (critical).** `public/fonts/` does not exist, so the h1 falls through to Newsreader - visibly lighter and narrower than Figma's Exposure-20 450 (665px for \"AI compute at\" in Figma vs ~43px/glyph in the build). Matter falls back to Inter for the same reason.\n- **Wrong headline break (warning).** Build: \"AI compute at the / maritime edge.\"; Figma: \"AI compute at / the maritime edge.\" The NBSP is not taking effect in the rendered DOM.\n- **Lead wraps to 5 lines instead of 4 (warning)**, pushing the CTA 31px low. Measure and left edge are correct; the wider Inter fallback causes it.\n- **Lead over the sails on tablet/mobile (warning).** The 48% quiet run crosses the white sails, dropping to roughly 2.4:1 - the fix is positional, not a token change.\n\nCorrect and confirmed: CTA pill geometry, fill, backdrop blur, hairline and label; wordmark size and the -12px tuck; 148px title offset; 961px lead left edge; split-opacity lead; ink colour; gutters and stage corner radii.\n\nOne thing worth flagging outside the verdict: the hero source on disk (`src/app/sections/hero/hero-stage.client.tsx`, mtime 21:58:05, same second as every other file in `src/`) is in the **pre-fix** state - the plates are still `photo-placeholder` gradient divs with TODO comments, and it contains a genuine U+00A0 that the screenshot demonstrably did not have. The 21:57 screenshots therefore do not correspond to what is currently checked out; something re-copied or reverted the tree after the capture. I did not touch any project files, but the fixer may find the tree does not match my findings.",
+    "ttft_ms": 1164,
+    "type": "result",
+    "duration_ms": 442475,
+    "uuid": "e7f2bf12-9d26-4f09-850a-ba11a4468abf",
+    "ttft_stream_ms": 661,
+    "time_to_request_ms": 36,
+    "first_content_frame_ms": 661,
+    "queued_turn_count": 0,
+    "result_index": 0
+  },
+  "stderr": ""
+}

@@ -1,0 +1,39 @@
+{
+  "breakpoints": {
+    "desktop": {
+      "score": 96,
+      "issues": [
+        { "severity": "info", "actionable": false, "text": "No cached Figma reference image was supplied; desktop was judged against the extracted 1440 ground truth (spec.md §2 + geometry.json for node 181:508), which is a literal transcription of the frame." },
+        { "severity": "info", "actionable": false, "text": "Geometry verified pixel-exact from the PNG: section height 428px, 12px padding top/bottom, tiles 404px tall (y 12→415). Measured tile widths 320px (x 504→823) and 404px (x 847→1251) with a 24px gap — matches the 546/320/404/320/546 + 24px strip." },
+        { "severity": "info", "actionable": false, "text": "Strip overflows and is clipped at the frame edge with no right-hand gutter (image content runs to x=1439), matching Figma's clip behaviour rather than clipping at the 12px padding box." },
+        { "severity": "info", "actionable": false, "text": "Tile 1 is clipped on the left and its fig.01 chip is off-frame in this screenshot. This is the marquee (spec §6.3 'Media strip - infinite marquee') caught mid-cycle, not a missing chip or a misaligned strip — the track animates from translate3d(0,0,0), so the resting state is flush left. Not a defect." },
+        { "severity": "info", "actionable": false, "text": "Tile hairline confirmed present by pixel sampling, not just by eye: #ECECEC at y=12, y=415 and x=847 (rgb 236,236,236). Border 1px solid var(--color-border-flat) #ececec, radius 8px (rounded-md → --radius-md) — exactly the single-layer recipe spec.md sanctions." },
+        { "severity": "info", "actionable": false, "text": "Figure-chip scrim verified numerically: inside the chip box rgb(125,130,136) vs rgb(185,195,206) on the same sky just below it — an effective alpha of ~0.42 against the ~0.46 the radial-gradient(farthest-side at 0% 0%, rgba(43,38,38,0.8)→0) at 64% opacity predicts at that offset, and it fades to unscrimmed by the chip's far corner. Correct gradient, correct compositing." },
+        { "severity": "info", "actionable": false, "text": "Chip metrics match: padding 24/32/32/24 → 64px frame height, label 8px/1 Overpass Mono 700 at +0.01em, uppercase, white at 64%, pointer-events: none. Overpass Mono is the real face (next/font/google), not a monospace fallback." },
+        { "severity": "info", "actionable": false, "text": "Image crops are mathematically exact. Each tile's plate is the Figma rect expressed as a percentage of the tile box (e.g. tile 4: 492/320 = 153.75%, 656/404 = 162.376%, -79/320 = -24.688%, -101/404 = -25%), so the crop survives the tile shrinking on mobile instead of hard-coding px offsets. All five tiles check out against the spec's object-position table." },
+        { "severity": "info", "actionable": false, "text": "Restraint holds: no heading, eyebrow or body copy added, chips are the only text, and the verbatim fig.01 / fig.02 / fig.03 / fig.02 / fig.05 sequence is reproduced with fig.04 skipped as drawn. The only extra is an sr-only subject description per chip, which is invisible." },
+        { "severity": "info", "actionable": false, "text": "Motion scaffolding is in place: 40s linear infinite translate3d to -50% over a duplicated run (one run is exactly 50% of the track because the 24px gap is a per-tile right margin), pause on :hover and :focus-within, and prefers-reduced-motion: reduce drops the animation and falls back to a native horizontal scroller — all as spec §6.3 asks." },
+        { "severity": "info", "actionable": false, "text": "spec-match.json's three off-token flags are false positives: #ECECEC is the spec's prescribed tile hairline and a defined token (--color-border-flat), and the 32px chip padding-right/bottom is the spec's literal 24px 32px 32px 24px." }
+      ]
+    },
+    "tablet": {
+      "score": 96,
+      "issues": [
+        { "severity": "info", "actionable": false, "text": "No Figma tablet frame exists, so this is judged on adaptation quality only. 768px sits exactly on the spec's '≥ 768: strip as drawn' rule and the build honours it: measured tile 2 at x 380→697 = 318px (≈320) and tiles still 404px tall (y 12→415), section height 429px." },
+        { "severity": "info", "actionable": false, "text": "Marquee and duplicated second run are both active at this width, clipped at the frame edge with no right gutter. Nothing wraps into a grid, nothing overlaps, no clipped or unreadable text." },
+        { "severity": "info", "actionable": false, "text": "As on desktop, the leftmost tile is mid-marquee and its chip is off-frame — an animation frame, not a defect." }
+      ]
+    },
+    "mobile": {
+      "score": 95,
+      "issues": [
+        { "severity": "info", "actionable": true, "text": "Every tile carries mr-6, including the last, so the mobile scroller ends with 24px of trailing margin plus the 12px section padding (36px of white past the final tile) instead of the 12px the spec keeps. Invisible until the user scrolls to the end; drop the margin on the last tile of the run (or keep it only for the desktop seam)." },
+        { "severity": "info", "actionable": false, "text": "No Figma mobile frame exists. The build follows the spec's '< 768' rule precisely: measured tile 12→252 = 241px tall, which is min(404px, 62vw) at 390px = 241.8px, and 325px wide, holding the 546/404 ratio. Section padding stays 12px." },
+        { "severity": "info", "actionable": false, "text": "Real scroller as specified, not a shrunk marquee: overflow-x: auto, snap-x snap-mandatory with scroll-p-3 and scroll-snap-align: start on each tile, translation disabled below 768px, and the decorative second run hidden so the scroller has a genuine end." },
+        { "severity": "info", "actionable": false, "text": "fig.01 chip renders correctly at the tile's top-left (label ~23px from the left edge, ~24px from the top) at 8px Overpass Mono over its radial scrim, and the crop still frames the vessel under the bridge after the tile shrinks. No horizontal page overflow — the strip is contained inside the section's own scroll box." }
+      ]
+    }
+  },
+  "overallScore": 95,
+  "summary": "The media strip is a near-exact build of node 181:508: tile widths, 404px height, 24px gaps, 8px radius, #ECECEC hairlines, chip padding and scrim, and all five image crops verify against the spec, with the documented marquee and its reduced-motion fallback in place; the only remaining nit is 24px of trailing margin at the end of the mobile scroller."
+}

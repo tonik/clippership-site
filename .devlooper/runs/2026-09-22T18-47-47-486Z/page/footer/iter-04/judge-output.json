@@ -1,0 +1,101 @@
+{
+  "exitCode": 0,
+  "parsed": {
+    "duration_api_ms": 110228,
+    "stop_reason": "end_turn",
+    "session_id": "5df74624-c936-48ad-8a90-79c557c25233",
+    "total_cost_usd": 1.06333,
+    "usage": {
+      "input_tokens": 40,
+      "cache_creation_input_tokens": 41209,
+      "cache_read_input_tokens": 845130,
+      "output_tokens": 9139,
+      "output_tokens_details": {
+        "thinking_tokens": 2402
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 41209,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 577,
+          "cache_read_input_tokens": 53603,
+          "cache_creation_input_tokens": 437,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 437
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-opus-5": {
+        "inputTokens": 40,
+        "outputTokens": 9139,
+        "cacheReadInputTokens": 845130,
+        "cacheCreationInputTokens": 41209,
+        "webSearchRequests": 0,
+        "costUSD": 1.06333,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 2402,
+        "canonicalModel": "claude-opus-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "permission_denials": [],
+    "terminal_reason": "completed",
+    "fast_mode_state": "off",
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "is_error": false,
+    "num_turns": 29,
+    "subtype": "success",
+    "api_error_status": null,
+    "result": "Verdict written to `page/footer/iter-04/verdict.json`.\n\n**Scores: desktop 96, tablet 94, mobile 93 - overall 93.**\n\nEvidence behind the call:\n\n- **Desktop is effectively a pixel match.** Panel v-extent 0-239 and h-extent 12-1427 identical to the reference; wash sampled rgb(240,232,229) vs ref rgb(240,233,229); no stroke, as the spec requires. All nine backer logos sit in the same 51-77px band with x-runs matching within 1px, and the darken blend at 0.6 reads correctly (no white plates). Meta row: copyright x50-224/y152-160 vs ref y152-161, hairline rule present between copyright and email, email correctly not uppercased, wordmark box 642-797 vs 642-798. Social icons are the only measurable drift, ~2px left.\n- **Pixel diff (2.33% mismatch) is mostly noise**: text antialiasing plus a red \"5 Issues\" dev-server overlay badge sitting over the bottom-left of the panel in every screenshot. That badge is tooling, not section markup, so I logged it non-actionable.\n- **Tablet/mobile have no mock**, so I judged them structurally: backers wrap 5+4 at 768 and 3-per-row at 390, panel height grows, meta row goes static then becomes a centred column (wordmark → copyright/rule/email → socials) - exactly the spec's responsive intent. No overflow, no clipped or lost content.\n- **Nothing critical or warning-level survived.** The only actionable notes are info-grade: the 2px social-row offset and social icon tap targets under ~44px on touch widths.\n\nNo project files were touched.",
+    "ttft_ms": 1615,
+    "type": "result",
+    "duration_ms": 112770,
+    "uuid": "ce0f7cf9-ad18-498a-8a61-724d55e291a1",
+    "ttft_stream_ms": 1153,
+    "time_to_request_ms": 57,
+    "first_content_frame_ms": 1153,
+    "queued_turn_count": 0,
+    "result_index": 0
+  },
+  "stderr": ""
+}

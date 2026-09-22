@@ -1,0 +1,12 @@
+{
+  "changesMade": [
+    "Implemented the infinite marquee from spec §6.3: the five-tile run is now duplicated into a single track that translates -50% on a constant linear loop (new section-local `how-it-works.module.css` holds the @keyframes, since globals.css is owned by another agent this pass). Mechanism: the animation was absent in kind, not mistimed.",
+    "Moved the 24px inter-tile spacing off the track's `gap` and onto each tile as `mr-6`. Mechanism: with `gap` on the track, one run is 2232px but 50% of the track is 2340px, so the -50% translate would overshoot by 84px and the loop would visibly jump. With the gap carried by the tiles, one run is exactly 50% of the track and the seam is frame-perfect.",
+    "Pause on hover/focus-within via `animation-play-state: paused`, and a `prefers-reduced-motion: reduce` fallback that kills the animation and restores a native horizontal scroller (`overflow-x: auto`) - both were missing.",
+    "Removed the invented `group-hover:scale-105` zoom on the tile image. Mechanism: the design documents no hover transform for this strip; the only hover affordance is pausing the marquee, which now exists.",
+    "Added `scroll-p-3` to the mobile scroller. Mechanism: with `snap-x snap-mandatory` and no scroll-padding, the snapport starts at the padding-box edge, so the initial `snap-start` consumed the section's 12px padding-left and tile 1 sat flush at x=0. scroll-padding-inline: 12px restores the spec's 12px inset.",
+    "Kept the animation gated to >=768px so mobile stays the native snap scroller the spec describes, and hid the duplicate run below md so the mobile scroller does not gain five phantom tiles; marked the duplicate run aria-hidden so screen readers read each figure once.",
+    "Tagged the track with data-figma-id=\"181:764\" for next-iteration measurement."
+  ],
+  "summary": "Built the missing spec §6.3 infinite marquee (duplicated run, exact -50% seamless loop, pause-on-hover, reduced-motion scroller fallback), removed the invented hover zoom, and fixed the lost 12px mobile inset with scroll-padding."
+}

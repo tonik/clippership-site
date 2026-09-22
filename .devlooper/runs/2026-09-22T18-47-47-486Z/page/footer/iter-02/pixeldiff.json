@@ -1,0 +1,9 @@
+{
+  "breakpoint": "desktop",
+  "ssim": 0.9397,
+  "mismatchPct": 6.03,
+  "comparedWidth": 1440,
+  "comparedHeight": 252,
+  "diffImage": "/Users/arturgrzeda/Documents/Devlooper/clippership/.devlooper/runs/2026-09-22T18-47-47-486Z/page/footer/iter-02/diff-desktop.png",
+  "sizeWarning": null
+}

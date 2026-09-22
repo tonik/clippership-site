@@ -1,0 +1,91 @@
+{
+  "breakpoints": {
+    "desktop": {
+      "score": 80,
+      "issues": [
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "Team photo (182:2559 / 182:2560) is still not rendered. The frame itself is pixel-exact (measured x=618-1391 = 774px, y=332-852 = 520px, radius 4px, #ECECEC hairline, 'OUR TEAM' chip inset 24px, no scrim - all correct), but its whole interior is the flat `photo-placeholder` gradient (sampled #F6F6F7 -> #E5E4E6). That is a 774x520 empty grey block - roughly a third of the section's area - where Figma shows the team group photo. Export about-team.jpg (1114 x 740) from node 182:2560 into public/ and render it with object-fit: cover, object-position approx -170px -31px; the TODO comment in src/app/sections/about/about.tsx already records the exact values."
+        },
+        {
+          "severity": "info",
+          "actionable": true,
+          "text": "LinkedIn glyph is set to `h-4 w-[17px]` on the team cards; Figma draws 16 x 16 (182:2097 / 2099 / 2101). The extra pixel of width stretches the mark very slightly. Imperceptible, but it is a one-character fix."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "The trades-list overrun from iteration 1 is fixed: the second bullet column now starts at x=963 with its label at x=977, against Figma's 960 / 976 (247:723 / 247:677). The 659px measure is holding."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Section geometry is exact against the Figma frame: 1440 x 948 render, 48px gutter, left block columns 1-4, right block starting at x=618 (138px empty column-5 trough), row 2 at y=332, 96px bottom padding. Cards measured at y=332-478, 490-636, 648-794, i.e. 146px tall with a 12px stack gap - identical to nodes 182:1880 / 1889 / 1899."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Type and colour tokens verified: h2 at 48px / 48px line-height, -1.92px tracking, weight 450, colour rgb(41,29,29) = ink #291D1D; eyebrow Overpass Mono Bold 12px / 12px, +0.12px, uppercase at 60%; card border #ECECEC and bullet box rgba(25,25,25,0.08) per spec section 8. Card hover is border-hairline -> border-rule at 160ms on --ease-fluid, matching the Motion table."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Restraint holds: the FPO // Image Placeholder badge (182:2564) is correctly not shipped, the 'Our Team' chip correctly has no scrim gradient, and no background ruler lines were invented (spec section 7 states the page has none). The red '2 Issues' pill bottom-left is the Next.js dev overlay, not build output."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Exposure and Matter are licensed faces that are not present in the project, so the heading falls back to Newsreader and body text to Inter. This is a project-wide font-loading matter set up in the shared font config, not something this section's file controls - noted, not scored against the section."
+        }
+      ]
+    },
+    "tablet": {
+      "score": 84,
+      "issues": [
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "Team photo still absent - the same flat grey placeholder, here at 702 x 470, and it is the single largest block on the screen. See the desktop note on exporting about-team.jpg."
+        },
+        {
+          "severity": "info",
+          "actionable": true,
+          "text": "Heading uses the global `text-display-md` clamp (2rem -> 3rem on 3.3333vw), so at 768px it renders at 32px. The spec's responsive table calls for clamp(36px, 3.8vw, 48px) in the 1024-1279 band, which the display-md token undershoots by roughly 5px at 1024. No tablet mock exists to contradict either value; the build reads fine as drawn."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "The ~152px void under the heading reported in iteration 1 is gone: the intro bottom padding and trades top padding are now scoped to lg:, leaving the 64px row gap alone. Measured heading baseline to trades lead is now a clean single gap."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "No Figma tablet reference. The adaptation is sound: single-column stack in intro / trades / cards / photo order, 32px gutter, trades list holds its 2 columns, cards go full width, photo holds the 774/520 aspect. No overflow, clipping or overlap."
+        }
+      ]
+    },
+    "mobile": {
+      "score": 84,
+      "issues": [
+        {
+          "severity": "critical",
+          "actionable": true,
+          "text": "Team photo still absent - flat grey placeholder at 342 x 230. See the desktop note on exporting about-team.jpg."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "The stacked-padding void from iteration 1 is resolved here too; the heading now sits a single 48px row gap above the trades lead."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "No Figma mobile reference. The adaptation is sound: 24px gutter, trades list drops to 1 column at 12px row gap with the Figma reading order preserved (Tesla, Jet Propulsion Laboratory, Canadian Special Forces, Mercedes-AMG Formula 1 Team, Microsoft, Damen Shipyards Group, Bay Ship and Yacht), cards stretch full width, heading wraps to 2 lines. No horizontal overflow, nothing clipped."
+        }
+      ]
+    }
+  },
+  "overallScore": 80,
+  "summary": "Iteration 2 closed both layout defects from iteration 1 - the trades list now sits on its 659px Figma measure and the desktop-only paddings no longer stack into a void on the smaller breakpoints - leaving a section whose geometry, card metrics and type/colour tokens are pixel-exact against the Figma frame, with the still-unfilled 774x520 team photo as the one substantive gap."
+}

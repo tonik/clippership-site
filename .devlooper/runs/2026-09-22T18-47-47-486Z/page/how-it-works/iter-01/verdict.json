@@ -1,0 +1,91 @@
+{
+  "breakpoints": {
+    "desktop": {
+      "score": 70,
+      "issues": [
+        {
+          "severity": "warning",
+          "actionable": false,
+          "text": "All five photographs are missing - every tile renders the grey `photo-placeholder-mid` gradient instead of the image fills (247:662, 235:614, 235:629, 235:627, 247:658). This section is nothing BUT photography, so the whole visual payload of the section is absent. Not actionable this run: `.devlooper/runs/.../figma/page/asset-fetch-summary.json` records how-it-works-01..05.jpg as failed downloads (Figma REST/MCP rate limit), and the component already carries the correct TODO with the object-position crops. Re-run asset fetch before this can be fixed in code."
+        },
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "Marquee missing. Spec §6.3 defines the strip as a continuously scrolling infinite marquee (duplicate the five tiles, translate the track at a constant rate, pause on hover, and fall back to a native horizontal scroller under `prefers-reduced-motion: reduce`). The build renders a single static, clipped track with no track duplication, no translation and no reduced-motion fallback - the animation is absent in kind, not merely caught on a different frame."
+        },
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "Wrong hover interaction on the tiles: the build applies `group-hover:scale-105` (transform zoom) to the tile image. The design's only documented hover behaviour for this strip is *pause the marquee* (§6.3). The image zoom is an invented effect not in the Figma reference - remove it and move the hover affordance to pausing the track."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Tile geometry is exact: measured runs at 12/546, 582/320, 926/404, 1354/(86 clipped), 24px gaps, 404px height, 12px section padding - matches the 546/320/404/320/546 order and the deliberate 816px right overflow."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Figure chips are correct: verbatim `fig.01 / fig.02 / fig.03 / fig.02 / fig.05` (the duplicated fig.02 on tile 4 is reproduced as drawn), 8px uppercase Overpass Mono Bold measured at 28px advance / 6px cap height, 24/32/32/24 padding giving an 84x64 chip, top-left radial scrim at opacity 0.64."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "Tile hairline renders as `border-top-color #ECECEC` on all five tiles - the correct flattening of the two 1px inside strokes (#FFFFFF under rgba(25,25,25,0.08)) per §8. The spec-match pass flags #ECECEC and the 32px chip paddings as off-token, but both are the values the spec explicitly prescribes for this section; no change wanted."
+        }
+      ]
+    },
+    "tablet": {
+      "score": 72,
+      "issues": [
+        {
+          "severity": "warning",
+          "actionable": false,
+          "text": "Same as desktop: all five photographs render as grey placeholder gradients because the how-it-works-01..05.jpg assets failed to download (Figma rate limit). Not fixable in code until the assets are re-fetched."
+        },
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "Same as desktop: the infinite marquee from spec §6.3 is not implemented - static clipped track, no duplicated tiles, no reduced-motion fallback."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "No Figma tablet frame exists. The 768 behaviour is correct against the spec's responsive rule (>= 768 keeps the strip as drawn): tile 1 measured at 12/546 with the 404px height held and tile 2 clipped at the viewport edge, 12px section padding intact, `overflow-x: hidden` via the `md:` branch."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "The red '2 Issues' badge at the bottom-left of the tablet and mobile screenshots is the Next.js dev-overlay indicator, not part of the build. Ignore it."
+        }
+      ]
+    },
+    "mobile": {
+      "score": 66,
+      "issues": [
+        {
+          "severity": "warning",
+          "actionable": true,
+          "text": "The 12px left inset is lost at 390px: the first tile sits flush at x=0 instead of x=12 (measured run starts at 0, while the inter-tile gap is a correct 24px). Cause is scroll snapping - the section is `p-3 snap-x snap-mandatory overflow-x-auto` with `snap-start` tiles, and with no scroll-padding the snapport starts at the padding box edge, so the initial snap eats the padding-left. Spec says 'Section padding stays 12px' at < 768. Add `scroll-p-3` (scroll-padding-inline: 12px) on the scroller."
+        },
+        {
+          "severity": "warning",
+          "actionable": false,
+          "text": "Same as desktop: all five photographs render as grey placeholder gradients because the how-it-works-01..05.jpg assets failed to download (Figma rate limit). Not fixable in code until the assets are re-fetched."
+        },
+        {
+          "severity": "info",
+          "actionable": false,
+          "text": "No Figma mobile frame exists. The adaptation follows the spec's < 768 rule correctly: real horizontal scroller with `overflow-x: auto`, `scroll-snap-type: x mandatory` and `scroll-snap-align: start`, tile height measured at 242px = min(404px, 62vw), widths held to the drawn 546:404 / 320:404 / 404:404 ratios via aspect-ratio. No overflow of the viewport, no clipped or unreadable text, all five tiles preserved."
+        },
+        {
+          "severity": "info",
+          "actionable": true,
+          "text": "The 8px chip label does not scale down at mobile, which is correct (it is 8px in Figma), but at 390px it is close to the legibility floor. No change unless the designer asks - noted only because it is the section's sole text."
+        }
+      ]
+    }
+  },
+  "overallScore": 66,
+  "summary": "Structure, tile geometry, borders and the verbatim figure chips are reproduced exactly at every breakpoint, but the section is visually empty because all five photographs failed to download and render as grey placeholders, the spec'd infinite marquee is not implemented (replaced by an invented hover zoom), and mobile loses its 12px left inset to scroll snapping."
+}

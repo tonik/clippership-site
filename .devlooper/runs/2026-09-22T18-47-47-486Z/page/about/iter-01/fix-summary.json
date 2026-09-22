@@ -1,0 +1,8 @@
+{
+  "changesMade": [
+    "Bullet marker glyph: replaced the 4px text arrow (text-micro, 7 instances - the only off-token font-size in the measurement gate; DESIGN.md's type scale bottoms out at caption-mono 8px) with an inline 4x4 SVG arrow inside the same 8px hairline box. Mechanism: the mark was carried by a font-size step that has no token, so moving it to SVG geometry keeps the identical visual (a dot at this size, per spec 4b) and removes the off-scale type value entirely.",
+    "Trades block: added the 659px Figma inner measure as lg:max-w-[41.1875rem] (named TRADES_MEASURE with a comment - it is a hand-set width, not a column multiple). Mechanism: the block was stretching the full 774px of columns 6-12, pushing the second bullet column to x=1017 instead of ~959.",
+    "Intro bottom padding pb-16 -> lg:pb-16 and trades top padding pt-6 -> lg:pt-6. Mechanism: both paddings exist only to align the two grid rows at 1440; once the layout collapses to one column they compounded with the row gap into ~152px (tablet) / ~136px (mobile) of dead space under the heading. Stacked rhythm is now just the 48/64px row gap."
+  ],
+  "summary": "Closed the 4px off-token bullet glyph (measurement gate) by inlining it as an SVG, constrained the trades list to its 659px Figma measure, and scoped the desktop-only row-alignment paddings to lg: so the stacked breakpoints lose the ~150px void; the team photo stays a token placeholder because both Figma MCP and the REST image endpoint returned rate-limit errors this pass."
+}

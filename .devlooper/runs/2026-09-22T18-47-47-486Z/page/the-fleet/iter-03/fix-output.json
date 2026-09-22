@@ -1,0 +1,101 @@
+{
+  "exitCode": 0,
+  "parsed": {
+    "duration_api_ms": 347757,
+    "stop_reason": "end_turn",
+    "session_id": "33addfee-abe8-4e0f-8f0c-6e7a3d640e44",
+    "total_cost_usd": 2.6040085,
+    "usage": {
+      "input_tokens": 56,
+      "cache_creation_input_tokens": 84817,
+      "cache_read_input_tokens": 2072067,
+      "output_tokens": 28781,
+      "output_tokens_details": {
+        "thinking_tokens": 19008
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 84817,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 812,
+          "cache_read_input_tokens": 97911,
+          "cache_creation_input_tokens": 1796,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1796
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-opus-5": {
+        "inputTokens": 56,
+        "outputTokens": 28781,
+        "cacheReadInputTokens": 2072067,
+        "cacheCreationInputTokens": 84817,
+        "webSearchRequests": 0,
+        "costUSD": 2.6040085,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 19008,
+        "canonicalModel": "claude-opus-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "permission_denials": [],
+    "terminal_reason": "completed",
+    "fast_mode_state": "off",
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "subagent_stats": {
+      "spawned": 0,
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "started_in_background": 0,
+      "max_depth": 0,
+      "spawned_by_subagents": 0,
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "user": 0,
+        "system": 0
+      },
+      "refused": {
+        "depth_limit": 0,
+        "concurrency_limit": 0,
+        "budget": 0
+      },
+      "by_type": {}
+    },
+    "is_error": false,
+    "num_turns": 33,
+    "subtype": "success",
+    "api_error_status": null,
+    "result": "Done. Build, typecheck and lint all pass (the one lint warning is pre-existing, in devlooper's own loader file).\n\n**What I changed, largest gap first:**\n\n1. **Painted backdrop crop** (`the-fleet.tsx` + `the-fleet.module.css`) - the biggest measured delta. The sea layer was an `inset-0` cover of the panel, but Figma draws node 181:538 as a 1572×1054 rect inside the 1416×776 panel at −78/−243: horizontally centred, 104px *above* centre. That missing lift is exactly why the water band started ~100px too low. It is now a crop plate whose geometry is stored as percentages of the panel (111.017% / 135.825% at −5.508% / −31.314%), applied at `lg` only - below the drawn frame the panel is taller than wide and the rect would overshoot.\n\n2. **Drag-CTA chevrons** - I pulled node 181:546 to find the mechanism. Figma's glyph `fi:arrow-up` is `M3.33333 8L8 3.33333L12.6667 8`, whose ink sits 2.33px *above* its box centre; our `icon-chevron.svg` carried a vertically centred path. Rotating an off-centre glyph throws its ink outward, which is what opens the 8px gap - a centred one collapses the pair into `<>`. Fixed the source SVG, regenerated the icon module (`IconChevron` is used only here), and swapped the two rotations. Computed result: 17.33×9.33 with an 8px gap, against Figma's 18×10.\n\n3. **Segment track to 384px** - the items were purely hug-sized. Added the drawn widths (120/124/124) to the roadmap data and applied them as a `md:min-w-` floor, so the track sums to 384. A floor, not a fixed width, so it stays correct once Matter loads; left hug below `md` where 384px doesn't fit 390.\n\n4. **Tablet layout** - text column constrained to `min(384px, 80%)` and centred under the viewer per spec §Responsive (it was running full-bleed with the ghosted tail of the lead trailing over the torn white edge), and the segment control centred instead of sitting at the 36px gutter.\n\nNot actioned: the Exposure→Newsreader / Matter→Inter fallbacks. As the reviewer noted, those live in `globals.css`, owned by another agent this pass - I left the shared file alone.",
+    "ttft_ms": 1302,
+    "type": "result",
+    "duration_ms": 384848,
+    "uuid": "30a1fa04-1062-4466-a683-0ccec560fd65",
+    "ttft_stream_ms": 1154,
+    "time_to_request_ms": 78,
+    "first_content_frame_ms": 1154,
+    "queued_turn_count": 0,
+    "result_index": 0
+  },
+  "stderr": ""
+}

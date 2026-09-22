@@ -1,0 +1,36 @@
+{
+  "breakpoints": {
+    "desktop": {
+      "score": 65,
+      "issues": [
+        { "severity": "critical", "actionable": true, "text": "h1 renders in the Newsreader fallback, not Exposure/Exposure-20. Computed font-family is 'Exposure, Exposure-20, Newsreader, ...' but no Exposure font file exists in the project, so the browser falls through. Figma's Exposure is a heavy, low-contrast serif; the rendered Newsreader is a high-contrast Didone with visibly thinner stems. Measured: line 1 'AI compute at' is 603px wide vs 674px in Figma and line 2 is 781px vs 858px (both ~10% narrow) at identical 108px/108px metrics. This is the section's dominant element. Ship the Exposure webfont; if it cannot be licensed, raise the fallback weight (~600-700) and widen tracking so the mass approximates the reference." },
+        { "severity": "warning", "actionable": true, "text": "Vessel/sail imagery is far darker and more saturated than Figma. Mean RGB over the vessel block (y700-1150, x250-900) is 138,165,171 in the build vs 197,215,212 in the reference; a tone sweep shows build midtones ~60-80 levels below the reference while highlights match, i.e. the atmospheric haze that washes the sails in Figma is missing. Sky and water elsewhere are within ~5-10 levels, so only the vessel plate is wrong. Note hero-sky.png / hero-vessel.png both failed to download during asset fetch (Figma rate limit) - re-fetch the real plates, or lift the shadows/midtones of the substitute so the sails read pale blue-white, not solid blue." },
+        { "severity": "warning", "actionable": true, "text": "Lead paragraph wraps to 5 lines instead of Figma's 4 ('Autonomous vessels take AI' / ... / 'tape is thin.' vs 'Autonomous vessels take AI compute' / ... / 'plentiful, and the red tape is thin.'). Cause is font width, not font-size: the strong run 'Autonomous vessels' measures 220px vs 204px in Figma (+7.8%) because no Matter font file is present and the stack falls back to Inter. Knock-on: the CTA pill sits at y650 instead of y612, ~38px below the design. Ship Matter, or widen the lead measure so the Figma line breaks survive." },
+        { "severity": "info", "actionable": true, "text": "CTA pill measures ~181px wide vs 174px in Figma; the label 'Read the white paper' runs 140px vs 134px. Same Inter-instead-of-Matter root cause as the lead reflow; pill height, 999px radius, 12/20px padding and the rgba(25,25,25,0.08) hairline are all correct." },
+        { "severity": "info", "actionable": false, "text": "A dev-tooling badge reading '5 Issues' renders over the hero at bottom-left (x20-125, y845-880). It is the framework dev overlay, not build markup, but the 5 logged issues are worth a look outside this section." },
+        { "severity": "info", "actionable": false, "text": "Geometry is otherwise pixel-exact: wordmark 157x28 at x642/y148, h1 line boxes at y182-269 and y282-379, lead ink top at y480 with 28px leading, 12px white side gutters, square top / rounded bottom stage corners, split-opacity lead (100% / 48%) all match the reference." }
+      ]
+    },
+    "tablet": {
+      "score": 72,
+      "issues": [
+        { "severity": "critical", "actionable": true, "text": "Same wrong display typeface as desktop: h1 renders in the Newsreader fallback instead of Exposure. A missing font is a token violation judgeable without a tablet mock." },
+        { "severity": "warning", "actionable": true, "text": "Same vessel tone problem as desktop - the sails render as solid mid-blue rather than the pale, hazed blue-white of the reference plate." },
+        { "severity": "info", "actionable": true, "text": "The lead paragraph and CTA land squarely on the vessel's sails at this width, so the 48%-opacity run ('the wide-open ocean, where clean energy and') sits at low contrast over painted detail. Nudging the lead block up ~40px would put it back on open sky." },
+        { "severity": "info", "actionable": false, "text": "Responsive adaptation itself is sound and no tablet mock exists to contradict it: lead column centres under the title per the 768-1023 rule, headline holds its two-line break, no overflow, gutters and bottom radius preserved, hulls stay in frame." }
+      ]
+    },
+    "mobile": {
+      "score": 68,
+      "issues": [
+        { "severity": "critical", "actionable": true, "text": "Same wrong display typeface as desktop: h1 renders in the Newsreader fallback instead of Exposure." },
+        { "severity": "warning", "actionable": true, "text": "The non-breaking space between 'the' and 'maritime' is missing from the h1. Mobile breaks the headline 'AI compute at the' / 'maritime edge.' - with the U+00A0 the spec requires ('the&nbsp;maritime'), it would break 'AI compute at' / 'the maritime edge.', which still fits the 330px measure. Desktop only matches by coincidence of measure, so the fix is in the markup, not the CSS." },
+        { "severity": "warning", "actionable": true, "text": "Same vessel tone problem as desktop - sails render as solid mid-blue instead of the reference's pale, hazed blue-white." },
+        { "severity": "info", "actionable": true, "text": "Lead paragraph overlaps the masts across all five lines; the 48% run over painted sail detail is the weakest-contrast text on the page. Consider shifting the lead block above the mast tops." },
+        { "severity": "info", "actionable": false, "text": "No mobile mock exists; the adaptation is otherwise clean - no horizontal overflow at 390px, ~620px stage, headline scales down sensibly, CTA keeps a 40px tap target, hulls stay in frame, gutters and bottom radius preserved." }
+      ]
+    }
+  },
+  "overallScore": 65,
+  "summary": "Layout and spacing are essentially pixel-exact against the 1440 mock, but the hero is let down by two asset-level gaps the section file cannot fix alone: neither Exposure nor Matter is present in the project, so the headline renders as Newsreader (~10% narrow, far lighter) and the lead reflows to 5 lines in Inter, while the un-fetched vessel plate renders ~60 levels darker than the reference."
+}

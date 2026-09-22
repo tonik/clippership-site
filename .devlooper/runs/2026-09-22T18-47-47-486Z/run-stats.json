@@ -1,0 +1,751 @@
+{
+  "runId": "2026-09-22T18-47-47-486Z",
+  "projectName": "clippership",
+  "projectDir": "/Users/arturgrzeda/Documents/Devlooper/clippership",
+  "framework": "next-generic",
+  "model": null,
+  "resolvedModels": {
+    "judge": "claude-opus-5",
+    "fixer": "claude-opus-5",
+    "pageDraft": "claude-opus-5",
+    "figmaInit": "claude-opus-5",
+    "polish": "sonnet",
+    "designInit": "claude-opus-5",
+    "brandInit": "sonnet",
+    "generateInit": "sonnet",
+    "assetFetch": "haiku",
+    "interactions": "sonnet",
+    "styleGuide": "sonnet"
+  },
+  "startedAt": "2026-09-22T18:52:44.833Z",
+  "finishedAt": "2026-09-22T21:22:00.403Z",
+  "totalDurationMs": 8955570,
+  "totalCostUsd": 78.14439449999999,
+  "stopReason": "max-iterations",
+  "planUsage": {
+    "sessionStartPct": 2,
+    "sessionEndPct": 26,
+    "weekStartPct": 6,
+    "weekEndPct": 10,
+    "sessionReset": "Sep 23 at 1:20am",
+    "weekReset": "Sep 28 at 12am",
+    "sessionPctDelta": 24,
+    "weekPctDelta": 4,
+    "sessionWindowReset": false
+  },
+  "steps": {},
+  "pages": {
+    "page": {
+      "name": "page",
+      "sections": {
+        "about": {
+          "name": "about",
+          "costUsd": 11.0652978,
+          "iterations": [
+            {
+              "iter": 1,
+              "durationMs": 417210,
+              "costUsd": 2.5159415000000003,
+              "score": 82,
+              "pixelDiffPct": null,
+              "judgeSkipped": false,
+              "phases": {
+                "screenshot": {
+                  "durationMs": 18729
+                },
+                "pixelDiff": {
+                  "durationMs": 291
+                },
+                "judge": {
+                  "durationMs": 174605,
+                  "costUsd": 1.0761290000000001,
+                  "turns": 15
+                },
+                "fix": {
+                  "durationMs": 185470,
+                  "costUsd": 1.4398125,
+                  "turns": 23
+                }
+              }
+            },
+            {
+              "iter": 2,
+              "durationMs": 359612,
+              "costUsd": 2.5831975,
+              "score": 80,
+              "pixelDiffPct": null,
+              "judgeSkipped": false,
+              "phases": {
+                "screenshot": {
+                  "durationMs": 8631
+                },
+                "pixelDiff": {
+                  "durationMs": 44
+                },
+                "judge": {
+                  "durationMs": 130707,
+                  "costUsd": 1.254059,
+                  "turns": 20
+                },
+                "fix": {
+                  "durationMs": 207288,
+                  "costUsd": 1.3291385,
+                  "turns": 21
+                }
+              }
+            },
+            {
+              "iter": 3,
+              "durationMs": 323929,
+              "costUsd": 2.4083874999999995,
+              "score": 80,
+              "pixelDiffPct": null,
+              "judgeSkipped": false,
+              "phases": {
+                "screenshot": {
+                  "durationMs": 9519
+                },
+                "pixelDiff": {
+                  "durationMs": 36
+                },
+                "judge": {
+                  "durationMs": 127466,
+                  "costUsd": 1.1216139999999999,
+                  "turns": 19
+                },
+                "fix": {
+                  "durationMs": 170473,
+                  "costUsd": 1.2867734999999996,
+                  "turns": 20
+                }
+              }
+            },
+            {
+              "iter": 4,
+              "durationMs": 314076,
+              "costUsd": 1.561042,
+              "score": 92,
+              "pixelDiffPct": null,
+              "judgeSkipped": false,
+              "phases": {
+                "screenshot": {
+                  "durationMs": 11869
+                },
+                "pixelDiff": {
+                  "durationMs": 54
+                },
+                "judge": {
+                  "durationMs": 266986,
+                  "costUsd": 1.561042,
+                  "turns": 27
+                }
+              }
+            },
+            {
+              "iter": 5,
+              "durationMs": 273815,
+              "costUsd": 1.9967293000000002,
+              "score": 95,
+              "pixelDiffPct": null,
+              "judgeSkipped": false,
+              "phases": {
+                "polish": {
+                  "durationMs": 22827,
+                  "costUsd": 0.16125880000000004,
+                  "turns": 8
+                },
+                "screenshot": {
+                  "durationMs": 11549
+                },
+                "pixelDiff": {
+                  "durationMs": 93
+                },
+                "judge": {
+                  "durationMs": 225147,
+                  "costUsd": 1.8354705000000002,
+                  "turns": 35
+                }
+              }
+            }
+          ]
+        },
+        "hero": {
+          "name": "hero",
+          "costUsd": 32.282521,
+          "iterations": [
+            {
+              "iter": 1,
+              "durationMs": 787518,
+              "costUsd": 2.9988215000000005,
+              "score": 38,
+              "pixelDiffPct": null,
+              "judgeSkipped": false,
+              "phases": {
+                "screenshot": {
+                  "durationMs": 28850
+                },
+                "pixelDiff": {
+                  "durationMs": 340
+                },
+                "judge": {
+                  "durationMs": 125393,
+                  "costUsd": 0.783313,
+                  "turns": 13
+                },
+                "fix": {
+                  "durationMs": 591663,
+                  "costUsd": 2.2155085000000003,
+                  "turns": 34
+                }
+              }
+            },
+            {
+              "iter": 2,
+              "durationMs": 992495,
+              "costUsd": 5.634714499999999,
+              "score": 60,
+              "pixelDiffPct": null,
+              "judgeSkipped": false,
+              "phases": {
+                "screenshot": {
+                  "durationMs": 13704
+                },
+                "pixelDiff": {
+                  "durationMs": 125
+                },
+                "judge": {
+                  "durationMs": 445392,
+                  "costUsd": 2.5663514999999997,
+                  "turns": 36
+                },
+                "fix": {
+                  "durationMs": 515022,
+                  "costUsd": 3.0683629999999993,
+                  "turns": 36
+                }
+              }
+            },
+            {
+              "iter": 3,
+              "durationMs": 582939,
+              "costUsd": 3.3332905,
+              "score": 52,
+              "pixelDiffPct": null,
+              "judgeSkipped": false,
+              "phases": {
+                "screenshot": {
+                  "durationMs": 12792
+                },
+                "pixelDiff": {
+                  "durationMs": 142
+                },
+                "judge": {
+                  "durationMs": 374931,
+                  "costUsd": 1.9216475000000002,
+                  "turns": 33
+                },
+                "fix": {
+                  "durationMs": 174621,
+                  "costUsd": 1.4116429999999998,
+                  "turns": 16
+                }
+              }
+            },
+            {
+              "iter": 4,
+              "durationMs": 826652,
+              "costUsd": 4.980651500000001,
+              "score": 68,
+              "pixelDiffPct": null,
+              "judgeSkipped": false,
+              "phases": {
+                "screenshot": {
+                  "durationMs": 13448
+                },
+                "pixelDiff": {
+                  "durationMs": 93
+                },
+                "judge": {
+                  "durationMs": 452003,
+                  "costUsd": 2.838062000000001,
+                  "turns": 44
+                },
+                "fix": {
+                  "durationMs": 339717,
+                  "costUsd": 2.1425895,
+                  "turns": 24
+                }
+              }
+            },
+            {
+              "iter": 5,
+              "durationMs": 643218,
+              "costUsd": 3.9547285,
+              "score": 68,
+              "pixelDiffPct": null,
+              "judgeSkipped": false,
+              "phases": {
+                "screenshot": {
+                  "durationMs": 12066
+                },
+                "pixelDiff": {
+                  "durationMs": 142
+                },
+                "judge": {
+                  "durationMs": 400970,
+                  "costUsd": 2.401325,
+                  "turns": 34
+                },
+                "fix": {
+                  "durationMs": 212372,
+                  "costUsd": 1.5534035000000002,
+                  "turns": 15
+                }
+              }
+            },
+            {
+              "iter": 6,
+              "durationMs": 682977,
+              "costUsd": 4.481464000000001,
+              "score": 70,
+              "pixelDiffPct": null,
+              "judgeSkipped": false,
+              "phases": {
+                "screenshot": {
+                  "durationMs": 12524
+                },
+                "pixelDiff": {
+                  "durationMs": 222
+                },
+                "judge": {
+                  "durationMs": 291370,
+                  "costUsd": 1.9843610000000005,
+                  "turns": 34
+                },
+                "fix": {
+                  "durationMs": 360387,
+                  "costUsd": 2.497103,
+                  "turns": 24
+                }
+              }
+            },
+            {
+              "iter": 7,
+              "durationMs": 731756,
+              "costUsd": 4.1832294999999995,
+              "score": 65,
+              "pixelDiffPct": null,
+              "judgeSkipped": false,
+              "phases": {
+                "screenshot": {
+                  "durationMs": 11912
+                },
+                "pixelDiff": {
+                  "durationMs": 136
+                },
+                "judge": {
+                  "durationMs": 354744,
+                  "costUsd": 2.094526,
+                  "turns": 31
+                },
+                "fix": {
+                  "durationMs": 335414,
+                  "costUsd": 2.0887035,
+                  "turns": 24
+                }
+              }
+            },
+            {
+              "iter": 8,
+              "durationMs": 549252,
+              "costUsd": 2.715620999999999,
+              "score": 64,
+              "pixelDiffPct": null,
+              "judgeSkipped": false,
+              "phases": {
+                "screenshot": {
+                  "durationMs": 29380
+                },
+                "pixelDiff": {
+                  "durationMs": 289
+                },
+                "judge": {
+                  "durationMs": 494833,
+                  "costUsd": 2.715620999999999,
+                  "turns": 44
+                }
+              }
+            }
+          ]
+        },
+        "how-it-works": {
+          "name": "how-it-works",
+          "costUsd": 10.242458700000002,
+          "iterations": [
+            {
+              "iter": 1,
+              "durationMs": 359061,
+              "costUsd": 2.2871840000000008,
+              "score": 66,
+              "pixelDiffPct": null,
+              "judgeSkipped": false,
+              "phases": {
+                "screenshot": {
+                  "durationMs": 9456
+                },
+                "pixelDiff": {
+                  "durationMs": 603
+                },
+                "judge": {
+                  "durationMs": 171915,
+                  "costUsd": 1.2253220000000002,
+                  "turns": 23
+                },
+                "fix": {
+                  "durationMs": 134246,
+                  "costUsd": 1.0618620000000003,
+                  "turns": 17
+                }
+              }
+            },
+            {
+              "iter": 2,
+              "durationMs": 336616,
+              "costUsd": 2.2008449999999997,
+              "score": 76,
+              "pixelDiffPct": null,
+              "judgeSkipped": false,
+              "phases": {
+                "screenshot": {
+                  "durationMs": 9500
+                },
+                "pixelDiff": {
+                  "durationMs": 23
+                },
+                "judge": {
+                  "durationMs": 131112,
+                  "costUsd": 0.9321929999999998,
+                  "turns": 17
+                },
+                "fix": {
+                  "durationMs": 181971,
+                  "costUsd": 1.268652,
+                  "turns": 23
+                }
+              }
+            },
+            {
+              "iter": 3,
+              "durationMs": 351904,
+              "costUsd": 2.2253185,
+              "score": 58,
+              "pixelDiffPct": null,
+              "judgeSkipped": false,
+              "phases": {
+                "screenshot": {
+                  "durationMs": 8539
+                },
+                "pixelDiff": {
+                  "durationMs": 14
+                },
+                "judge": {
+                  "durationMs": 117828,
+                  "costUsd": 0.820695,
+                  "turns": 15
+                },
+                "fix": {
+                  "durationMs": 210178,
+                  "costUsd": 1.4046235,
+                  "turns": 19
+                }
+              }
+            },
+            {
+              "iter": 4,
+              "durationMs": 349791,
+              "costUsd": 1.9485924999999997,
+              "score": 95,
+              "pixelDiffPct": null,
+              "judgeSkipped": false,
+              "phases": {
+                "screenshot": {
+                  "durationMs": 10649
+                },
+                "pixelDiff": {
+                  "durationMs": 35
+                },
+                "judge": {
+                  "durationMs": 295920,
+                  "costUsd": 1.9485924999999997,
+                  "turns": 37
+                }
+              }
+            },
+            {
+              "iter": 5,
+              "durationMs": 259414,
+              "costUsd": 1.5805187000000003,
+              "score": 93,
+              "pixelDiffPct": null,
+              "judgeSkipped": false,
+              "phases": {
+                "polish": {
+                  "durationMs": 26497,
+                  "costUsd": 0.16411520000000002,
+                  "turns": 6
+                },
+                "screenshot": {
+                  "durationMs": 12308
+                },
+                "pixelDiff": {
+                  "durationMs": 42
+                },
+                "judge": {
+                  "durationMs": 205892,
+                  "costUsd": 1.4164035000000001,
+                  "turns": 26
+                }
+              }
+            }
+          ]
+        },
+        "the-fleet": {
+          "name": "the-fleet",
+          "costUsd": 17.277668199999997,
+          "iterations": [
+            {
+              "iter": 1,
+              "durationMs": 553063,
+              "costUsd": 3.102156,
+              "score": 52,
+              "pixelDiffPct": null,
+              "judgeSkipped": false,
+              "phases": {
+                "screenshot": {
+                  "durationMs": 38134
+                },
+                "pixelDiff": {
+                  "durationMs": 320
+                },
+                "judge": {
+                  "durationMs": 237982,
+                  "costUsd": 1.3582130000000001,
+                  "turns": 17
+                },
+                "fix": {
+                  "durationMs": 250488,
+                  "costUsd": 1.743943,
+                  "turns": 26
+                }
+              }
+            },
+            {
+              "iter": 2,
+              "durationMs": 564070,
+              "costUsd": 4.0487385,
+              "score": 58,
+              "pixelDiffPct": null,
+              "judgeSkipped": false,
+              "phases": {
+                "screenshot": {
+                  "durationMs": 9109
+                },
+                "pixelDiff": {
+                  "durationMs": 39
+                },
+                "judge": {
+                  "durationMs": 192278,
+                  "costUsd": 1.2985659999999999,
+                  "turns": 21
+                },
+                "fix": {
+                  "durationMs": 347982,
+                  "costUsd": 2.7501725,
+                  "turns": 47
+                }
+              }
+            },
+            {
+              "iter": 3,
+              "durationMs": 860932,
+              "costUsd": 5.3727415,
+              "score": 78,
+              "pixelDiffPct": null,
+              "judgeSkipped": false,
+              "phases": {
+                "screenshot": {
+                  "durationMs": 11000
+                },
+                "pixelDiff": {
+                  "durationMs": 40
+                },
+                "judge": {
+                  "durationMs": 443359,
+                  "costUsd": 2.768733,
+                  "turns": 51
+                },
+                "fix": {
+                  "durationMs": 386195,
+                  "costUsd": 2.6040085,
+                  "turns": 33
+                }
+              }
+            },
+            {
+              "iter": 4,
+              "durationMs": 594965,
+              "costUsd": 2.7735589999999997,
+              "score": 86,
+              "pixelDiffPct": null,
+              "judgeSkipped": false,
+              "phases": {
+                "screenshot": {
+                  "durationMs": 11014
+                },
+                "pixelDiff": {
+                  "durationMs": 46
+                },
+                "judge": {
+                  "durationMs": 431598,
+                  "costUsd": 2.7735589999999997,
+                  "turns": 44
+                }
+              }
+            },
+            {
+              "iter": 5,
+              "durationMs": 390392,
+              "costUsd": 1.9804732,
+              "score": 85,
+              "pixelDiffPct": null,
+              "judgeSkipped": false,
+              "phases": {
+                "polish": {
+                  "durationMs": 137115,
+                  "costUsd": 0.3729732,
+                  "turns": 12
+                },
+                "screenshot": {
+                  "durationMs": 11729
+                },
+                "pixelDiff": {
+                  "durationMs": 52
+                },
+                "judge": {
+                  "durationMs": 227517,
+                  "costUsd": 1.6075,
+                  "turns": 29
+                }
+              }
+            }
+          ]
+        },
+        "footer": {
+          "name": "footer",
+          "costUsd": 7.276448800000001,
+          "iterations": [
+            {
+              "iter": 1,
+              "durationMs": 312566,
+              "costUsd": 2.0453015,
+              "score": 40,
+              "pixelDiffPct": 35.06,
+              "judgeSkipped": false,
+              "phases": {
+                "screenshot": {
+                  "durationMs": 14649
+                },
+                "pixelDiff": {
+                  "durationMs": 7579
+                },
+                "judge": {
+                  "durationMs": 94973,
+                  "costUsd": 0.7114755000000001,
+                  "turns": 14
+                },
+                "fix": {
+                  "durationMs": 171262,
+                  "costUsd": 1.333826,
+                  "turns": 20
+                }
+              }
+            },
+            {
+              "iter": 2,
+              "durationMs": 327623,
+              "costUsd": 2.1633225,
+              "score": 80,
+              "pixelDiffPct": 6.03,
+              "judgeSkipped": false,
+              "phases": {
+                "screenshot": {
+                  "durationMs": 16441
+                },
+                "pixelDiff": {
+                  "durationMs": 214
+                },
+                "judge": {
+                  "durationMs": 211841,
+                  "costUsd": 1.412693,
+                  "turns": 31
+                },
+                "fix": {
+                  "durationMs": 71942,
+                  "costUsd": 0.7506295000000001,
+                  "turns": 11
+                }
+              }
+            },
+            {
+              "iter": 3,
+              "durationMs": 421808,
+              "costUsd": 1.6642489999999996,
+              "score": 88,
+              "pixelDiffPct": 2.33,
+              "judgeSkipped": false,
+              "phases": {
+                "screenshot": {
+                  "durationMs": 12983
+                },
+                "pixelDiff": {
+                  "durationMs": 91
+                },
+                "judge": {
+                  "durationMs": 227710,
+                  "costUsd": 1.6642489999999996,
+                  "turns": 40
+                }
+              }
+            },
+            {
+              "iter": 4,
+              "durationMs": 307275,
+              "costUsd": 1.4035758,
+              "score": 93,
+              "pixelDiffPct": 2.33,
+              "judgeSkipped": false,
+              "phases": {
+                "polish": {
+                  "durationMs": 167716,
+                  "costUsd": 0.34024580000000004,
+                  "turns": 11
+                },
+                "screenshot": {
+                  "durationMs": 11890
+                },
+                "pixelDiff": {
+                  "durationMs": 85
+                },
+                "judge": {
+                  "durationMs": 115539,
+                  "costUsd": 1.06333,
+                  "turns": 29
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
