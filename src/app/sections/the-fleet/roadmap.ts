@@ -88,7 +88,7 @@ export const ROADMAP: RoadmapState[] = [
       { label: ["Onboard electrical", "power"], value: ["10kW"] },
       { label: ["Compute"], value: ["up to 8xH200"] },
       { label: ["Cooling"], value: ["heat-exchanged", "seawater"] },
-      { label: ["Connectivity"], value: ["Starlink Marine"] },
+      { label: ["Connectivity"], value: ["Starlink Performance"] },
     ],
   },
   {
@@ -106,7 +106,7 @@ export const ROADMAP: RoadmapState[] = [
     },
     ring: orbitRingWide,
     chip: "Mid-2007",
-    heading: ["250kW sense", "& compute node"],
+    heading: ["250kW sovereign", "AI compute cluster"],
     lengthLabel: "Lenght",
     lengthValue: "24 meters",
     stats: [
@@ -131,7 +131,7 @@ export const ROADMAP: RoadmapState[] = [
     },
     ring: orbitRingWide,
     chip: "Mid 2007",
-    heading: ["3MW sense", "& compute node"],
+    heading: ["3MW token", "factory"],
     lengthLabel: "Lenght",
     lengthValue: "70 meters",
     stats: [

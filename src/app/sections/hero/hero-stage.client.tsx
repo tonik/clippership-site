@@ -270,7 +270,7 @@ export function HeroStage() {
         </p>
         <div style={{ "--enter": 3 } as CSSProperties} className={styles.enter}>
           <a
-            href="#the-fleet"
+            href="/white-paper"
             data-figma-id="181:708"
             className="hero-cta border-border-hairline rounded-pill text-label inline-flex h-10 w-fit shrink-0 items-center border px-5 py-3 font-sans backdrop-blur-[4px]"
           >

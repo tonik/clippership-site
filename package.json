@@ -15,10 +15,13 @@
     "icons:check": "node scripts/generate-icons.mjs --check"
   },
   "dependencies": {
+    "clsx": "^2",
     "next": "16.3.5",
     "react": "19.2.8",
     "react-dom": "19.2.8",
-    "clsx": "^2",
+    "react-markdown": "^10.1.0",
+    "rehype-raw": "^7.0.0",
+    "remark-gfm": "^4.0.1",
     "tailwind-merge": "^3"
   },
   "devDependencies": {
@@ -28,10 +31,10 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.5",
-    "tailwindcss": "^4",
-    "typescript": "^5",
     "prettier": "^3",
-    "prettier-plugin-tailwindcss": "^0.6"
+    "prettier-plugin-tailwindcss": "^0.6",
+    "tailwindcss": "^4",
+    "typescript": "^5"
   },
   "engines": {
     "node": ">=18.18.0"

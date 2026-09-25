@@ -72,6 +72,12 @@ typography:
     lineHeight: 1
     letterSpacing: 0.01em
     textTransform: uppercase
+  prose:
+    fontFamily: Matter
+    fontSize: 1.0625rem
+    fontWeight: 400
+    lineHeight: 1.55
+    letterSpacing: -0.01em
   caption-mono:
     fontFamily: Overpass Mono
     fontSize: 0.5rem
@@ -281,17 +287,18 @@ Three families, each with one job.
 
 ### Scale
 
-| Token          | Size            | Weight | Line height    | Tracking           | Appears as                     |
-| -------------- | --------------- | ------ | -------------- | ------------------ | ------------------------------ |
-| `display-xl`   | 108px / 6.75rem | 450    | 1.0 (108px)    | -0.04em            | Hero headline                  |
-| `display-lg`   | 80px / 5rem     | 450    | 1.0 (80px)     | -0.04em            | Section headline               |
-| `display-md`   | 48px / 3rem     | 450    | 1.0 (48px)     | -0.04em            | Sub-section headline           |
-| `lead`         | 24px / 1.5rem   | 500    | 1.18 (28.32px) | -0.04em            | Intro paragraphs, names        |
-| `body`         | 16px / 1rem     | 400    | 1.24 (19.84px) | -0.04em            | Lists, credentials             |
-| `label`        | 14px / 0.875rem | 600    | 1.143 (16px)   | -0.02em            | Buttons, segment items         |
-| `label-active` | 14px / 0.875rem | 500    | 1.143 (16px)   | -0.02em            | Selected segment item          |
-| `eyebrow`      | 12px / 0.75rem  | 700    | 1.0 (12px)     | +0.01em, uppercase | Section kickers, roles, footer |
-| `caption-mono` | 8px / 0.5rem    | 700    | 1.0 (8px)      | +0.01em, uppercase | `fig.01` overlays              |
+| Token          | Size             | Weight | Line height    | Tracking           | Appears as                     |
+| -------------- | ---------------- | ------ | -------------- | ------------------ | ------------------------------ |
+| `display-xl`   | 108px / 6.75rem  | 450    | 1.0 (108px)    | -0.04em            | Hero headline                  |
+| `display-lg`   | 80px / 5rem      | 450    | 1.0 (80px)     | -0.04em            | Section headline               |
+| `display-md`   | 48px / 3rem      | 450    | 1.0 (48px)     | -0.04em            | Sub-section headline           |
+| `lead`         | 24px / 1.5rem    | 500    | 1.18 (28.32px) | -0.04em            | Intro paragraphs, names        |
+| `body`         | 16px / 1rem      | 400    | 1.24 (19.84px) | -0.04em            | Lists, credentials             |
+| `prose`        | 17px / 1.0625rem | 400    | 1.55 (26.35px) | -0.01em            | White paper long-form text     |
+| `label`        | 14px / 0.875rem  | 600    | 1.143 (16px)   | -0.02em            | Buttons, segment items         |
+| `label-active` | 14px / 0.875rem  | 500    | 1.143 (16px)   | -0.02em            | Selected segment item          |
+| `eyebrow`      | 12px / 0.75rem   | 700    | 1.0 (12px)     | +0.01em, uppercase | Section kickers, roles, footer |
+| `caption-mono` | 8px / 0.5rem     | 700    | 1.0 (8px)      | +0.01em, uppercase | `fig.01` overlays              |
 
 ### The rules behind the numbers
 

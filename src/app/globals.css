@@ -151,6 +151,13 @@
   --text-caption-mono--letter-spacing: 0.01em;
   --text-caption-mono--font-weight: 700;
 
+  /* White paper long-form reading only - body's 1.24 leading is tuned for short
+     marketing copy and gets tiring over nine pages. */
+  --text-prose: 1.0625rem; /* 17px */
+  --text-prose--line-height: 1.55;
+  --text-prose--letter-spacing: -0.01em;
+  --text-prose--font-weight: 400;
+
   /* Specifications overlay only */
   --text-stat: 1rem;
   --text-stat--line-height: 1.24;

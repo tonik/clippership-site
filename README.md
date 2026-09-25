@@ -39,6 +39,10 @@ The copy lives in the section components under `src/components/`. Each section o
 
 **Images** live in `public/`. To swap one, drop the new file in with the same name, or add a new file and update the path where it is used. Prefer `.webp` where you can and keep images under 500 KB so the page stays fast.
 
+**White paper.** The page at `/white-paper` is built from one Markdown file, `src/content/white-paper.md`. Edit it on GitHub like any other text change and the page follows. The title, authors and date sit in the block at the top of that file; every `## ` heading becomes an entry in the contents list. Figures live in `public/white-paper/`: add an image there and reference it as `![description](/white-paper/name.jpg)`. Put two image references on the same line to show them side by side. A line starting `Figure 3.` or `Table 2.` is styled as a caption, and `[^name]` adds a footnote.
+
+The "Download PDF" button serves `public/clippership-white-paper.pdf`. When the paper changes, upload the new PDF over that file with the same name, or delete the `pdf:` line at the top of the Markdown file to hide the button.
+
 **Page title, description and social preview** (the image shown when the link is shared) are set in the exported `metadata` object at the top of each `page.tsx`. Update these before any campaign — they are what people see in search results and on social.
 
 ## Editing without installing anything
