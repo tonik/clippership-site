@@ -1,0 +1,189 @@
+name: Deploy Vercel preview
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  # A PR comment is a pull request resource even though the REST path is /issues.
+  pull-requests: write
+
+# Non-secret settings live in repository Actions variables; the token is the
+# `VERCEL_TOKEN` Actions secret. See "Request a preview from a pull request" in the README.
+env:
+  VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
+  VERCEL_DEPLOYER_EMAIL: ${{ vars.VERCEL_DEPLOYER_EMAIL }}
+  VERCEL_PR_ALIAS_TEMPLATE: ${{ vars.VERCEL_PR_ALIAS_TEMPLATE }}
+  VERCEL_PREVIEW_VIEWERS: ${{ vars.VERCEL_PREVIEW_VIEWERS }}
+
+jobs:
+  preview:
+    if: ${{ github.event.issue.pull_request && github.event.comment.body == '/deploy-preview' }}
+    runs-on: ubuntu-latest
+    concurrency:
+      group: vercel-preview-pr-${{ github.event.issue.number }}
+      cancel-in-progress: false
+
+    steps:
+      - name: Check configuration
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          missing=()
+          for name in VERCEL_TOKEN VERCEL_ORG_ID VERCEL_PROJECT_ID VERCEL_DEPLOYER_EMAIL VERCEL_PR_ALIAS_TEMPLATE; do
+            [[ -n "${!name}" ]] || missing+=("$name")
+          done
+          if (( ${#missing[@]} )); then
+            echo "Missing repository secret/variables: ${missing[*]}" >&2
+            exit 1
+          fi
+
+      - name: Resolve PR head
+        id: pr
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.issue.number }}
+          COMMENT_AUTHOR: ${{ github.event.comment.user.login }}
+        run: |
+          if [[ ! "$PR_NUMBER" =~ ^[1-9][0-9]*$ ]]; then
+            echo 'Invalid pull request number.' >&2
+            exit 1
+          fi
+
+          permission="$(gh api "repos/${GITHUB_REPOSITORY}/collaborators/${COMMENT_AUTHOR}/permission" --jq '.permission')"
+          if [[ "$permission" != 'write' && "$permission" != 'admin' ]]; then
+            echo 'Only people with write access to this repository can request a preview.' >&2
+            exit 1
+          fi
+
+          gh api "repos/${GITHUB_REPOSITORY}/pulls/${PR_NUMBER}" > "$RUNNER_TEMP/pull-request.json"
+          if ! jq -e --arg repo "$GITHUB_REPOSITORY" \
+            '.state == "open" and .head.repo.full_name == $repo and .base.repo.full_name == $repo' \
+            "$RUNNER_TEMP/pull-request.json" > /dev/null; then
+            echo 'The pull request must be open and originate from this repository (not a fork).' >&2
+            exit 1
+          fi
+
+          alias="${VERCEL_PR_ALIAS_TEMPLATE//\{pr\}/$PR_NUMBER}"
+          if [[ ! "$alias" =~ ^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?(\.[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?)+$ ]]; then
+            echo "VERCEL_PR_ALIAS_TEMPLATE produced an invalid hostname: $alias" >&2
+            exit 1
+          fi
+
+          echo "sha=$(jq -r '.head.sha' "$RUNNER_TEMP/pull-request.json")" >> "$GITHUB_OUTPUT"
+          echo "branch=$(jq -r '.head.ref' "$RUNNER_TEMP/pull-request.json")" >> "$GITHUB_OUTPUT"
+          echo "alias=$alias" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Checkout PR head
+        env:
+          COMMIT: ${{ steps.pr.outputs.sha }}
+        run: |
+          if [[ ! "$COMMIT" =~ ^[0-9a-fA-F]{40}$ ]]; then
+            echo 'Invalid pull request head SHA.' >&2
+            exit 1
+          fi
+
+          if ! git cat-file -e "${COMMIT}^{commit}" 2>/dev/null ||
+            [[ -z "$(git branch -r --contains "$COMMIT" --format='%(refname)')" ]]; then
+            echo 'The PR head must be reachable from a branch in this repository.' >&2
+            exit 1
+          fi
+
+          git switch --detach "$COMMIT"
+
+      # Vercel checks the local Git author as well as the token. Amend only this
+      # disposable checkout; the real commit and its author remain unchanged on GitHub.
+      - name: Set Vercel deployer identity locally
+        run: |
+          git -c user.name='Preview deploy' -c user.email="$VERCEL_DEPLOYER_EMAIL" \
+            commit --amend --no-edit --reset-author
+
+      - name: Setup Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: 24
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      # Vercel CLI `pull`/`build` reject project-scoped tokens, so the build runs
+      # on Vercel instead. `vercel deploy` is the one CLI path that supports them.
+      - name: Deploy preview
+        id: deploy
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          PR_BRANCH: ${{ steps.pr.outputs.branch }}
+        run: |
+          url="$(vercel deploy --yes --target=preview --archive=tgz \
+            --meta githubDeployment=1 --meta githubCommitRef="$PR_BRANCH")"
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+
+      # The deployment URL is unique to this commit. The alias is stable per PR and
+      # is moved to the newest deployment on every run.
+      - name: Point PR alias and grant viewer access
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          DEPLOYMENT_URL: ${{ steps.deploy.outputs.url }}
+          PR_ALIAS: ${{ steps.pr.outputs.alias }}
+        run: |
+          api() {
+            curl --silent --show-error --fail-with-body \
+              -H "Authorization: Bearer $VERCEL_TOKEN" -H 'Content-Type: application/json' "$@"
+          }
+
+          deployment_host="${DEPLOYMENT_URL#https://}"
+          deployment_id="$(api "https://api.vercel.com/v13/deployments/${deployment_host}" | jq -r '.id')"
+          if [[ ! "$deployment_id" =~ ^dpl_[A-Za-z0-9]+$ ]]; then
+            echo "Could not resolve the deployment ID for $DEPLOYMENT_URL" >&2
+            exit 1
+          fi
+
+          api -X POST "https://api.vercel.com/v2/deployments/${deployment_id}/aliases" \
+            --data "$(jq -n --arg alias "$PR_ALIAS" '{alias: $alias}')" > /dev/null
+          echo "Aliased https://${PR_ALIAS} -> ${DEPLOYMENT_URL}"
+
+          # Vercel Authentication protects previews. Grant each listed Vercel user
+          # access to both URLs; the grant is idempotent, so repeating it is harmless.
+          granted=0
+          for email in $(tr ',' ' ' <<< "$VERCEL_PREVIEW_VIEWERS"); do
+            if [[ ! "$email" =~ ^[^@[:space:]]+@[^@[:space:]]+\.[^@[:space:]]+$ ]]; then
+              echo 'Skipping an invalid entry in VERCEL_PREVIEW_VIEWERS.' >&2
+              continue
+            fi
+            body="$(jq -n --arg email "$email" '{scope: {email: $email, access: "granted"}}')"
+            for target in "$deployment_id" "$PR_ALIAS"; do
+              api -X PATCH "https://api.vercel.com/aliases/${target}/protection-bypass" --data "$body" > /dev/null
+            done
+            granted=$((granted + 1))
+          done
+          echo "Granted preview access to ${granted} viewer(s)."
+
+      - name: Report preview URLs
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.issue.number }}
+          COMMIT: ${{ steps.pr.outputs.sha }}
+          DEPLOYMENT_URL: ${{ steps.deploy.outputs.url }}
+          PR_ALIAS: ${{ steps.pr.outputs.alias }}
+        run: |
+          body="$(cat <<EOF
+          ### Vercel preview
+
+          | | |
+          | --- | --- |
+          | This PR (always the latest preview) | https://${PR_ALIAS} |
+          | This commit (\`${COMMIT:0:7}\`) | ${DEPLOYMENT_URL} |
+          EOF
+          )"
+
+          echo "$body" >> "$GITHUB_STEP_SUMMARY"
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/issues/${PR_NUMBER}/comments" \
+            --field "body=$body" > /dev/null
