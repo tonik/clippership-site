@@ -93,6 +93,36 @@ The repo is connected to Vercel:
 - **Open a pull request** and you get a preview URL for that branch. Nothing reaches the live site until the pull request is merged.
 - **Rolling back**: in the Vercel dashboard open Deployments, find the last good one and click "Promote to Production". Takes seconds and needs no developer.
 
+### Request a preview from a pull request
+
+Vercel only builds a pull request automatically when the commit author is a member of the Tonik Vercel team. For everyone else, add this exact comment to an open pull request:
+
+```text
+/deploy-preview
+```
+
+The workflow deploys the pull request's latest commit to the **Preview** environment (never Production) and replies with two links:
+
+- **This PR**: a stable address, `clippership-pr-<number>-tonik.vercel.app`, that always shows the newest preview requested for the pull request.
+- **This commit**: the address of this exact build, which never changes.
+
+Comment again after pushing new commits to update the preview. Only GitHub users with write access to this repository can request one, and only for branches in this repository (not forks). Comments on issues and edited comments do not trigger it.
+
+Previews are behind Vercel Authentication. People outside the Vercel team get access by email: they need a Vercel account under that email, and they are listed in `VERCEL_PREVIEW_VIEWERS`.
+
+Configuration, under Settings → Secrets and variables → Actions:
+
+| Name                       | Kind     | Value                                                                                |
+| -------------------------- | -------- | ------------------------------------------------------------------------------------ |
+| `VERCEL_TOKEN`             | Secret   | Vercel token scoped to the **clippership** project only                              |
+| `VERCEL_ORG_ID`            | Variable | Tonik team ID                                                                        |
+| `VERCEL_PROJECT_ID`        | Variable | clippership project ID                                                               |
+| `VERCEL_DEPLOYER_EMAIL`    | Variable | Email of a Vercel team member with access to the project and a linked GitHub account |
+| `VERCEL_PR_ALIAS_TEMPLATE` | Variable | Stable PR address; `{pr}` is replaced by the pull request number                     |
+| `VERCEL_PREVIEW_VIEWERS`   | Variable | Optional. Comma-separated emails of external Vercel users who may view the previews  |
+
+Vercel rejects deployments whose Git author is not a team member, so the workflow rewrites the author to `VERCEL_DEPLOYER_EMAIL` **only in its temporary checkout**. The commit on GitHub and its author never change. The build itself runs on Vercel; the workflow only uploads the source. Anyone with write access to this repository can change the workflow and so reach the token, which is why it is limited to this one project.
+
 ## Environment variables
 
 If the project uses any, copy `.env.example` to `.env.local` for local development. The same variables are set in Vercel under Settings → Environment Variables. After changing one in Vercel you have to redeploy for it to take effect.
