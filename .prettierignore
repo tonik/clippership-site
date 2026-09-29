@@ -14,3 +14,5 @@ dlpreview/
 dlpreview.tsx
 __dlpreview/
 __dlpreview.tsx
+# Draco decoder vendored from three/examples/jsm/libs/draco/gltf
+public/draco/

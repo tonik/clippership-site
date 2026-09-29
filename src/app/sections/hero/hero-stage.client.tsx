@@ -268,11 +268,12 @@ export function HeroStage() {
             {`take AI compute onto the${NBSP}wide-open ocean, where clean energy and cooling are plentiful, and the red tape is thin.`}
           </span>
         </p>
-        <div style={{ "--enter": 3 } as CSSProperties} className={styles.enter}>
+        <div>
           <a
             href="/white-paper"
             data-figma-id="181:708"
-            className="hero-cta border-border-hairline rounded-pill text-label inline-flex h-10 w-fit shrink-0 items-center border px-5 py-3 font-sans backdrop-blur-[4px]"
+            style={{ "--enter": 3 } as CSSProperties}
+            className={`${styles.enterFade} hero-cta border-border-hairline rounded-pill text-label inline-flex h-10 w-fit shrink-0 items-center border px-5 py-3 font-sans backdrop-blur-[4px]`}
           >
             {/* The label is its own node in Figma (181:709, 134 x 16 inside the
               174 x 40 pill). Without a span the measurement matched that text

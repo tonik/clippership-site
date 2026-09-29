@@ -28,7 +28,7 @@ import {
  *  - `ssr`: server render and no-JS. Everything visible, static CSS backdrop.
  *  - `armed`: JS is up and WebGL is available. Backdrop and content are held
  *    back until the panel is on screen.
- *  - `revealing`: the watercolour front grows out from the vessel, then the
+ *  - `revealing`: the watercolour outline grows in from the vessel, then the
  *    content follows in a stagger (delays in the-fleet.module.css). Stays set
  *    after it finishes.
  *  - `static`: reduced motion, no WebGL or a failed texture load. The CSS
@@ -52,7 +52,6 @@ const REVEAL_AT = 0.35;
 /** Painted sea is drawn at 64% (Figma 181:538). */
 const SEA_OPACITY = 0.64;
 
-const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
 const easeInOut = (t: number) =>
   t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 /* Out and back in a single tween: 0 -> 1 -> 0, eased at both ends. */
@@ -90,7 +89,7 @@ const useTweakable = () =>
   );
 
 const REDUCED = "(prefers-reduced-motion: reduce)";
-const useReducedMotion = () =>
+export const useReducedMotion = () =>
   useSyncExternalStore(
     (onChange) => {
       const query = window.matchMedia(REDUCED);
@@ -227,7 +226,7 @@ export function TheFleetStage({ children }: { children: ReactNode }) {
         0,
         1,
         paramsRef.current.revealMs,
-        easeOut,
+        easeInOut,
         (v) => (progress.current = v),
         "reveal",
       );
@@ -406,7 +405,6 @@ export function TheFleetStage({ children }: { children: ReactNode }) {
               <div className="bg-surface text-text-strong max-h-[70vh] w-60 overflow-y-auto rounded-md p-3 shadow-[0_8px_30px_rgb(0_0_0/0.12)]">
                 {(
                   [
-                    ["noise", "Reveal fray", 0, 2, 0.01],
                     ["speck", "Specks", 0, 1, 0.01],
                     ["rim", "Rim darkening", 0, 0.4, 0.01],
                     ["size", "Mask size", 0.3, 1.4, 0.01],

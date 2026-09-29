@@ -120,12 +120,12 @@
 }
 
 /* ---- Motion ------------------------------------------------------------
-   Entry sequence (see TheFleetStage for the phases): the watercolour front
+   Entry sequence (see TheFleetStage for the phases): the watercolour outline
    grows out of the vessel first, then the content follows, staggered by
    `--enter` (0, 1, 2...). Only transform / opacity / filter are animated so the
    compositor carries it. */
 .stage {
-  --enter-base: 700ms;
+  --enter-base: 1000ms;
   --enter-step: 110ms;
 }
 
@@ -199,6 +199,21 @@
 
 .swapRing {
   transition: opacity 520ms var(--ease-fluid);
+}
+
+/* The poster holds the place until the model has loaded, then hands over. */
+.vesselPoster,
+.vesselCanvas {
+  transition: opacity 600ms var(--ease-out);
+}
+
+.vesselCanvas,
+.vessel[data-ready="true"] .vesselPoster {
+  opacity: 0;
+}
+
+.vessel[data-ready="true"] .vesselCanvas {
+  opacity: 1;
 }
 
 .swapRing[data-active="false"] {

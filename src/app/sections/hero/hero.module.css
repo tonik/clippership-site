@@ -129,12 +129,12 @@
    "second picture" under the sea. The rise is therefore a share of the stage
    height that the overhang always covers:
      - lg: the plate is drawn 124.1% tall from the top, a 24.1% overhang; the
-       rise is 18% (about half the old 461px, which also read as too fast).
+       rise is 12% (the drawn 461px read as too fast, and so did 18%).
      - below lg the plate is a plain cover of the stage, so it gets a 12%
-       overhang of its own and rises by exactly that.
+       overhang of its own and rises by 8% of it.
    --------------------------------------------------------------------------- */
 .vesselRise {
-  --hero-rise: -12%;
+  --hero-rise: -8%;
 }
 
 @media (max-width: 991px) {
@@ -145,7 +145,7 @@
 
 @media (min-width: 992px) {
   .vesselRise {
-    --hero-rise: -18%;
+    --hero-rise: -12%;
   }
 }
 
@@ -190,6 +190,19 @@
     opacity 1000ms var(--ease-out),
     transform 1300ms var(--ease-fluid),
     filter 1000ms var(--ease-out);
+  transition-delay: calc(500ms + var(--enter, 0) * 140ms);
+}
+
+/* The CTA fades on its own element, opacity only: an ancestor animating opacity
+   or filter becomes the backdrop root, so its frosted blur would stay off until
+   the whole entry had finished. */
+:global(html[data-intro="pending"]) .enterFade {
+  opacity: 0;
+  animation: heroFailsafeShow 0s 6s forwards;
+}
+
+:global(html[data-intro="play"]) .enterFade {
+  transition: opacity 1000ms var(--ease-out);
   transition-delay: calc(500ms + var(--enter, 0) * 140ms);
 }
 

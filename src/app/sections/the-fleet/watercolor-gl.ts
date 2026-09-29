@@ -10,8 +10,8 @@
  * scale defines its own outline as that field plus a few broad lobes of ink
  * (October 2026 adds none, so it is the drawn blot), and a scale change
  * interpolates the two fields in place: the outline morphs, crisp, without
- * sliding or rippling. The entry reveal is a noise-frayed front growing out of
- * the vessel with pigment specks ahead of it. Nothing moves at rest: the canvas
+ * sliding or rippling. The entry reveal grows that same outline in from the
+ * vessel, so it reads like a scale change. Nothing moves at rest: the canvas
  * only renders while a tween runs or a tweak changes. The wash (Figma 181:539)
  * is drawn here too, so it follows the outline.
  */
@@ -19,8 +19,6 @@ import { NOISE_GLSL } from "@/lib/noise-glsl";
 import { signedDistance } from "./sdf";
 
 export type WatercolorParams = {
-  /** Fray of the reveal front. */
-  noise: number;
   /** Density of pigment specks just outside the edge. */
   speck: number;
   /** Pigment pooling just inside the edge. */
@@ -40,13 +38,12 @@ export type WatercolorParams = {
 };
 
 export const DEFAULT_PARAMS: WatercolorParams = {
-  noise: 1,
   speck: 0.55,
   rim: 0.14,
   size: 1,
   morph: 1,
   bleed: 0,
-  revealMs: 1800,
+  revealMs: 2100,
   switchMs: 1400,
   staggerMs: 110,
 };
@@ -100,7 +97,8 @@ uniform vec2 uSdfSize;   // texels
 uniform float uDpr;      // canvas px per CSS px
 uniform vec2 uOrigin;
 uniform vec4 uShapeA, uShapeB; // scale, lobes (CSS px), fray (CSS px), seed
-uniform float uMix, uProgress, uNoise, uSpeck, uRim, uSize, uMorph, uOpacity;
+uniform float uMix, uProgress, uSpeck, uRim, uSize, uMorph, uOpacity;
+uniform float uReach; // CSS px the entry blob must grow to clear the whole panel
 
 ${NOISE_GLSL}
 
@@ -142,6 +140,21 @@ void main(){
   // the morph: two outlines interpolated in place
   float d=outline(p,uShapeA,a);
   if(uMix>0.) d=mix(d,outline(p,uShapeB,a),uMix);
+  // entry: a lobed blob grows out of the vessel and uncovers the outline, with
+  // the same broad swell as a scale change and a soft join where the two meet
+  if(uProgress<1.){
+    vec2 q=(p-uOrigin)*uRes/uDpr;
+    float n=snoise(p*a*1.1+4.1)*.7+snoise(p*a*2.3+7.3)*.3;
+    float grow=length(q*vec2(.8,1.))*(1.+.35*n)-uProgress*uReach;
+    // the same torn fibres the outlines carry, so the front reads as paint
+    if(abs(grow)<100.){
+      float t=fbm(p*a*8.+2.3)*.75+snoise(p*a*26.+1.1)*.25;
+      grow-=t*40.;
+    }
+    const float k=12.;
+    float h=clamp(.5+.5*(grow-d)/k,0.,1.);
+    d=mix(d,grow,h)+k*h*(1.-h);
+  }
   float blot=smoothstep(px,-px,d);
 
   // pigment specks: islands in a thin band just outside the edge
@@ -149,23 +162,10 @@ void main(){
   float islands=step(1.-uSpeck*.35,sp)*step(0.,d)*smoothstep(26.,4.,d);
   float shape=max(blot,islands);
 
-  // reveal front: an elliptical distance field frayed by two noise bands
-  float front=1.;
-  float frontRim=0.;
-  if(uProgress<1.){
-    vec2 mp=(p-uOrigin)*a;
-    float d2=length(mp*vec2(.62,1.))+fbm(p*a*1.7+seed*1.3)*.17*uNoise+fbm(p*a*9.+seed*2.1)*.045*uNoise;
-    float e=mix(-.3,1.35,uProgress);
-    front=1.-smoothstep(e-.006,e,d2);
-    float band=smoothstep(e+.11,e,d2)*(1.-front)*smoothstep(.05,.4,uProgress);
-    front=max(front,step(1.-uSpeck,sp)*band);
-    frontRim=smoothstep(e-.05,e-.002,d2);
-  }
+  float mask=shape;
 
-  float mask=shape*front;
-
-  // darker pooled pigment just inside the edge, and along the front
-  float rim=smoothstep(-36.,0.,d)+frontRim;
+  // darker pooled pigment just inside the edge
+  float rim=smoothstep(-36.,0.,d);
   col*=1.-clamp(rim,0.,1.)*uRim;
 
   // sea at its drawn opacity, the wash over it, both clipped by the mask
@@ -312,7 +312,7 @@ export async function createWatercolor(
     mix: u("uMix"),
     morph: u("uMorph"),
     progress: u("uProgress"),
-    noise: u("uNoise"),
+    reach: u("uReach"),
     speck: u("uSpeck"),
     rim: u("uRim"),
     size: u("uSize"),
@@ -374,6 +374,7 @@ export async function createWatercolor(
       gl.uniform2f(loc.res, canvas.width, canvas.height);
       gl.uniform1f(loc.dpr, canvas.width / layout.width);
       gl.uniform2fv(loc.origin, layout.origin);
+      gl.uniform1f(loc.reach, Math.hypot(layout.width, layout.height) * 0.85);
     },
     render({ progress, from, to, mix, params }) {
       /* Own the context state on every draw rather than trusting what an
@@ -390,7 +391,6 @@ export async function createWatercolor(
       gl.uniform1f(loc.mix, mix);
       gl.uniform1f(loc.morph, params.morph);
       gl.uniform1f(loc.progress, progress);
-      gl.uniform1f(loc.noise, params.noise);
       gl.uniform1f(loc.speck, params.speck);
       gl.uniform1f(loc.rim, params.rim);
       gl.uniform1f(loc.size, params.size);
