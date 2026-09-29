@@ -29,6 +29,8 @@ export type RoadmapStat = {
  */
 export type RoadmapRender = {
   src: StaticImageData | string;
+  /** Draco-compressed glTF in /public; `src` stays as the poster and no-WebGL fallback. */
+  model: string;
   alt: string;
   /** Figma node on the panel (181:540 / 247:1078 / 247:1059). */
   figmaId: string;
@@ -72,6 +74,7 @@ export const ROADMAP: RoadmapState[] = [
     segmentWidth: "7.5rem" /* 120px */,
     render: {
       src: VESSEL_RENDER,
+      model: "/models/boat-cs12.glb",
       alt: "Clippership 10kW vessel, grey 3D render",
       figmaId: "181:540",
       scale: 1,
@@ -97,6 +100,7 @@ export const ROADMAP: RoadmapState[] = [
     segmentWidth: "7.75rem" /* 124px */,
     render: {
       src: vesselMid2027,
+      model: "/models/boat-4wing.glb",
       alt: "Clippership 250kW vessel, grey 3D render",
       figmaId: "247:1078",
       scale: 420 / 400,
@@ -122,9 +126,10 @@ export const ROADMAP: RoadmapState[] = [
     segmentWidth: "7.75rem" /* 124px */,
     render: {
       src: vesselThisDecade,
+      model: "/models/boat-anemoi.glb",
       alt: "Clippership 3MW vessel, grey 3D render",
       figmaId: "247:1059",
-      scale: 532 / 400,
+      scale: (532 / 400) * 0.9,
       offsetY: 0,
       specsFigmaId: "247:1075",
       specs: { size: 444, left: 6, top: 154 },

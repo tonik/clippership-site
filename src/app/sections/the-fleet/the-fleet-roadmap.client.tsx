@@ -3,6 +3,8 @@
 import Image from "next/image";
 import {
   type CSSProperties,
+  type KeyboardEvent,
+  type PointerEvent,
   useCallback,
   useLayoutEffect,
   useRef,
@@ -13,10 +15,15 @@ import { ROADMAP } from "./roadmap";
 import styles from "./the-fleet.module.css";
 import { TheFleetSpecs } from "./the-fleet-specs.client";
 import { useFleetStage } from "./the-fleet-stage.client";
+import {
+  type FleetVesselsHandle,
+  TheFleetVessels,
+} from "./the-fleet-vessels.client";
 
 /** Drawn geometry of the first segment, so the pill is already in the right place
  *  on the server render and only gets refined once the labels have measured. */
 const INITIAL_PILL = { x: 4, w: 120 };
+const KEY_STEP = Math.PI / 12;
 
 export function TheFleetRoadmap() {
   const [active, setActive] = useState(0);
@@ -26,6 +33,30 @@ export function TheFleetRoadmap() {
   const { morphTo } = useFleetStage();
   const [pill, setPill] = useState(INITIAL_PILL);
   const trackRef = useRef<HTMLDivElement>(null);
+  const vesselsRef = useRef<FleetVesselsHandle>(null);
+  const dragX = useRef<number | null>(null);
+
+  const onPointerDown = (e: PointerEvent<HTMLDivElement>) => {
+    if (e.button !== 0) return;
+    e.currentTarget.setPointerCapture(e.pointerId);
+    dragX.current = e.clientX;
+  };
+  const onPointerMove = (e: PointerEvent<HTMLDivElement>) => {
+    if (dragX.current === null) return;
+    const dx = e.clientX - dragX.current;
+    dragX.current = e.clientX;
+    vesselsRef.current?.drag(dx, e.currentTarget.clientWidth);
+  };
+  const onPointerUp = () => {
+    if (dragX.current === null) return;
+    dragX.current = null;
+    vesselsRef.current?.release();
+  };
+  const onHandleKey = (e: KeyboardEvent<HTMLButtonElement>) => {
+    if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+    e.preventDefault();
+    vesselsRef.current?.nudge(e.key === "ArrowLeft" ? -KEY_STEP : KEY_STEP);
+  };
 
   useLayoutEffect(() => {
     const track = trackRef.current;
@@ -77,33 +108,13 @@ export function TheFleetRoadmap() {
           <div
             data-fleet-viewer
             style={{ "--enter": 1 } as CSSProperties}
-            className={`${styles.enter} ${styles.enterVessel} relative grid size-[min(400px,62vw)] place-items-center lg:size-[min(400px,27.78vw)]`}
+            onPointerDown={onPointerDown}
+            onPointerMove={onPointerMove}
+            onPointerUp={onPointerUp}
+            onPointerCancel={onPointerUp}
+            className={`${styles.enter} ${styles.enterVessel} pointer-events-auto relative grid size-[min(400px,62vw)] cursor-grab touch-pan-y place-items-center select-none active:cursor-grabbing lg:size-[min(400px,27.78vw)]`}
           >
-            {/* Each scale has its own render at its own drawn size (400 / 420 /
-                532, the 250kW one sitting 34px below centre), stored as fractions
-                of this 400px box so they scale with it below lg. All three stay
-                mounted and cross-dissolve on a switch. Figma stacks the vessel
-                under the orbit ring and the drag handle in every state. */}
-            {ROADMAP.map(({ render }, index) => (
-              <Image
-                key={render.figmaId}
-                src={render.src}
-                alt={index === active ? render.alt : ""}
-                aria-hidden={index !== active}
-                width={532}
-                height={532}
-                sizes="(min-width: 992px) 532px, 83vw"
-                data-figma-id={render.figmaId}
-                data-active={index === active}
-                style={
-                  {
-                    "--vessel-size": `${render.scale * 100}%`,
-                    "--vessel-dy": `${render.offsetY * 100}%`,
-                  } as CSSProperties
-                }
-                className={`${styles.swap} pointer-events-none absolute top-[calc(50%+var(--vessel-dy))] left-1/2 aspect-square h-auto w-[var(--vessel-size)] max-w-none -translate-x-1/2 -translate-y-1/2`}
-              />
-            ))}
+            <TheFleetVessels active={active} ref={vesselsRef} />
             {[...new Set(ROADMAP.map((state) => state.ring))].map((ring) => (
               <Image
                 key={ring.src}
@@ -118,7 +129,8 @@ export function TheFleetRoadmap() {
             ))}
             <button
               type="button"
-              aria-label="Drag to rotate the vessel"
+              aria-label="Drag to rotate the vessel, or use the arrow keys"
+              onKeyDown={onHandleKey}
               data-figma-id="181:546"
               className="bg-surface rounded-pill text-text-strong pointer-events-auto absolute top-1/2 left-1/2 flex size-10 -translate-x-1/2 -translate-y-1/2 cursor-grab items-center justify-center -space-x-2 active:cursor-grabbing"
             >
